@@ -5,21 +5,22 @@ interface AppFooterProps {
   onTabChange?: (tab: Tab) => void;
 }
 
+const base = import.meta.env.BASE_URL;
 const navItems: { label: Tab; icon: string; activeIcon: string; sparkle?: string }[] = [
   {
     label: 'Accueil',
-    icon: '/icons/tab-home.svg',
-    activeIcon: '/icons/tab-home-active.svg',
-    sparkle: '/icons/tab-home-sparkle.svg',
+    icon: base + 'icons/tab-home.svg',
+    activeIcon: base + 'icons/tab-home-active.svg',
+    sparkle: base + 'icons/tab-home-sparkle.svg',
   },
   {
     label: 'Carte',
-    icon: '/icons/tab-carte.svg',
-    activeIcon: '/icons/tab-carte-active.svg',
-    sparkle: '/icons/tab-carte-sparkle.svg',
+    icon: base + 'icons/tab-carte.svg',
+    activeIcon: base + 'icons/tab-carte-active.svg',
+    sparkle: base + 'icons/tab-carte-sparkle.svg',
   },
-  { label: 'Billets', icon: '/icons/tab-billets.svg', activeIcon: '/icons/tab-billets-active.svg', sparkle: '/icons/tab-billets-sparkle.svg' },
-  { label: 'Profil', icon: '/icons/tab-profil.svg', activeIcon: '/icons/tab-profil-active.svg', sparkle: '/icons/tab-profil-sparkle.svg' },
+  { label: 'Billets', icon: base + 'icons/tab-billets.svg', activeIcon: base + 'icons/tab-billets-active.svg', sparkle: base + 'icons/tab-billets-sparkle.svg' },
+  { label: 'Profil', icon: base + 'icons/tab-profil.svg', activeIcon: base + 'icons/tab-profil-active.svg', sparkle: base + 'icons/tab-profil-sparkle.svg' },
 ];
 
 export default function AppFooter({ activeTab = 'Accueil', onTabChange }: AppFooterProps) {
