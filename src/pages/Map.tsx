@@ -286,7 +286,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
   );
 }
 
-function SearchBar({ onClick, value, onChange, inputRef }: { onClick?: () => void; value?: string; onChange?: (v: string) => void; inputRef?: React.RefObject<HTMLInputElement> }) {
+function SearchBar({ onClick, value, onChange, inputRef }: { onClick?: () => void; value?: string; onChange?: (v: string) => void; inputRef?: React.RefObject<HTMLInputElement | null> }) {
   if (onChange !== undefined) {
     return (
       <div className="flex-1 bg-white rounded-2xl h-11 flex items-center gap-2 px-3 shadow-[0px_2px_12px_0px_rgba(0,0,0,0.12)] focus-within:ring-2 focus-within:ring-primary">
@@ -692,7 +692,7 @@ export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
   const [promoOnly, setPromoOnly] = useState(false);
   const [sortBy, setSortBy] = useState<SortBy>('recommended');
   const [searchQuery, setSearchQuery] = useState('');
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
   const focusSearchOnOpen = useRef(false);
 
   // Geolocation state
