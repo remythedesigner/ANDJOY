@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #faf4f1;
+    color: #1a1a24;
+    font-family: 'Outfit', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+  }
+
+  p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* H1 — Page greeting (Bodoni Moda, 34px) */
+  .typo-h1 { @apply font-serif font-semibold text-[34px] leading-[1.04]; }
+
+  /* H2 — Hero / featured card title (Outfit, 20px) */
+  .typo-h2 { @apply font-sans font-extrabold text-[20px] leading-[25px]; }
+
+  /* H3 — Section & block headings (Outfit, 18px) */
+  .typo-h3 { @apply font-sans font-extrabold text-[18px] leading-[25px]; }
+
+  /* Title — Card / item titles (Outfit bold, 14px) */
+  .typo-title { @apply font-sans font-bold text-[14px] leading-[18px]; }
+
+  /* Body — Descriptive / paragraph text (Outfit, 14px) */
+  .typo-body { @apply font-sans font-normal text-[14px] leading-[19px]; }
+
+  /* Caption — Timestamps, distances, metadata (DM Sans, 12px) */
+  .typo-caption { @apply font-meta text-[12px] leading-[17px]; }
+
+  /* Label — Category tags, uppercase micro-labels (Outfit bold, 10px) */
+  .typo-label { @apply font-sans font-bold text-[10px] leading-[15px] tracking-[0.5px] uppercase; }
+
+  /* Quote — Review & inspirational quotes (Bodoni Moda, 12px) */
+  .typo-quote { @apply font-serif text-[12px] leading-[19px]; }
+}
+
+@layer base {
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 9999px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 9999px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #5170ff;
+    border: 2.5px solid white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    margin-top: -7px;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #5170ff;
+    border: 2.5px solid white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+}
+
+@keyframes progress-fill {
+  from { width: 0% }
+  to   { width: 100% }
+}
+
+@keyframes onboard-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@layer utilities {
+  .animate-onboard-in {
+    animation: onboard-in 0.28s ease-out;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
