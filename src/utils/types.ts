@@ -28,6 +28,10 @@ export interface CommunityMember {
   name: string;
   image: string;
   gradient: string;
+  bio: string;
+  tags: string[];
+  gender: 'male' | 'female';
+  instagram?: string;
 }
 
 export interface HeroEvent {

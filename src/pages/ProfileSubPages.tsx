@@ -104,9 +104,9 @@ function Input({ value, onChange, placeholder, type = 'text' }: { value: string;
 // ─── 1. Informations personnelles ─────────────────────────────────────────────
 
 export function PersonalInfoPage({ onBack }: { onBack: () => void }) {
-  const [firstName, setFirstName] = useState('Sofia');
+  const [firstName, setFirstName] = useState('Jane');
   const [lastName, setLastName] = useState('Martin');
-  const [email, setEmail] = useState('sofia.martin@gmail.com');
+  const [email, setEmail] = useState('jane.martin@gmail.com');
   const [phone, setPhone] = useState('+33 6 12 34 56 78');
   const [dob, setDob] = useState('1995-04-12');
   const [saved, setSaved] = useState(false);
@@ -248,7 +248,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                 </div>
                 <div className="text-right">
                   <p className="font-sans text-[11px] text-white/60 uppercase tracking-widest">Titulaire</p>
-                  <p className="font-sans font-bold text-[14px] text-white">Sofia Martin</p>
+                  <p className="font-sans font-bold text-[14px] text-white">Jane Martin</p>
                 </div>
               </div>
             </div>

@@ -42,7 +42,17 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
         </h1>
       </div>
 
-      <div className="flex-1" />
+      {/* Illustration placeholder */}
+      <div className="flex-1 px-6 py-6 flex flex-col">
+        <div className="flex-1 rounded-[32px] bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
+            <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
+            <path d="M4 28l8-7 6 6 4-4 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="font-sans font-semibold text-[13px]">Illustration</span>
+        </div>
+      </div>
 
       {/* Auth buttons */}
       <div className="px-5 flex flex-col gap-3 pb-4">

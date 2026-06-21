@@ -3,9 +3,10 @@ import type { Review } from '../../utils/types';
 interface ReviewCardProps {
   review: Review;
   onEventClick?: () => void;
+  onAuthorClick?: () => void;
 }
 
-export default function ReviewCard({ review, onEventClick }: ReviewCardProps) {
+export default function ReviewCard({ review, onEventClick, onAuthorClick }: ReviewCardProps) {
   const { author, authorImage, authorGradient, timeAgo, emoji, text, eventTitle, eventImage } = review;
 
   return (
@@ -14,9 +15,12 @@ export default function ReviewCard({ review, onEventClick }: ReviewCardProps) {
     >
       {/* Header */}
       <div className="flex items-center gap-2.5">
-        <div
-          className="rounded-full p-[2.5px] shrink-0"
-          style={{ background: authorGradient }}
+        <button
+          onClick={onAuthorClick}
+          disabled={!onAuthorClick}
+          className="rounded-full p-[2.5px] shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity disabled:pointer-events-none"
+          style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, rgba(139,92,246,0.25) 100%)' }}
+          aria-label={`Voir le profil de ${author}`}
         >
           <div className="border-[2px] border-white rounded-full size-10 overflow-hidden">
             <img
@@ -26,7 +30,7 @@ export default function ReviewCard({ review, onEventClick }: ReviewCardProps) {
               loading="lazy"
             />
           </div>
-        </div>
+        </button>
         <div className="flex-1 min-w-0">
           <span className="font-sans font-bold text-[14px] text-dark leading-tight block">{author}</span>
           <span className="font-sans text-[12px] text-muted leading-tight">{timeAgo}</span>

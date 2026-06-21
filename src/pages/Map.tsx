@@ -759,7 +759,6 @@ export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
 
   const activeFilterCount = [
     hasActiveFilters,
-    sortBy !== 'recommended',
   ].filter(Boolean).length;
 
   const filteredEvents = useMemo(() => {

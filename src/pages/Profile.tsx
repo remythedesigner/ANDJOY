@@ -141,8 +141,8 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
           <div className="relative mb-4">
             <img
               src={ASSETS.profilePic}
-              alt="Sofia"
-              className="size-[88px] rounded-full object-cover ring-4 ring-white shadow-[0px_4px_20px_rgba(0,0,0,0.1)]"
+              alt="Jane"
+              className="size-[88px] rounded-full object-cover shadow-[0px_4px_20px_rgba(0,0,0,0.1)]"
             />
             <button
               onClick={() => setEditingPhoto(true)}
@@ -155,8 +155,8 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
               </svg>
             </button>
           </div>
-          <h1 className="font-sans font-extrabold text-[22px] text-dark">Sofia Martin</h1>
-          <p className="font-sans text-[14px] text-muted mt-1">sofia.martin@gmail.com</p>
+          <h1 className="font-sans font-extrabold text-[22px] text-dark">Jane</h1>
+<p className="font-sans text-[14px] text-muted mt-1">jane.martin@gmail.com</p>
           <div className="flex gap-3 mt-3">
             {STATS.map(({ value, label }, i) => (
               <Fragment key={label}>

@@ -33,12 +33,12 @@ export default function AppHeader({ onOpenProfile }: { onOpenProfile?: () => voi
         {/* Profile button */}
         <button
           onClick={onOpenProfile}
-          className="border-[2.5px] border-[#eef1ff] rounded-full overflow-hidden size-[38px] shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:opacity-75 transition-opacity"
+          className="rounded-full overflow-hidden size-[38px] shrink-0 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:opacity-75 transition-opacity"
           aria-label="Profil utilisateur"
         >
           <img
             src={ASSETS.profilePic}
-            alt="Sofia"
+            alt="Jane"
             className="w-full h-full object-cover"
           />
         </button>

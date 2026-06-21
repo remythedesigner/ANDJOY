@@ -48,8 +48,20 @@ export default function OnboardingSlides({ onComplete }: OnboardingSlidesProps) 
         <img src={import.meta.env.BASE_URL + "logo.svg"} alt="&JOY" className="h-[44px] w-auto" />
       </div>
 
+      {/* Illustration placeholder */}
+      <div className="flex-1 px-6 pt-4 pb-2 flex flex-col">
+        <div className="flex-1 rounded-[32px] bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
+            <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
+            <path d="M4 28l8-7 6 6 4-4 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="font-sans font-semibold text-[13px]">Illustration</span>
+        </div>
+      </div>
+
       {/* Centered content */}
-      <div className="flex-1 flex flex-col items-center justify-center text-center px-7">
+      <div className="flex flex-col items-center text-center px-7 pt-4 pb-[112px] shrink-0">
         <div key={animKey} className="flex flex-col items-center animate-onboard-in">
           <h2 className="font-sans font-extrabold text-[32px] leading-[1.1] text-dark mb-3 whitespace-pre-line">
             {title}

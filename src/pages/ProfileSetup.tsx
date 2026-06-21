@@ -8,23 +8,14 @@ interface Props {
 
 function LocationIllustration() {
   return (
-    <svg viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-[260px] h-auto">
-      <circle cx="150" cy="130" r="115" fill="#eef1ff" />
-      <path d="M70 130 Q110 100 150 130 Q190 160 230 130" stroke="#c5ccff" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M100 70 Q130 100 140 130 Q150 160 155 195" stroke="#c5ccff" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M80 165 Q120 155 160 150" stroke="#c5ccff" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M150 78 C163 78 175 90 175 103 C175 120 150 145 150 145 C150 145 125 120 125 103 C125 90 137 78 150 78Z" fill="#5170ff" />
-      <circle cx="150" cy="103" r="9" fill="white" />
-      <path d="M105 145 C111 145 117 151 117 157 C117 165 105 176 105 176 C105 176 93 165 93 157 C93 151 99 145 105 145Z" fill="#5170ff" opacity="0.45" />
-      <circle cx="105" cy="157" r="5" fill="white" opacity="0.9" />
-      <path d="M188 118 C193 118 198 123 198 128 C198 134 188 143 188 143 C188 143 178 134 178 128 C178 123 183 118 188 118Z" fill="#5170ff" opacity="0.3" />
-      <circle cx="188" cy="128" r="4" fill="white" opacity="0.9" />
-      <path d="M155 170 C158 170 161 173 161 176 C161 180 155 185 155 185 C155 185 149 180 149 176 C149 173 152 170 155 170Z" fill="#5170ff" opacity="0.2" />
-      <circle cx="200" cy="82" r="3.5" fill="#5170ff" opacity="0.3" />
-      <circle cx="85" cy="100" r="2.5" fill="#5170ff" opacity="0.25" />
-      <circle cx="215" cy="168" r="2" fill="#5170ff" opacity="0.2" />
-      <circle cx="110" cy="195" r="2" fill="#5170ff" opacity="0.2" />
-    </svg>
+    <div className="w-[260px] aspect-square rounded-[32px] bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
+        <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
+        <path d="M4 28l8-7 6 6 4-4 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <span className="font-sans font-semibold text-[13px]">Illustration</span>
+    </div>
   );
 }
 
