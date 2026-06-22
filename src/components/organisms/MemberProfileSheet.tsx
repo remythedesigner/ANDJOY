@@ -11,8 +11,12 @@ interface MemberProfileSheetProps {
 
 export default function MemberProfileSheet({ member, onClose, onEventClick }: MemberProfileSheetProps) {
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   const reviews = communityReviews.filter(r => r.author === member.name).slice(0, 5);
+
+  const CLOSE_THRESHOLD = 120;
 
   // Lock body scroll when sheet is open
   useEffect(() => {
@@ -26,21 +30,38 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
     setTouchStartY(e.touches[0].clientY);
   }
 
+  function handleTouchMove(e: React.TouchEvent) {
+    if (touchStartY === null) return;
+    const currentY = e.touches[0].clientY;
+    const diff = currentY - touchStartY;
+
+    // Only allow dragging down (positive diff)
+    if (diff > 0) {
+      setDragOffset(diff);
+    }
+  }
+
   function handleTouchEnd(e: React.TouchEvent) {
     if (touchStartY === null) return;
-    const touchEndY = e.changedTouches[0].clientY;
-    const diff = touchEndY - touchStartY;
-    // If dragged down more than 100px, close the sheet
-    if (diff > 100) {
+
+    // If dragged down more than threshold, close the sheet
+    if (dragOffset > CLOSE_THRESHOLD) {
       onClose();
+    } else {
+      // Snap back to original position
+      setDragOffset(0);
     }
     setTouchStartY(null);
   }
 
+  // Calculate overlay opacity based on drag offset
+  const overlayOpacity = Math.max(0.35 - (dragOffset / CLOSE_THRESHOLD) * 0.35, 0);
+
   return (
     <div
+      ref={overlayRef}
       className="fixed inset-0 z-50 flex flex-col justify-end"
-      style={{ background: 'rgba(0,0,0,0.35)' }}
+      style={{ background: `rgba(0,0,0,${overlayOpacity})`, transition: dragOffset === 0 ? 'background 0.3s ease' : 'none' }}
       onClick={onClose}
     >
       <div
@@ -48,7 +69,12 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
         className="bg-[#faf4f1] rounded-t-[32px] pt-4 pb-10 flex flex-col overflow-hidden max-h-[88svh]"
         onClick={e => e.stopPropagation()}
         onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        style={{
+          transform: `translateY(${dragOffset}px)`,
+          transition: dragOffset === 0 ? 'transform 0.3s ease' : 'none',
+        }}
       >
         {/* Handle */}
         <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-5 shrink-0 cursor-grab active:cursor-grabbing" />
