@@ -40,30 +40,6 @@ export const heroEvents: HeroEvent[] = [
     progressBars: 3,
     activeBar: 0,
   },
-  {
-    image: 'https://www.figma.com/api/mcp/asset/6c3dc24e-bd4c-48d4-9adb-398d492dde7a',
-    overlay: '',
-    category: 'Spectacles',
-    title: 'Soirée Stand-Up · Les Révélations',
-    time: 'Demain · 20h30',
-    location: 'Paris 10e',
-    price: '12 €',
-    scarcityBadge: undefined,
-    progressBars: 3,
-    activeBar: 1,
-  },
-  {
-    image: 'https://www.figma.com/api/mcp/asset/e17be550-8f56-48fa-9f4c-1538a4d87953',
-    overlay: '',
-    category: 'Expositions',
-    title: "Expo Immersive · Lumières d'Orient",
-    time: 'Dim · 14h00',
-    location: 'Paris 13e',
-    price: '22 €',
-    scarcityBadge: undefined,
-    progressBars: 3,
-    activeBar: 2,
-  },
 ];
 
 export const lovedEvents: Event[] = [
