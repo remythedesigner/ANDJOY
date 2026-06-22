@@ -71,11 +71,33 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
   const [profileMember, setProfileMember] = useState<CommunityMember | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const reviewsRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     scrollRef.current?.scrollTo(0, 0);
   }, []);
+
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    if (touchStartX.current === null) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchEndX - touchStartX.current;
+
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        // Swiped right — go to previous image
+        setActiveImage(i => (i - 1 + IMAGES.length) % IMAGES.length);
+      } else {
+        // Swiped left — go to next image
+        setActiveImage(i => (i + 1) % IMAGES.length);
+      }
+    }
+    touchStartX.current = null;
+  }
 
   function scrollToReviews() {
     reviewsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -86,11 +108,15 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
 
         {/* ── Hero image ── */}
-        <div className="relative h-[324px]">
+        <div
+          className="relative h-[324px] touch-none"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <img
             src={IMAGES[activeImage]}
             alt="Expo Immersive · Lumières d'Orient"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover select-none"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
