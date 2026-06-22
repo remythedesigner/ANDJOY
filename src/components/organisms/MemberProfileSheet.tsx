@@ -35,10 +35,8 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
     const currentY = e.touches[0].clientY;
     const diff = currentY - touchStartY;
 
-    // Only allow dragging down (positive diff)
-    if (diff > 0) {
-      setDragOffset(diff);
-    }
+    // Allow dragging up or down, but clamp to >= 0
+    setDragOffset(Math.max(0, diff));
   }
 
   function handleTouchEnd(e: React.TouchEvent) {
@@ -55,7 +53,8 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
   }
 
   // Calculate overlay opacity based on drag offset
-  const overlayOpacity = Math.max(0.35 - (dragOffset / CLOSE_THRESHOLD) * 0.35, 0);
+  // Minimum opacity is 0.15 to keep overlay visible while sheet exists
+  const overlayOpacity = Math.max(0.15, 0.35 - (dragOffset / CLOSE_THRESHOLD) * 0.35);
 
   return (
     <div
