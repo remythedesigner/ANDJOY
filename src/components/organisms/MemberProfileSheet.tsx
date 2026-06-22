@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import ReviewCard from '../molecules/ReviewCard';
 import { communityReviews } from '../../utils/data';
 import type { CommunityMember } from '../../utils/types';
@@ -9,7 +10,32 @@ interface MemberProfileSheetProps {
 }
 
 export default function MemberProfileSheet({ member, onClose, onEventClick }: MemberProfileSheetProps) {
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const sheetRef = useRef<HTMLDivElement>(null);
   const reviews = communityReviews.filter(r => r.author === member.name).slice(0, 5);
+
+  // Lock body scroll when sheet is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  function handleTouchStart(e: React.TouchEvent) {
+    setTouchStartY(e.touches[0].clientY);
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    if (touchStartY === null) return;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diff = touchEndY - touchStartY;
+    // If dragged down more than 100px, close the sheet
+    if (diff > 100) {
+      onClose();
+    }
+    setTouchStartY(null);
+  }
 
   return (
     <div
@@ -18,11 +44,14 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
       onClick={onClose}
     >
       <div
+        ref={sheetRef}
         className="bg-[#faf4f1] rounded-t-[32px] pt-4 pb-10 flex flex-col overflow-hidden max-h-[88svh]"
         onClick={e => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         {/* Handle */}
-        <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-5 shrink-0" />
+        <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-5 shrink-0 cursor-grab active:cursor-grabbing" />
 
         {/* Header */}
         <div className="flex flex-col items-center px-6 pb-5 shrink-0">
