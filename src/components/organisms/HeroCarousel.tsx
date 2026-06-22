@@ -123,20 +123,22 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
             </div>
           ))}
 
-          {/* Progress bars — on top of slides */}
-          <div className="absolute top-4 left-4 right-4 flex gap-2 pointer-events-none">
-            {Array.from({ length: heroEvents.length }).map((_, i) => (
-              <div key={i} className="flex-1 h-[3px] rounded-[3px] bg-white/40 overflow-hidden">
-                {i < activeIndex && <div className="h-full w-full bg-white" />}
-                {i === activeIndex && (
-                  <div
-                    className="h-full bg-white w-0"
-                    style={{ animation: `progress-fill ${SLIDE_DURATION}ms linear forwards` }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+          {/* Progress bars — on top of slides (hidden if only one event) */}
+          {heroEvents.length > 1 && (
+            <div className="absolute top-4 left-4 right-4 flex gap-2 pointer-events-none">
+              {Array.from({ length: heroEvents.length }).map((_, i) => (
+                <div key={i} className="flex-1 h-[3px] rounded-[3px] bg-white/40 overflow-hidden">
+                  {i < activeIndex && <div className="h-full w-full bg-white" />}
+                  {i === activeIndex && (
+                    <div
+                      className="h-full bg-white w-0"
+                      style={{ animation: `progress-fill ${SLIDE_DURATION}ms linear forwards` }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
 
         </article>
       </div>

@@ -40,6 +40,30 @@ export const heroEvents: HeroEvent[] = [
     progressBars: 3,
     activeBar: 0,
   },
+  {
+    image: 'https://www.figma.com/api/mcp/asset/6c3dc24e-bd4c-48d4-9adb-398d492dde7a',
+    overlay: '',
+    category: 'Spectacles',
+    title: 'Soirée Jazz · L\'Atelier des Îles',
+    time: 'Auj. 21h00',
+    location: 'Paris 5e',
+    price: '25 €',
+    scarcityBadge: undefined,
+    progressBars: 3,
+    activeBar: 1,
+  },
+  {
+    image: 'https://www.figma.com/api/mcp/asset/a530db35-6762-42c2-a58f-75d6ce2720a4',
+    overlay: '',
+    category: 'Ateliers & initiations',
+    title: 'Atelier Pâtisserie · Macarons',
+    time: 'Auj. 15h00',
+    location: 'Paris 6e',
+    price: '45 €',
+    scarcityBadge: 'Dernières places',
+    progressBars: 3,
+    activeBar: 2,
+  },
 ];
 
 export const lovedEvents: Event[] = [
