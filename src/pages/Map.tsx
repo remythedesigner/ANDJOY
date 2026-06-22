@@ -700,6 +700,11 @@ export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
   const [locating, setLocating] = useState(false);
   const watchIdRef = useRef<number | null>(null);
 
+  // Drag state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragDelta, setDragDelta] = useState(0);
+  const dragStartRef = useRef(0);
+
   useEffect(() => {
     const styleId = 'joy-user-marker-style';
     if (!document.getElementById(styleId)) {
@@ -744,6 +749,37 @@ export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
     const timer = setTimeout(() => searchInputRef.current?.focus(), 350);
     return () => clearTimeout(timer);
   }, [listOpen]);
+
+  const handleSheetTouchStart = (e: React.TouchEvent) => {
+    dragStartRef.current = e.touches[0].clientY;
+    setIsDragging(true);
+  };
+
+  const handleSheetTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const currentY = e.touches[0].clientY;
+    const delta = currentY - dragStartRef.current;
+    setDragDelta(delta);
+  };
+
+  const handleSheetTouchEnd = () => {
+    setIsDragging(false);
+    const threshold = 60;
+    const velocity = dragDelta / 0.3;
+
+    if (listOpen) {
+      if (dragDelta > threshold || velocity > 500) {
+        setListOpen(false);
+      }
+    } else {
+      if (dragDelta < -threshold || velocity < -500) {
+        setListOpen(true);
+        setSelectedId(null);
+      }
+    }
+
+    setDragDelta(0);
+  };
 
   function handleReset() {
     setDateFilter('all');
@@ -924,10 +960,13 @@ export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
           {/* ── Animated bottom sheet ─────────────────────────────────────────── */}
           <div
             className="absolute inset-x-0 bottom-0 z-[1000] flex flex-col bg-cream rounded-t-3xl shadow-[0px_-4px_24px_rgba(0,0,0,0.08)]"
+            onTouchStart={handleSheetTouchStart}
+            onTouchMove={handleSheetTouchMove}
+            onTouchEnd={handleSheetTouchEnd}
             style={{
               height: '100%',
-              transform: listOpen ? 'translateY(0)' : selectedEvent ? 'translateY(100%)' : `translateY(calc(100% - ${PEEK_H}px))`,
-              transition: 'transform 0.45s cubic-bezier(0.32, 0.72, 0, 1)',
+              transform: listOpen ? `translateY(${Math.max(dragDelta, 0)}px)` : selectedEvent ? `translateY(calc(100% + ${Math.max(dragDelta, 0)}px))` : `translateY(calc(100% - ${PEEK_H}px + ${Math.max(dragDelta, 0)}px))`,
+              transition: isDragging ? 'none' : 'transform 0.45s cubic-bezier(0.32, 0.72, 0, 1)',
               willChange: 'transform',
             }}
           >

@@ -25,7 +25,7 @@ const navItems: { label: Tab; icon: string; activeIcon: string; sparkle?: string
 
 export default function AppFooter({ activeTab = 'Accueil', onTabChange }: AppFooterProps) {
   return (
-    <footer className="sticky bottom-0 bg-[#FDFAF9] border-t border-black/[0.05]">
+    <footer className="sticky bottom-0 bg-[#FDFAF9] border-t border-black/[0.05]" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
       <nav aria-label="Navigation principale">
         <ul className="flex items-center justify-center gap-10 list-none p-0 m-0 px-4 py-4">
           {navItems.map(({ icon, activeIcon, label, sparkle }) => {
