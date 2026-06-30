@@ -103,11 +103,11 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
                 <h3 className="typo-h2 text-white mt-1 max-w-[284px]">{ev.title}</h3>
                 <div className="flex gap-2 mt-2">
                   <div className="bg-white/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
-                    <img src={ASSETS.icons.clock} alt="" aria-hidden="true" className="size-[11px]" />
+                    <img src={ASSETS.icons.clock} alt="" aria-hidden="true" className="size-[11px] brightness-0 invert" />
                     <span className="typo-caption font-semibold text-white">{ev.time}</span>
                   </div>
                   <div className="bg-white/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
-                    <img src={ASSETS.icons.pin} alt="" aria-hidden="true" className="size-[11px]" />
+                    <img src={ASSETS.icons.pin} alt="" aria-hidden="true" className="size-[11px] brightness-0 invert" />
                     <span className="typo-caption font-semibold text-white">{ev.location}</span>
                   </div>
                 </div>
