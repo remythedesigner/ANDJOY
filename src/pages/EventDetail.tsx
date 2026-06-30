@@ -16,9 +16,9 @@ const venueMarker = L.divIcon({
 });
 
 const IMAGES = [
-  'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop&sat=-20',
+  'https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=600&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=600&h=600&fit=crop',
 ];
 
 const REMAINING_SEATS = 6;
@@ -290,13 +290,13 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 Ouvrir dans Maps →
               </a>
             </div>
-            <div className="rounded-2xl overflow-hidden h-[180px]">
+            <div className="rounded-2xl overflow-hidden h-[180px] relative">
               <MapContainer
                 center={[VENUE.lat, VENUE.lng]}
                 zoom={15}
                 scrollWheelZoom={false}
                 zoomControl={false}
-                style={{ height: '180px', width: '100%' }}
+                style={{ height: '180px', width: '100%', position: 'relative', zIndex: 0 }}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -326,21 +326,21 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             <div className="bg-[#FBEEE8] border border-black/[0.05] rounded-3xl p-5">
               <div className="flex items-center gap-3 mb-3">
                 <button
-                  onClick={() => setProfileMember(communityMembers.find(m => m.name === 'Jane') ?? null)}
+                  onClick={() => setProfileMember(communityMembers.find(m => m.name === 'Sam') ?? null)}
                   className="rounded-full p-[2.5px] shrink-0 focus-visible:outline-none active:opacity-70 transition-opacity"
                   style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, rgba(139,92,246,0.25) 100%)' }}
-                  aria-label="Voir le profil de Jane"
+                  aria-label="Voir le profil de Sam"
                 >
                   <div className="border-[2px] border-white rounded-full size-10 overflow-hidden">
                     <img
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
-                      alt="Jane"
+                      src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&h=100&fit=crop"
+                      alt="Sam"
                       className="w-full h-full object-cover"
                     />
                   </div>
                 </button>
                 <div className="flex-1 min-w-0">
-                  <p className="font-sans font-bold text-[14px] text-dark">Jane</p>
+                  <p className="font-sans font-bold text-[14px] text-dark">Sam</p>
                   <p className="font-sans font-medium text-[13px] text-[#8B5CF6]">Rédactrice &JOY</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">

@@ -103,7 +103,7 @@ const mapEvents = [
     emoji: '✏️',
     lat: 48.862,
     lng: 2.3578,
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop',
     category: '✏️ Atelier',
     title: 'Sashiko · Broderie japonaise',
     location: 'Paris 3e',

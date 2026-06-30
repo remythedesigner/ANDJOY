@@ -4,10 +4,10 @@ export default function GreetingSection() {
       {/* Heading */}
       <div className="flex items-center gap-2 overflow-hidden whitespace-nowrap">
         <h1 className="typo-h1 text-dark-warm">
-          Salut,{' '}
+          Salut{' '}
         </h1>
         <span className="typo-h1 italic text-primary">
-          Héloïse
+          Jane
         </span>
         <span className="font-serif text-[30px] leading-normal text-dark-warm ml-1" role="img" aria-label="salut">
           👋

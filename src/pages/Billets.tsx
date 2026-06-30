@@ -83,7 +83,7 @@ const BOOKINGS: Booking[] = [
     lng: 2.3626,
     persons: 1,
     price: 45,
-    image: 'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=400&fit=crop',
     past: true,
     description: "Initie-toi aux techniques ancestrales de la poterie japonaise sous la guidance d'une céramiste professionnelle. Tu repartiras avec ta création une fois cuite.",
     included: ['Matériaux', 'Livraison de la pièce cuite', 'Tablier'],
@@ -420,7 +420,10 @@ function ReviewSheet({ booking, onClose }: { booking: Booking; onClose: () => vo
 
 function BookingCard({ booking, onOpen, onReview }: { booking: Booking; onOpen: () => void; onReview?: () => void }) {
   return (
-    <div className="bg-white rounded-3xl overflow-hidden shadow-[0px_2px_10px_rgba(0,0,0,0.06)]">
+    <div
+      onClick={!booking.past ? onOpen : undefined}
+      className={`bg-white rounded-3xl overflow-hidden shadow-[0px_2px_10px_rgba(0,0,0,0.06)] ${!booking.past ? 'cursor-pointer active:opacity-70 transition-opacity' : ''}`}
+    >
       {/* Big visual */}
       <div className="relative h-[200px]">
         <img

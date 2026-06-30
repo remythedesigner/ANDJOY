@@ -214,9 +214,24 @@ function CardBrandIcon({ brand }: { brand: string }) {
 
 export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
   const [cards, setCards] = useState(SAVED_CARDS);
+  const [showAddCard, setShowAddCard] = useState(false);
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiry, setExpiry] = useState('');
+  const [cvc, setCvc] = useState('');
+  const [name, setName] = useState('');
 
   function removeCard(id: string) {
     setCards(c => c.filter(card => card.id !== id));
+  }
+
+  function handleAddCard() {
+    if (cardNumber.trim() && expiry.trim() && cvc.trim() && name.trim()) {
+      setShowAddCard(false);
+      setCardNumber('');
+      setExpiry('');
+      setCvc('');
+      setName('');
+    }
   }
 
   return (
@@ -259,13 +274,78 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
           <p className="text-center font-sans text-[14px] text-muted mt-4">Aucune carte enregistrée</p>
         )}
 
-        <button className="flex items-center justify-center gap-2 w-full h-14 rounded-2xl border-2 border-dashed border-black/[0.12] font-sans font-bold text-[14px] text-muted active:opacity-70 transition-opacity focus-visible:outline-none">
+        <button
+          onClick={() => setShowAddCard(true)}
+          className="flex items-center justify-center gap-2 w-full h-14 rounded-2xl border-2 border-dashed border-black/[0.12] font-sans font-bold text-[14px] text-muted active:opacity-70 transition-opacity focus-visible:outline-none"
+        >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M9 3v12M3 9h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
           Ajouter une carte
         </button>
       </div>
+
+      {showAddCard && (
+        <div className="fixed inset-0 z-50 flex flex-col justify-end" style={{ background: 'rgba(0,0,0,0.35)' }} onClick={() => setShowAddCard(false)}>
+          <div className="bg-white rounded-t-[32px] px-5 pt-4 pb-10 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+            <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-2" />
+            <p className="font-sans font-bold text-[17px] text-dark mb-4">Ajouter une carte</p>
+
+            <div>
+              <label className="font-sans font-bold text-[15px] text-dark block mb-2">Numéro de carte</label>
+              <input
+                type="text"
+                value={cardNumber}
+                onChange={e => setCardNumber(e.target.value)}
+                placeholder="1234 5678 9012 3456"
+                className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+              />
+            </div>
+
+            <div className="flex gap-3">
+              <div className="flex-1">
+                <label className="font-sans font-bold text-[15px] text-dark block mb-2">Expiration</label>
+                <input
+                  type="text"
+                  value={expiry}
+                  onChange={e => setExpiry(e.target.value)}
+                  placeholder="MM/YY"
+                  className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                />
+              </div>
+              <div className="flex-1">
+                <label className="font-sans font-bold text-[15px] text-dark block mb-2">CVC</label>
+                <input
+                  type="text"
+                  value={cvc}
+                  onChange={e => setCvc(e.target.value)}
+                  placeholder="123"
+                  className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="font-sans font-bold text-[15px] text-dark block mb-2">Titulaire</label>
+              <input
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                placeholder="Jane Martin"
+                className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+              />
+            </div>
+
+            <button
+              onClick={handleAddCard}
+              className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none active:opacity-90 transition-opacity disabled:opacity-40"
+              disabled={!cardNumber.trim() || !expiry.trim() || !cvc.trim() || !name.trim()}
+            >
+              Ajouter
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
