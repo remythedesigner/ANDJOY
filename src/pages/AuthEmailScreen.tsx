@@ -72,7 +72,7 @@ function CheckIcon({ filled }: { filled: boolean }) {
 function PasswordRequirements({ password }: { password: string }) {
   const reqs = validatePassword(password);
   return (
-    <div className="mt-4 space-y-2">
+    <div className="mt-1.5 mb-6 space-y-1">
       <p className="font-sans text-[12px] text-muted font-semibold">Conditions requises :</p>
       <div className="space-y-1.5">
         <div className="flex items-center gap-2">
