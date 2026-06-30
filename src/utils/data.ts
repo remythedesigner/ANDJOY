@@ -133,7 +133,7 @@ export const teamFavorites: Event[] = [
   },
   {
     id: 'sashiko',
-    image: 'https://images.unsplash.com/photo-1599586120429-48e90add34cb?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop',
     category: 'Ateliers & initiations',
     title: 'Sashiko · Broderie japonaise',
     date: 'Dim 22 juin · 14h00',
@@ -165,7 +165,7 @@ export const nearbyEvents: Event[] = [
   },
   {
     id: 'nearby-sashiko',
-    image: 'https://images.unsplash.com/photo-1599586120429-48e90add34cb?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop',
     category: 'Ateliers & initiations',
     title: 'Sashiko · Broderie japonaise',
     date: 'Dim 22 juin · 14h00',
