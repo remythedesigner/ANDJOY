@@ -7,7 +7,7 @@ export default function GreetingSection() {
           Salut,{' '}
         </h1>
         <span className="typo-h1 italic text-primary">
-          Jane
+          Héloïse
         </span>
         <span className="font-serif text-[30px] leading-normal text-dark-warm ml-1" role="img" aria-label="salut">
           👋
