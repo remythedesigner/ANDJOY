@@ -16,9 +16,9 @@ const venueMarker = L.divIcon({
 });
 
 const IMAGES = [
-  'https://www.figma.com/api/mcp/asset/8945411a-60bf-476b-a698-e0acc03a134e',
-  'https://www.figma.com/api/mcp/asset/6c3dc24e-bd4c-48d4-9adb-398d492dde7a',
-  'https://www.figma.com/api/mcp/asset/e17be550-8f56-48fa-9f4c-1538a4d87953',
+  'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1544367567-0d6fcffe95d7?w=600&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop',
 ];
 
 const REMAINING_SEATS = 6;
@@ -30,7 +30,7 @@ const USER_REVIEWS = [
   {
     id: 'marcus',
     name: 'Marcus',
-    avatar: 'https://www.figma.com/api/mcp/asset/778a583a-8892-4e75-8552-b4250fcb8b3d',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
     date: 'Mars 2025',
     rating: 5,
     text: "Une soirée incroyable, j'ai ri pendant 2h ! Le niveau des artistes était vraiment top.",
@@ -38,7 +38,7 @@ const USER_REVIEWS = [
   {
     id: 'lea',
     name: 'Léa',
-    avatar: 'https://www.figma.com/api/mcp/asset/8adf3e16-0650-4d79-bb3a-3b0cd4d77494',
+    avatar: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=100&h=100&fit=crop',
     date: 'Fév. 2025',
     rating: 5,
     text: "Une parenthèse hors du temps, je recommande à 1000% pour décompresser.",
@@ -333,7 +333,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 >
                   <div className="border-[2px] border-white rounded-full size-10 overflow-hidden">
                     <img
-                      src="https://www.figma.com/api/mcp/asset/ab0e2b8f-f0d3-4f08-91ae-e107f6ffdd6c"
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop"
                       alt="Jane"
                       className="w-full h-full object-cover"
                     />

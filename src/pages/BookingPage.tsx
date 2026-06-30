@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-const EVENT_IMAGE = 'https://www.figma.com/api/mcp/asset/8945411a-60bf-476b-a698-e0acc03a134e';
+const EVENT_IMAGE = 'https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=200&h=200&fit=crop';
 const PRICE_PER_PERSON = 22;
 const SERVICE_FEE = 1;
 

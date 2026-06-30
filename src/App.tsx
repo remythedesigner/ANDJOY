@@ -45,7 +45,7 @@ export default function App() {
     );
   }
   if (onboardingStep === 'auth-email') {
-    return <AuthEmailScreen onComplete={() => setOnboardingStep('slides')} onBack={() => setOnboardingStep('welcome')} />;
+    return <AuthEmailScreen onCompleteSignup={() => setOnboardingStep('slides')} onCompleteSignin={() => setOnboardingStep('done')} onBack={() => setOnboardingStep('welcome')} />;
   }
   if (onboardingStep === 'auth-apple') {
     return <AuthProviderScreen provider="apple" onComplete={() => setOnboardingStep('slides')} onBack={() => setOnboardingStep('welcome')} />;

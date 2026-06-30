@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-type Step = 'email' | 'signin' | 'signup';
+type Step = 'email' | 'verify-code' | 'signin' | 'signup' | 'forgot-password' | 'reset-password';
 
 // Simulate known accounts — any other email triggers the sign-up flow
-const KNOWN_EMAILS = new Set(['demo@joy.fr', 'sofia@example.com', 'test@test.com']);
+const KNOWN_EMAILS = new Set(['demo@joy.fr', 'sofia@example.com', 'test@test.com', 'laura@andjoy-app.com']);
 
 const PASSWORD_REQUIREMENTS = {
   minLength: 8,
@@ -30,7 +30,8 @@ function isPasswordValid(requirements: PasswordRequirements): boolean {
 }
 
 interface Props {
-  onComplete: () => void;
+  onCompleteSignup: () => void;
+  onCompleteSignin: () => void;
   onBack: () => void;
 }
 
@@ -98,30 +99,31 @@ function PasswordRequirements({ password }: { password: string }) {
   );
 }
 
-function EmailChip({ email, onEdit }: { email: string; onEdit: () => void }) {
-  return (
-    <button
-      onClick={onEdit}
-      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-black/[0.1] font-sans text-[13px] text-dark mt-3 mb-8 active:opacity-70 transition-opacity"
-      style={{ boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}
-    >
-      {email}
-      <span className="text-muted"><EditIcon /></span>
-    </button>
-  );
-}
-
-export default function AuthEmailScreen({ onComplete, onBack }: Props) {
+export default function AuthEmailScreen({ onCompleteSignup, onCompleteSignin, onBack }: Props) {
   const [step, setStep] = useState<Step>('email');
   const [email, setEmail] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
 
   const handleBack = () => {
     if (step === 'email') {
       onBack();
+    } else if (step === 'verify-code') {
+      setStep('email');
+      setVerificationCode('');
+    } else if (step === 'forgot-password') {
+      setStep('signin');
+      setResetEmail('');
+    } else if (step === 'reset-password') {
+      setStep('forgot-password');
+      setVerificationCode('');
+      setPassword('');
+      setConfirmPassword('');
+      setShowConfirm(false);
     } else {
       setStep('email');
       setPassword('');
@@ -130,9 +132,21 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
     }
   };
 
+  const handleVerifyCode = () => {
+    if (verificationCode.length === 6) {
+      const isKnown = KNOWN_EMAILS.has(email.toLowerCase().trim());
+      setStep(isKnown ? 'signin' : 'signup');
+      setVerificationCode('');
+    }
+  };
+
   const handleEmailSubmit = () => {
     const isKnown = KNOWN_EMAILS.has(email.toLowerCase().trim());
-    setStep(isKnown ? 'signin' : 'signup');
+    setStep(isKnown ? 'signin' : 'verify-code');
+  };
+
+  const handleForgotPasswordSubmit = () => {
+    setStep('reset-password');
   };
 
   return (
@@ -187,13 +201,82 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
         </div>
       )}
 
+      {/* ── Step: Verify Code ── */}
+      {step === 'verify-code' && (
+        <div key="verify-code" className="flex flex-col flex-1 px-6 pt-8 pb-4 animate-onboard-in">
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-2">
+            Vérifie ton email
+          </h2>
+          <p className="font-sans text-[14px] text-muted leading-[1.5] mb-8">
+            Nous avons envoyé un code à <br />
+            <span className="font-semibold text-dark">{email}</span>
+          </p>
+
+          <div className="flex gap-2 justify-center mb-8">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <input
+                key={index}
+                type="text"
+                autoFocus={index === 0}
+                inputMode="numeric"
+                maxLength={1}
+                value={verificationCode[index] || ''}
+                onChange={e => {
+                  const digit = e.target.value.replace(/\D/g, '');
+                  if (digit) {
+                    const newCode = verificationCode.split('');
+                    newCode[index] = digit;
+                    setVerificationCode(newCode.join(''));
+
+                    // Auto-focus to next field if not the last one
+                    if (index < 5) {
+                      const nextInput = document.querySelector(`input[data-digit="${index + 1}"]`) as HTMLInputElement;
+                      if (nextInput) nextInput.focus();
+                    }
+                  }
+                }}
+                onKeyDown={e => {
+                  // Handle backspace to go to previous field
+                  if (e.key === 'Backspace' && !verificationCode[index] && index > 0) {
+                    const prevInput = document.querySelector(`input[data-digit="${index - 1}"]`) as HTMLInputElement;
+                    if (prevInput) prevInput.focus();
+                  }
+                }}
+                data-digit={index}
+                className="w-12 h-12 rounded-2xl bg-white border border-black/[0.1] font-sans text-[24px] text-dark text-center outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/15 transition-all"
+              />
+            ))}
+          </div>
+
+          <button className="font-sans text-[13px] text-primary font-semibold self-center mb-4">
+            Renvoyer le code
+          </button>
+
+          <div className="flex-1" />
+
+          <button
+            onClick={handleVerifyCode}
+            disabled={verificationCode.length !== 6}
+            className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity mb-5"
+          >
+            Vérifier
+          </button>
+
+          <p className="font-sans text-[13px] text-muted text-center leading-[1.6]">
+            Pas le bon email ?{' '}
+            <button onClick={() => {setStep('email'); setVerificationCode('');}} className="text-primary font-semibold">
+              Changer l'email
+            </button>
+          </p>
+        </div>
+      )}
+
       {/* ── Step: Sign in ── */}
       {step === 'signin' && (
         <div key="signin" className="flex flex-col flex-1 px-6 pt-8 pb-4 animate-onboard-in">
-          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-1">
-            Bienvenue !
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-6">
+            Ton mot de passe
           </h2>
-          <EmailChip email={email} onEdit={() => setStep('email')} />
 
           <div className="relative mb-3">
             <input
@@ -214,36 +297,28 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
             </button>
           </div>
 
-          <button className="font-sans text-[13px] text-primary font-semibold self-end mb-4">
+          <button onClick={() => setStep('forgot-password')} className="font-sans text-[13px] text-primary font-semibold self-end mb-4">
             Mot de passe oublié ?
           </button>
 
           <div className="flex-1" />
 
           <button
-            onClick={onComplete}
-            disabled={!isPasswordValid(validatePassword(password))}
+            onClick={onCompleteSignin}
+            disabled={!password}
             className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity mb-5"
           >
             Se connecter
           </button>
-
-          <p className="font-sans text-[13px] text-muted text-center leading-[1.6]">
-            Pas encore de compte ?{' '}
-            <button onClick={() => setStep('signup')} className="text-primary font-semibold">
-              Créer un compte
-            </button>
-          </p>
         </div>
       )}
 
       {/* ── Step: Sign up ── */}
       {step === 'signup' && (
         <div key="signup" className="flex flex-col flex-1 px-6 pt-8 pb-4 animate-onboard-in">
-          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-1">
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-6">
             Crée ton compte
           </h2>
-          <EmailChip email={email} onEdit={() => setStep('email')} />
 
           <div className="flex flex-col gap-3 mb-6">
             <div className="relative">
@@ -281,17 +356,118 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
           <div className="flex-1" />
 
           <button
-            onClick={onComplete}
+            onClick={onCompleteSignup}
             disabled={!isPasswordValid(validatePassword(password)) || confirmPassword !== password}
             className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity mb-5"
           >
             Créer mon compte
           </button>
+        </div>
+      )}
+
+      {/* ── Step: Forgot Password ── */}
+      {step === 'forgot-password' && (
+        <div key="forgot-password" className="flex flex-col flex-1 px-6 pt-8 pb-4 animate-onboard-in">
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-2">
+            Réinitialise ton mot de passe
+          </h2>
+          <p className="font-sans text-[14px] text-muted leading-[1.5] mb-8">
+            Entre ton adresse e-mail pour recevoir un code de réinitialisation.
+          </p>
+
+          <input
+            key="reset-email-input"
+            type="email"
+            autoFocus
+            value={resetEmail}
+            onChange={e => setResetEmail(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && resetEmail.includes('@') && handleForgotPasswordSubmit()}
+            placeholder="Adresse e-mail"
+            className="w-full h-[56px] rounded-2xl bg-white border border-black/[0.1] px-4 font-sans text-[16px] text-dark placeholder:text-muted outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/15 transition-all"
+          />
+
+          <div className="flex-1" />
+
+          <button
+            onClick={handleForgotPasswordSubmit}
+            disabled={!resetEmail.includes('@')}
+            className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity mb-5"
+          >
+            Envoyer le code
+          </button>
+        </div>
+      )}
+
+      {/* ── Step: Reset Password ── */}
+      {step === 'reset-password' && (
+        <div key="reset-password" className="flex flex-col flex-1 px-6 pt-8 pb-4 animate-onboard-in">
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-2">
+            Vérifie ton email
+          </h2>
+          <p className="font-sans text-[14px] text-muted leading-[1.5] mb-8">
+            Nous avons envoyé un code à <br />
+            <span className="font-semibold text-dark">{resetEmail}</span>
+          </p>
+
+          <div className="flex gap-2 justify-center mb-8">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <input
+                key={index}
+                type="text"
+                autoFocus={index === 0}
+                inputMode="numeric"
+                maxLength={1}
+                value={verificationCode[index] || ''}
+                onChange={e => {
+                  const digit = e.target.value.replace(/\D/g, '');
+                  if (digit) {
+                    const newCode = verificationCode.split('');
+                    newCode[index] = digit;
+                    setVerificationCode(newCode.join(''));
+
+                    if (index < 5) {
+                      const nextInput = document.querySelector(`input[data-reset-digit="${index + 1}"]`) as HTMLInputElement;
+                      if (nextInput) nextInput.focus();
+                    }
+                  }
+                }}
+                onKeyDown={e => {
+                  if (e.key === 'Backspace' && !verificationCode[index] && index > 0) {
+                    const prevInput = document.querySelector(`input[data-reset-digit="${index - 1}"]`) as HTMLInputElement;
+                    if (prevInput) prevInput.focus();
+                  }
+                }}
+                data-reset-digit={index}
+                className="w-12 h-12 rounded-2xl bg-white border border-black/[0.1] font-sans text-[24px] text-dark text-center outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/15 transition-all"
+              />
+            ))}
+          </div>
+
+          <button className="font-sans text-[13px] text-primary font-semibold self-center mb-4">
+            Renvoyer le code
+          </button>
+
+          <div className="flex-1" />
+
+          <button
+            onClick={() => {
+              if (verificationCode.length === 6) {
+                setPassword('');
+                setConfirmPassword('');
+                setShowConfirm(false);
+                setShowPassword(false);
+              }
+            }}
+            disabled={verificationCode.length !== 6}
+            className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity mb-5"
+          >
+            Vérifier
+          </button>
 
           <p className="font-sans text-[13px] text-muted text-center leading-[1.6]">
-            Déjà un compte ?{' '}
-            <button onClick={() => setStep('signin')} className="text-primary font-semibold">
-              Se connecter
+            Pas le bon email ?{' '}
+            <button onClick={() => {setStep('forgot-password'); setVerificationCode('');}} className="text-primary font-semibold">
+              Changer l'email
             </button>
           </p>
         </div>
