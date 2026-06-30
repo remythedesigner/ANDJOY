@@ -17,8 +17,8 @@ const venueMarker = L.divIcon({
 
 const IMAGES = [
   'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1552196881-acbed25f4b34?w=600&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop&q=80',
+  'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop&sat=-20',
 ];
 
 const REMAINING_SEATS = 6;
