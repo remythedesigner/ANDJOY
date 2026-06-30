@@ -266,7 +266,7 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
               </button>
             </div>
             {password && <PasswordRequirements password={password} />}
-            {showConfirm && (
+            {isPasswordValid(validatePassword(password)) && (
               <input
                 key="confirm-input"
                 type={showPassword ? 'text' : 'password'}
