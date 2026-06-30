@@ -5,6 +5,30 @@ type Step = 'email' | 'signin' | 'signup';
 // Simulate known accounts — any other email triggers the sign-up flow
 const KNOWN_EMAILS = new Set(['demo@joy.fr', 'sofia@example.com', 'test@test.com']);
 
+const PASSWORD_REQUIREMENTS = {
+  minLength: 8,
+  hasDigit: /\d/,
+  hasSpecial: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+};
+
+interface PasswordRequirements {
+  minLength: boolean;
+  hasDigit: boolean;
+  hasSpecial: boolean;
+}
+
+function validatePassword(password: string): PasswordRequirements {
+  return {
+    minLength: password.length >= PASSWORD_REQUIREMENTS.minLength,
+    hasDigit: PASSWORD_REQUIREMENTS.hasDigit.test(password),
+    hasSpecial: PASSWORD_REQUIREMENTS.hasSpecial.test(password),
+  };
+}
+
+function isPasswordValid(requirements: PasswordRequirements): boolean {
+  return requirements.minLength && requirements.hasDigit && requirements.hasSpecial;
+}
+
 interface Props {
   onComplete: () => void;
   onBack: () => void;
@@ -33,6 +57,44 @@ function EditIcon() {
     <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
       <path d="M9.5 1.5l2 2L4 11H2v-2L9.5 1.5z" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+function CheckIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="7" stroke={filled ? '#5170ff' : '#ccc'} strokeWidth="1.5" />
+      {filled && <path d="M5 8l2 2 4-4" stroke="#5170ff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />}
+    </svg>
+  );
+}
+
+function PasswordRequirements({ password }: { password: string }) {
+  const reqs = validatePassword(password);
+  return (
+    <div className="mt-4 space-y-2">
+      <p className="font-sans text-[12px] text-muted font-semibold">Conditions requises :</p>
+      <div className="space-y-1.5">
+        <div className="flex items-center gap-2">
+          <CheckIcon filled={reqs.minLength} />
+          <span className={`font-sans text-[13px] ${reqs.minLength ? 'text-dark' : 'text-muted'}`}>
+            Au moins {PASSWORD_REQUIREMENTS.minLength} caractères
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <CheckIcon filled={reqs.hasDigit} />
+          <span className={`font-sans text-[13px] ${reqs.hasDigit ? 'text-dark' : 'text-muted'}`}>
+            Au moins 1 chiffre (0-9)
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <CheckIcon filled={reqs.hasSpecial} />
+          <span className={`font-sans text-[13px] ${reqs.hasSpecial ? 'text-dark' : 'text-muted'}`}>
+            Au moins 1 caractère spécial (!@#$%^&*, etc.)
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -160,7 +222,7 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
 
           <button
             onClick={onComplete}
-            disabled={password.length < 6}
+            disabled={!isPasswordValid(validatePassword(password))}
             className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity mb-5"
           >
             Se connecter
@@ -203,6 +265,7 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
                 <EyeIcon off={showPassword} />
               </button>
             </div>
+            {password && <PasswordRequirements password={password} />}
             {showConfirm && (
               <input
                 key="confirm-input"
@@ -219,7 +282,7 @@ export default function AuthEmailScreen({ onComplete, onBack }: Props) {
 
           <button
             onClick={onComplete}
-            disabled={password.length < 6 || confirmPassword !== password}
+            disabled={!isPasswordValid(validatePassword(password)) || confirmPassword !== password}
             className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity mb-5"
           >
             Créer mon compte
