@@ -38,7 +38,7 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
       {/* Headline */}
       <div className="px-20 pt-7 text-center">
         <h1 className="font-sans font-extrabold text-[36px] leading-[1.1] text-dark">
-          Vivre Paris<br />autrement.
+          Mets plus de joie<br />dans tes sorties à Paris
         </h1>
       </div>
 

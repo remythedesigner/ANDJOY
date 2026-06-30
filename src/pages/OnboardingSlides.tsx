@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 const SLIDES = [
   {
-    title: 'Des activités\nqui te\nressemblent.',
+    title: 'Des activités\nqui te\nressemblent',
     subtitle: "L'équipe &JOY teste des activités toute l'année et te propose les meilleurs plans à Paris.",
     cta: 'Continuer',
   },
   {
-    title: 'Même à la\ndernière minute.',
+    title: 'Même à la\ndernière minute',
     subtitle: 'Réserve en quelques secondes et reçois ton billet directement sur ton téléphone.',
     cta: 'Commencer',
   },

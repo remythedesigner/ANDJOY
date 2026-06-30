@@ -23,11 +23,9 @@ function NotificationIllustration() {
   return (
     <svg viewBox="0 0 300 270" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-[320px]">
       <defs>
-        <symbol id="joy-logo" viewBox="0 0 23 29">
-          <path d="M11.351 10.8701C12.3823 10.8701 13.3503 11.0703 14.2573 11.4696C15.1632 11.87 15.9612 12.4227 16.6526 13.1288C17.3428 13.8325 17.8831 14.649 18.2745 15.5793C18.6647 16.5072 18.8604 17.4976 18.8604 18.5525V21.051C18.8604 22.106 18.6647 23.0975 18.2745 24.0242C17.8831 24.9521 17.3428 25.7686 16.6526 26.4747C15.9612 27.1821 15.1632 27.7347 14.2573 28.1339C13.3503 28.5344 12.3823 28.7334 11.351 28.7334C10.3198 28.7334 9.35064 28.5344 8.44484 28.1339C7.53784 27.7347 6.73974 27.1821 6.04954 26.4747C5.36164 25.7686 4.82144 24.9521 4.42764 24.0242C4.03624 23.0975 3.84174 22.106 3.84174 21.051V18.5525C3.84174 17.4976 4.03624 16.5072 4.42764 15.5793C4.82144 14.649 5.36164 13.8325 6.04954 13.1288C6.73974 12.4227 7.53784 11.87 8.44484 11.4696C9.35064 11.0703 10.3198 10.8701 11.351 10.8701ZM13.226 26.7433V12.8603C13.2073 12.3328 13.0174 11.8868 12.6589 11.5223C12.3026 11.1555 11.8667 10.9708 11.351 10.9708C10.8354 10.9708 10.3948 11.1555 10.0292 11.5223C9.66354 11.8868 9.48074 12.3328 9.48074 12.8603V26.7433C9.48074 27.2708 9.66354 27.7192 10.0292 28.086C10.3948 28.4504 10.8354 28.6327 11.351 28.6327C11.8667 28.6327 12.3026 28.4504 12.6589 28.086C13.0174 27.7192 13.2073 27.2708 13.226 26.7433Z" fill="#5170FF"/>
-          <path d="M5.09077 6.97757C5.15637 7.09987 5.16697 7.22571 5.12357 7.3564C5.08257 7.48828 5.00407 7.58542 4.88917 7.64893C4.76027 7.72323 4.63607 7.74007 4.51417 7.70166C4.39467 7.66331 4.30327 7.58422 4.23767 7.46192L2.06267 3.4193C1.99697 3.29821 1.98297 3.17352 2.02047 3.04524C2.05797 2.91816 2.13997 2.81866 2.26417 2.74792C2.37437 2.68438 2.49387 2.66999 2.62517 2.70476C2.75407 2.73713 2.85017 2.81386 2.91577 2.93495L5.09077 6.97757Z" fill="#5170FF"/>
-          <path d="M11.9982 5.40314C11.9982 5.54461 11.9478 5.66092 11.8482 5.7532C11.7509 5.84674 11.6372 5.89228 11.506 5.89228C11.3583 5.89228 11.2411 5.84674 11.1544 5.7532C11.0665 5.66092 11.0232 5.54461 11.0232 5.40314V0.789851C11.0232 0.653191 11.0701 0.538102 11.1638 0.444582C11.2576 0.352272 11.3759 0.305511 11.5201 0.305511C11.6443 0.305511 11.7556 0.352272 11.8529 0.444582C11.949 0.538102 11.9982 0.653191 11.9982 0.789851V5.40314Z" fill="#5170FF"/>
-          <path d="M18.893 7.4624C18.8274 7.5835 18.7289 7.6602 18.5977 7.69256C18.4688 7.72377 18.3469 7.70819 18.232 7.64462C18.1031 7.57032 18.0223 7.47198 17.9883 7.34729C17.9567 7.22259 17.9742 7.10035 18.0399 6.97805L20.2149 2.93544C20.2805 2.81435 20.3754 2.73642 20.5008 2.70046C20.625 2.66569 20.7504 2.68367 20.8758 2.75321C20.9848 2.81795 21.0598 2.91506 21.1008 3.04573C21.1442 3.17401 21.1336 3.2987 21.068 3.41979L18.893 7.4624Z" fill="#5170FF"/>
+        <symbol id="bell-icon" viewBox="0 0 24 24">
+          <path d="M18.5856 14.7969C18.1807 14.1646 17.9297 13.3838 17.9297 12.5469V9.92969C17.9297 8.34375 17.1484 6.94531 15.8672 6.19141V5.67969C15.8672 4.81641 15.1406 4.08984 14.2773 4.08984C13.4141 4.08984 12.6875 4.81641 12.6875 5.67969V6.19141C11.4062 6.94531 10.625 8.34375 10.625 9.92969V12.5469C10.625 13.3838 10.374 14.1646 9.96914 14.7969C9.67578 15.25 9.54297 15.7344 9.54297 16.25C9.54297 17.9766 10.9414 19.375 12.668 19.375H16.7891C18.5156 19.375 19.9141 17.9766 19.9141 16.25C19.9141 15.7344 19.7812 15.25 19.4879 14.7969H18.5856Z" fill="#5170FF" fillOpacity="0.3"/>
+          <path d="M14.2266 20.6328C14.2266 21.6797 13.375 22.5312 12.3281 22.5312C11.2812 22.5312 10.4297 21.6797 10.4297 20.6328" stroke="#5170FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </symbol>
       </defs>
 
@@ -36,7 +34,7 @@ function NotificationIllustration() {
       {/* Card 1 */}
       <rect x="14" y="36" width="272" height="66" rx="16" fill="white" />
       <rect x="28" y="49" width="40" height="40" rx="12" fill="#eef1ff" />
-      <use href="#joy-logo" x="37" y="55" width="22" height="28" />
+      <use href="#bell-icon" x="32" y="51" width="30" height="30" />
       <text x="78" y="62" fontFamily="sans-serif" fontSize="11.5" fontWeight="800" fill="#1a1a24">&amp;JOY</text>
       <text x="278" y="62" fontFamily="sans-serif" fontSize="9.5" fill="#9090a0" textAnchor="end">il y a 2 min</text>
       <text x="78" y="80" fontFamily="sans-serif" fontSize="11" fill="#1a1a24">Rappel — Jazz Club ce soir à 20h00</text>
@@ -44,7 +42,7 @@ function NotificationIllustration() {
       {/* Card 2 */}
       <rect x="14" y="110" width="272" height="66" rx="16" fill="white" />
       <rect x="28" y="123" width="40" height="40" rx="12" fill="#eef1ff" />
-      <use href="#joy-logo" x="37" y="129" width="22" height="28" />
+      <use href="#bell-icon" x="32" y="125" width="30" height="30" />
       <text x="78" y="136" fontFamily="sans-serif" fontSize="11.5" fontWeight="800" fill="#1a1a24">&amp;JOY</text>
       <text x="278" y="136" fontFamily="sans-serif" fontSize="9.5" fill="#9090a0" textAnchor="end">il y a 18 min</text>
       <text x="78" y="154" fontFamily="sans-serif" fontSize="11" fill="#1a1a24">Pars maintenant pour ton atelier photo</text>
@@ -52,7 +50,7 @@ function NotificationIllustration() {
       {/* Card 3 */}
       <rect x="14" y="184" width="272" height="66" rx="16" fill="white" />
       <rect x="28" y="197" width="40" height="40" rx="12" fill="#eef1ff" />
-      <use href="#joy-logo" x="37" y="203" width="22" height="28" />
+      <use href="#bell-icon" x="32" y="199" width="30" height="30" />
       <text x="78" y="210" fontFamily="sans-serif" fontSize="11.5" fontWeight="800" fill="#1a1a24">&amp;JOY</text>
       <text x="278" y="210" fontFamily="sans-serif" fontSize="9.5" fill="#9090a0" textAnchor="end">il y a 1h</text>
       <text x="78" y="228" fontFamily="sans-serif" fontSize="11" fill="#1a1a24">Réservation confirmée · Escape Game</text>
@@ -72,6 +70,9 @@ export default function ProfileSetup({ onComplete }: Props) {
   const [step, setStep] = useState(0);
   const [nickname, setNickname] = useState('');
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [activityReminders, setActivityReminders] = useState(true);
+  const [newActivities, setNewActivities] = useState(true);
+  const [promotions, setPromotions] = useState(true);
 
   const next = () => {
     if (step < 3) setStep(s => s + 1);
@@ -148,7 +149,7 @@ export default function ProfileSetup({ onComplete }: Props) {
               Étape 2 sur 4
             </p>
             <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-2">
-              Qu'est-ce qui{'\n'}te passionne ?
+              Dis-nous ce que{'\n'}tu aimes
             </h2>
             <p className="font-sans text-[14px] text-muted leading-[1.5] mb-6">
               Sélectionne au moins 3 catégories.
@@ -212,25 +213,70 @@ export default function ProfileSetup({ onComplete }: Props) {
 
       {/* Step: Notifications */}
       {step === 3 && (
-        <div key="notifs" className="flex flex-col flex-1 px-6 pt-4 pb-4 animate-onboard-in">
+        <div key="notifs" className="flex flex-col flex-1 px-6 pt-4 pb-4 animate-onboard-in overflow-hidden">
           <p className="font-sans text-[13px] text-primary font-semibold tracking-wide uppercase mb-3">
             Étape 4 sur 4
           </p>
-          <div className="flex-1 flex flex-col items-center justify-center text-center">
-            <NotificationIllustration />
-            <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mt-7 mb-3">
-              Reste dans{'\n'}la boucle
-            </h2>
-            <p className="font-sans text-[15px] text-muted leading-[1.55] max-w-[270px]">
-              Reçois des alertes pour tes activités réservées et les bons plans à ne pas rater.
-            </p>
+          <h2 className="font-sans font-extrabold text-[28px] leading-[1.15] text-dark mb-2">
+            Reste dans{'\n'}la boucle
+          </h2>
+          <p className="font-sans text-[14px] text-muted leading-[1.5] mb-6">
+            Choisis les notifications que tu veux recevoir.
+          </p>
+
+          <div className="flex-1 overflow-y-auto flex flex-col gap-3">
+            <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
+              <div className="flex-1 min-w-0">
+                <p className="font-sans font-semibold text-[15px] text-dark">Rappels de tes activités</p>
+                <p className="font-sans text-[12px] text-muted mt-0.5">Lieu, date, horaire...</p>
+              </div>
+              <button
+                role="switch"
+                aria-checked={activityReminders}
+                onClick={() => setActivityReminders(!activityReminders)}
+                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${activityReminders ? 'bg-primary' : 'bg-black/[0.12]'}`}
+              >
+                <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${activityReminders ? 'translate-x-5' : 'translate-x-0.5'}`} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
+              <div className="flex-1 min-w-0">
+                <p className="font-sans font-semibold text-[15px] text-dark">Nouvelles activités</p>
+                <p className="font-sans text-[12px] text-muted mt-0.5">Basées sur tes préférences</p>
+              </div>
+              <button
+                role="switch"
+                aria-checked={newActivities}
+                onClick={() => setNewActivities(!newActivities)}
+                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${newActivities ? 'bg-primary' : 'bg-black/[0.12]'}`}
+              >
+                <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${newActivities ? 'translate-x-5' : 'translate-x-0.5'}`} />
+              </button>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
+              <div className="flex-1 min-w-0">
+                <p className="font-sans font-semibold text-[15px] text-dark">Promotions</p>
+                <p className="font-sans text-[12px] text-muted mt-0.5">Offres spéciales et bons plans</p>
+              </div>
+              <button
+                role="switch"
+                aria-checked={promotions}
+                onClick={() => setPromotions(!promotions)}
+                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${promotions ? 'bg-primary' : 'bg-black/[0.12]'}`}
+              >
+                <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${promotions ? 'translate-x-5' : 'translate-x-0.5'}`} />
+              </button>
+            </div>
           </div>
-          <div className="flex flex-col gap-2 shrink-0">
+
+          <div className="flex flex-col gap-2 shrink-0 pt-4">
             <button
               onClick={next}
               className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white active:opacity-80 transition-opacity"
             >
-              Activer les notifications
+              Continuer
             </button>
             <button
               onClick={next}

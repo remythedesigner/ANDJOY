@@ -353,25 +353,34 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
 // ─── 4. Paramètres ────────────────────────────────────────────────────────────
 
 export function SettingsPage({ onBack }: { onBack: () => void }) {
-  const [pushNotifs, setPushNotifs] = useState(true);
-  const [emailNotifs, setEmailNotifs] = useState(false);
+  const [activityReminders, setActivityReminders] = useState(true);
+  const [newActivities, setNewActivities] = useState(true);
+  const [promotions, setPromotions] = useState(true);
   const [location, setLocation] = useState(true);
   const [analytics, setAnalytics] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  function handleSave() {
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  }
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <BackHeader title="Paramètres" onBack={onBack} />
-      <div className="flex-1 overflow-y-auto pb-8 pt-4 flex flex-col gap-5">
+      <div className="flex-1 overflow-y-auto pb-32 pt-4 flex flex-col gap-5">
 
         <div className="flex flex-col gap-2">
           <SectionLabel>Notifications</SectionLabel>
           <Card>
-            <SettingRow label="Notifications push" sub="Nouvelles activités, rappels de sorties">
-              <Toggle value={pushNotifs} onChange={setPushNotifs} />
+            <SettingRow label="Rappels de tes activités" sub="Notifications pour tes réservations et activités prévues">
+              <Toggle value={activityReminders} onChange={setActivityReminders} />
             </SettingRow>
-            <SettingRow label="Emails" sub="Confirmations et récapitulatifs hebdo">
-              <Toggle value={emailNotifs} onChange={setEmailNotifs} />
+            <SettingRow label="Nouvelles activités" sub="Basées sur tes préférences et ta localisation">
+              <Toggle value={newActivities} onChange={setNewActivities} />
+            </SettingRow>
+            <SettingRow label="Promotions" sub="Offres spéciales et bons plans">
+              <Toggle value={promotions} onChange={setPromotions} />
             </SettingRow>
           </Card>
         </div>
@@ -399,6 +408,9 @@ export function SettingsPage({ onBack }: { onBack: () => void }) {
         </div>
 
       </div>
+      <StickyFooter>
+        <SaveButton onSave={handleSave} saved={saved} />
+      </StickyFooter>
     </div>
   );
 }
