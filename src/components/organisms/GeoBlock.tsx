@@ -52,7 +52,12 @@ export default function GeoBlock({ onCardClick, onViewMap }: GeoBlockProps) {
       <section className="flex flex-col gap-4 py-6">
         {/* Section header with compass icon */}
         <div className="flex items-center gap-2 px-6">
-          <img src={import.meta.env.BASE_URL + "icons/compass.svg"} alt="" aria-hidden="true" className="size-[15px]" />
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path opacity="0.2" d="M6.75 13.5C10.4779 13.5 13.5 10.4779 13.5 6.75C13.5 3.02208 10.4779 0 6.75 0C3.02208 0 0 3.02208 0 6.75C0 10.4779 3.02208 13.5 6.75 13.5Z" fill="#16A34A"/>
+            <path d="M6.75 12.6562C10.0119 12.6562 12.6562 10.0119 12.6562 6.75C12.6562 3.48807 10.0119 0.84375 6.75 0.84375C3.48807 0.84375 0.84375 3.48807 0.84375 6.75C0.84375 10.0119 3.48807 12.6562 6.75 12.6562Z" stroke="#16A34A" strokeWidth="1.26563"/>
+            <path d="M10.7291 3.42657L9.05791 7.15298L8.31575 5.45164L6.76913 4.42532L10.7291 3.42657Z" fill="#16A34A"/>
+            <path d="M6.75 8.01562C7.44899 8.01562 8.01562 7.44899 8.01562 6.75C8.01562 6.05101 7.44899 5.48438 6.75 5.48438C6.05101 5.48438 5.48438 6.05101 5.48438 6.75C5.48438 7.44899 6.05101 8.01562 6.75 8.01562Z" fill="#16A34A"/>
+          </svg>
           <h2 className="typo-h3 text-dark whitespace-nowrap">Près de toi</h2>
         </div>
 
