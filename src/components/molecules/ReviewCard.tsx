@@ -18,11 +18,10 @@ export default function ReviewCard({ review, onEventClick, onAuthorClick }: Revi
         <button
           onClick={onAuthorClick}
           disabled={!onAuthorClick}
-          className="rounded-full p-[2.5px] shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity disabled:pointer-events-none"
-          style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, rgba(139,92,246,0.25) 100%)' }}
+          className="rounded-full shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity disabled:pointer-events-none"
           aria-label={`Voir le profil de ${author}`}
         >
-          <div className="border-[2px] border-white rounded-full size-10 overflow-hidden">
+          <div className="rounded-full size-10 overflow-hidden">
             <img
               src={authorImage}
               alt={author}
