@@ -80,10 +80,8 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
 
         {/* Header */}
         <div className="flex flex-col items-center px-6 pb-5 shrink-0">
-          <div className="rounded-full p-[3px] size-[72px] mb-3" style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, rgba(139,92,246,0.25) 100%)' }}>
-            <div className="border-[3px] border-white rounded-full w-full h-full overflow-hidden">
-              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-            </div>
+          <div className="rounded-full size-[72px] mb-3 overflow-hidden">
+            <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
           </div>
           <h2 className="font-sans font-extrabold text-[20px] text-dark">{member.name}</h2>
           <p className="font-sans font-medium text-[13px] text-[#8B5CF6] mt-0.5">
