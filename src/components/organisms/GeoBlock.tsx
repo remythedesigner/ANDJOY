@@ -52,10 +52,10 @@ export default function GeoBlock({ onCardClick, onViewMap }: GeoBlockProps) {
       <section className="flex flex-col gap-4 py-6">
         {/* Section header with compass icon */}
         <div className="flex items-center gap-2 px-6">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M7 0.625C10.5208 0.625 13.375 3.47918 13.375 7C13.375 10.5208 10.5208 13.375 7 13.375C3.47918 13.375 0.625 10.5208 0.625 7C0.625 3.47918 3.47918 0.625 7 0.625Z" fill="#C8E5D3" stroke="#16A34A" strokeWidth="1.25"/>
-            <path d="M11.1438 3.5741L9.23719 7.66616L8.45769 5.82801L6.78283 4.74117L11.1438 3.5741Z" fill="#16A34A"/>
-            <path d="M7 8.3125C7.72487 8.3125 8.3125 7.72487 8.3125 7C8.3125 6.27513 7.72487 5.6875 7 5.6875C6.27513 5.6875 5.6875 6.27513 5.6875 7C5.6875 7.72487 6.27513 8.3125 7 8.3125Z" fill="#16A34A"/>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M7.5 0.669922C11.2723 0.669922 14.3301 3.7277 14.3301 7.5C14.3301 11.2723 11.2723 14.3301 7.5 14.3301C3.7277 14.3301 0.669922 11.2723 0.669922 7.5C0.669922 3.7277 3.7277 0.669922 7.5 0.669922Z" fill="#C8E5D3" stroke="#16A34A" strokeWidth="1.33929"/>
+            <path d="M11.9398 3.82939L9.897 8.21375L9.06183 6.24431L7.26733 5.07983L11.9398 3.82939Z" fill="#16A34A"/>
+            <path d="M7.5 8.90625C8.27665 8.90625 8.90625 8.27665 8.90625 7.5C8.90625 6.72335 8.27665 6.09375 7.5 6.09375C6.72335 6.09375 6.09375 6.72335 6.09375 7.5C6.09375 8.27665 6.72335 8.90625 7.5 8.90625Z" fill="#16A34A"/>
           </svg>
           <h2 className="typo-h3 text-dark whitespace-nowrap">Près de toi</h2>
         </div>
