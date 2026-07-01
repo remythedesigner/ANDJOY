@@ -50,12 +50,9 @@ export default function GeoBlock({ onCardClick, onViewMap }: GeoBlockProps) {
   if (granted) {
     return (
       <section className="flex flex-col gap-4 py-6">
-        {/* Section header with green pin icon */}
+        {/* Section header with compass icon */}
         <div className="flex items-center gap-2 px-6">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-            <path d="M7.5 1C5.01 1 3 3.01 3 5.5C3 8.87 7.5 14 7.5 14C7.5 14 12 8.87 12 5.5C12 3.01 9.99 1 7.5 1Z" stroke="#16a34a" strokeWidth="1.2" strokeLinejoin="round"/>
-            <circle cx="7.5" cy="5.5" r="1.75" stroke="#16a34a" strokeWidth="1.2"/>
-          </svg>
+          <img src={import.meta.env.BASE_URL + "icons/compass.svg"} alt="" aria-hidden="true" className="size-[15px]" />
           <h2 className="typo-h3 text-dark whitespace-nowrap">Près de toi</h2>
         </div>
 
@@ -89,14 +86,16 @@ export default function GeoBlock({ onCardClick, onViewMap }: GeoBlockProps) {
           <div className="flex items-start gap-4">
             <div className="bg-white rounded-2xl size-12 flex items-center justify-center shrink-0">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M10 2C7.24 2 5 4.24 5 7C5 10.75 10 18 10 18C10 18 15 10.75 15 7C15 4.24 12.76 2 10 2Z" stroke="#16a34a" strokeWidth="1.5" strokeLinejoin="round"/>
-                <circle cx="10" cy="7" r="2" stroke="#16a34a" strokeWidth="1.5"/>
+                <circle cx="10" cy="10" r="8" fill="#16a34a" opacity="0.2"/>
+                <circle cx="10" cy="10" r="7" fill="none" stroke="#16a34a" strokeWidth="1.5"/>
+                <path d="M10 2 L12 9 L10 8 L8 9 Z" fill="#16a34a"/>
+                <circle cx="10" cy="10" r="1.5" fill="#16a34a"/>
               </svg>
             </div>
             <div className="flex flex-col gap-1">
               <h3 className="typo-h3 leading-[21px] text-dark">Près de toi</h3>
               <p className="typo-body text-dark">
-                Découvre les activités à moins de 2 km autour de toi, en temps réel.
+                Découvre ce qu'il se passe autour de toi en temps réel.
               </p>
             </div>
           </div>

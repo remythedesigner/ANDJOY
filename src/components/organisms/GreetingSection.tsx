@@ -19,9 +19,14 @@ export default function GreetingSection() {
         className="bg-[#FDFAF9] flex items-center gap-2 px-4 py-4 rounded-[30px] w-full"
       >
         <span className="text-accent-yellow text-[18px] shrink-0" aria-hidden="true">✦</span>
-        <p className="font-serif text-[14px] leading-[1.4] text-dark-warm flex-1 min-w-0">
-          "Le bonheur est un art qui s'apprend en sortant."
-        </p>
+        <div className="flex-1 min-w-0">
+          <p className="font-serif text-[14px] leading-[1.4] text-dark-warm">
+            "Le bonheur est un art qui s'apprend en sortant."
+          </p>
+          <p className="font-sans text-[12px] text-dark-warm/70 mt-1">
+            Henri Barbusse
+          </p>
+        </div>
       </div>
     </section>
   );
