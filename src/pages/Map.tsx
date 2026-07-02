@@ -676,9 +676,10 @@ function FilterSheet({
 interface MapPageProps {
   onTabChange: (tab: Tab) => void;
   onOpenEvent?: () => void;
+  geoGranted?: boolean;
 }
 
-export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
+export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPageProps) {
   const [listOpen, setListOpen] = useState(false);
   const [filterSheetOpen, setFilterSheetOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -749,6 +750,17 @@ export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
     const timer = setTimeout(() => searchInputRef.current?.focus(), 350);
     return () => clearTimeout(timer);
   }, [listOpen]);
+
+  useEffect(() => {
+    if (geoGranted && !userPosition && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        pos => {
+          setUserPosition([pos.coords.latitude, pos.coords.longitude]);
+        },
+        () => {},
+      );
+    }
+  }, [geoGranted, userPosition]);
 
   const handleSheetTouchStart = (e: React.TouchEvent) => {
     dragStartRef.current = e.touches[0].clientY;

@@ -20,6 +20,7 @@ type OnboardingStep = 'splash' | 'welcome' | 'auth-email' | 'auth-apple' | 'auth
 export default function App() {
   const [onboardingStep, setOnboardingStep] = useState<OnboardingStep>('splash');
   const [activeTab, setActiveTab] = useState<Tab>('Accueil');
+  const [geoGranted, setGeoGranted] = useState(false);
   const [showEventDetail, setShowEventDetail] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -129,7 +130,7 @@ export default function App() {
   }
 
   if (activeTab === 'Carte') {
-    return <MapPage onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} />;
+    return <MapPage onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} geoGranted={geoGranted} />;
   }
 
   if (activeTab === 'Billets') {
@@ -140,5 +141,5 @@ export default function App() {
     return <ProfilePage onTabChange={setActiveTab} onSignOut={() => setOnboardingStep('splash')} />;
   }
 
-  return <Home onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} onOpenProfile={() => setActiveTab('Profil')} />;
+  return <Home onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} onOpenProfile={() => setActiveTab('Profil')} geoGranted={geoGranted} onGeoGranted={() => setGeoGranted(true)} />;
 }

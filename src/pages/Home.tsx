@@ -14,11 +14,11 @@ interface HomeContentProps {
   onTabChange: (tab: Tab) => void;
   onOpenEvent: () => void;
   onOpenProfile: () => void;
+  geoGranted?: boolean;
+  onGeoGranted?: () => void;
 }
 
-function HomeContent({ onTabChange, onOpenEvent, onOpenProfile }: HomeContentProps) {
-  const [geoGranted, setGeoGranted] = useState(false);
-
+function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = false, onGeoGranted }: HomeContentProps) {
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       {/* iOS-style status bar spacer */}
@@ -44,7 +44,7 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile }: HomeContentPro
           id="team-picks"
           onCardClick={onOpenEvent}
         />
-        <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} onGeoGranted={() => setGeoGranted(true)} />
+        <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} onGeoGranted={onGeoGranted} />
         {/* Made in Paris */}
         <div className="flex items-center justify-center gap-1.5 py-6">
           <span className="font-sans text-[13px] text-muted">Fait à Paris avec</span>
@@ -63,9 +63,11 @@ interface HomeProps {
   onTabChange: (tab: Tab) => void;
   onOpenEvent: () => void;
   onOpenProfile: () => void;
+  geoGranted?: boolean;
+  onGeoGranted?: () => void;
 }
 
-export default function Home({ onTabChange, onOpenEvent, onOpenProfile }: HomeProps) {
+export default function Home({ onTabChange, onOpenEvent, onOpenProfile, geoGranted, onGeoGranted }: HomeProps) {
   return (
     <Suspense fallback={
       <div className="min-h-svh bg-cream flex items-center justify-center">
@@ -75,7 +77,7 @@ export default function Home({ onTabChange, onOpenEvent, onOpenProfile }: HomePr
         </div>
       </div>
     }>
-      <HomeContent onTabChange={onTabChange} onOpenEvent={onOpenEvent} onOpenProfile={onOpenProfile} />
+      <HomeContent onTabChange={onTabChange} onOpenEvent={onOpenEvent} onOpenProfile={onOpenProfile} geoGranted={geoGranted} onGeoGranted={onGeoGranted} />
     </Suspense>
   );
 }
