@@ -96,7 +96,7 @@ function Input({ value, onChange, placeholder, type = 'text' }: { value: string;
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className={`bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full ${type === 'date' && !value ? 'text-muted/60' : ''}`}
+      className={`bg-white rounded-2xl px-4 h-14 font-sans text-[15px] placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full ${type === 'date' ? (value ? 'text-dark' : 'text-muted/60') : 'text-dark'}`}
     />
   );
 }
