@@ -12,11 +12,11 @@ export default function CommunitySection({ onEventClick }: CommunitySectionProps
   const [selectedMember, setSelectedMember] = useState<CommunityMember | null>(null);
 
   return (
-    <section className="flex flex-col py-6" aria-label="La communauté">
+    <section className="flex flex-col py-6" aria-label="Nos ambassadeurs &JOY">
       {/* Section header */}
       <div className="flex items-center gap-2 px-6">
         <img src={ASSETS.icons.heart} alt="" aria-hidden="true" className="w-[15px] h-[15px] object-contain" />
-        <h2 className="typo-h3 text-dark">La communauté</h2>
+        <h2 className="typo-h3 text-dark">Nos ambassadeurs &JOY</h2>
       </div>
 
       {/* Member avatars */}
