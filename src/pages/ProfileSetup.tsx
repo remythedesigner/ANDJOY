@@ -191,7 +191,7 @@ export default function ProfileSetup({ onComplete }: Props) {
               Activités près{'\n'}de toi
             </h2>
             <p className="font-sans text-[15px] text-muted leading-[1.55] max-w-[270px]">
-              Autorise l'accès à ta position pour découvrir les expériences autour de toi.
+              Autorise l'accès à ta position pour découvrir les expériences autour de toi. Tes données ne sont utilisées que pour améliorer ton expérience.
             </p>
           </div>
           <div className="flex flex-col gap-2 shrink-0">
@@ -221,7 +221,7 @@ export default function ProfileSetup({ onComplete }: Props) {
             Reste dans{'\n'}la boucle
           </h2>
           <p className="font-sans text-[14px] text-muted leading-[1.5] mb-6">
-            Choisis les notifications que tu veux recevoir.
+            Choisis les notifications que tu veux recevoir. Nous utilisons tes préférences uniquement pour te recommander les meilleures activités.
           </p>
 
           <div className="flex-1 overflow-y-auto flex flex-col gap-3">
@@ -243,7 +243,7 @@ export default function ProfileSetup({ onComplete }: Props) {
             <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
               <div className="flex-1 min-w-0">
                 <p className="font-sans font-semibold text-[15px] text-dark">Nouvelles activités</p>
-                <p className="font-sans text-[12px] text-muted mt-0.5">Basées sur tes préférences</p>
+                <p className="font-sans text-[12px] text-muted mt-0.5">Basées sur tes préférences pour améliorer ton expérience</p>
               </div>
               <button
                 role="switch"
