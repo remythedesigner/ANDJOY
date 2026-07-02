@@ -276,7 +276,7 @@ export default function ProfileSetup({ onComplete }: Props) {
             <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3">
               <span className="text-lg shrink-0 mt-0.5">💡</span>
               <p className="font-sans text-[13px] leading-[1.4] text-left text-primary">
-                Nous utilisons tes préférences uniquement pour te recommander les meilleures activités.
+                Que des messages utiles, c'est promis ! Tu peux changer tes préférences à tout moment depuis ton profil.
               </p>
             </div>
           </div>
