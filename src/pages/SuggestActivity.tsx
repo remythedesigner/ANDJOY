@@ -26,24 +26,29 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
   function handleSubmit() {
     if (title.trim() && category && location.trim()) {
       setSubmitted(true);
-      setTimeout(() => {
-        onBack();
-      }, 2000);
     }
   }
 
   if (submitted) {
     return (
       <div className="flex flex-col min-h-svh bg-cream items-center justify-center px-6">
-        <div className="flex flex-col items-center gap-4 text-center">
+        <div className="flex flex-col items-center gap-6 text-center">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
             <circle cx="30" cy="30" r="28" stroke="#22c55e" strokeWidth="2" />
             <path d="M20 30l6 6 14-14" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <h2 className="font-sans font-extrabold text-[24px] text-dark">Merci pour ta suggestion !</h2>
-          <p className="font-sans text-[15px] text-muted max-w-[290px] leading-[1.5]">
-            Nous avons bien reçu ta proposition. Si elle rejoint la base de données &JOY, nous te notifierons. 🎉
-          </p>
+          <div className="flex flex-col gap-2">
+            <h2 className="font-sans font-extrabold text-[24px] text-dark">Merci pour ta suggestion !</h2>
+            <p className="font-sans text-[15px] text-muted max-w-[290px] leading-[1.5]">
+              Nous avons bien reçu ta proposition. Si elle rejoint la base de données &JOY, nous te notifierons. 🎉
+            </p>
+          </div>
+          <button
+            onClick={onBack}
+            className="bg-primary text-white rounded-full h-12 font-sans font-bold text-[15px] px-8 focus-visible:outline-none active:opacity-90 transition-all"
+          >
+            C'est compris !
+          </button>
         </div>
       </div>
     );
