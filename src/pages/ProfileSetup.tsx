@@ -275,16 +275,16 @@ export default function ProfileSetup({ onComplete }: Props) {
                 <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${promotions ? 'translate-x-5' : 'translate-x-0.5'}`} />
               </button>
             </div>
-          </div>
 
-          <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3 shrink-0 mt-6">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
-              <circle cx="9" cy="9" r="8" stroke="#5170ff" strokeWidth="1.4" />
-              <path d="M9 6v3M9 12h0.01" stroke="#5170ff" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <p className="font-sans text-[13px] leading-[1.4] text-left text-primary">
-              Nous utilisons tes préférences uniquement pour te recommander les meilleures activités.
-            </p>
+            <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
+                <circle cx="9" cy="9" r="8" stroke="#5170ff" strokeWidth="1.4" />
+                <path d="M9 6v3M9 12h0.01" stroke="#5170ff" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <p className="font-sans text-[13px] leading-[1.4] text-left text-primary">
+                Nous utilisons tes préférences uniquement pour te recommander les meilleures activités.
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-col gap-2 shrink-0 pt-4">
