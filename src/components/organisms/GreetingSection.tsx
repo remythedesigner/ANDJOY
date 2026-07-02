@@ -27,7 +27,7 @@ export default function GreetingSection() {
           <p className="font-serif text-[14px] leading-[1.4] text-dark-warm">
             Le bonheur est un art qui s'apprend en sortant.
           </p>
-          <p className="font-sans text-[12px] text-dark-warm/70 mt-1">
+          <p className="font-sans text-[12px] mt-1" style={{ color: '#9090A0' }}>
             Henri Barbusse
           </p>
         </div>
