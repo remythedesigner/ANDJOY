@@ -226,18 +226,9 @@ export default function ProfileSetup({ onComplete }: Props) {
           <p className="font-sans text-[13px] text-primary font-semibold tracking-wide uppercase mb-3">
             Étape 4 sur 4
           </p>
-          <h2 className="font-sans font-extrabold text-[28px] leading-[1.15] text-dark mb-4">
+          <h2 className="font-sans font-extrabold text-[28px] leading-[1.15] text-dark mb-6">
             Reste dans{'\n'}la boucle
           </h2>
-          <div className="bg-[#fff0f5] rounded-2xl px-4 py-3.5 flex items-start gap-3 mb-6">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
-              <circle cx="9" cy="9" r="8" stroke="#d9547a" strokeWidth="1.4" />
-              <path d="M9 6v3M9 12h0.01" stroke="#d9547a" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-            <p className="font-sans text-[13px] leading-[1.4] text-left" style={{ color: '#d9547a' }}>
-              Nous utilisons tes préférences uniquement pour te recommander les meilleures activités.
-            </p>
-          </div>
 
           <div className="flex-1 overflow-y-auto flex flex-col gap-3">
             <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
@@ -284,6 +275,16 @@ export default function ProfileSetup({ onComplete }: Props) {
                 <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${promotions ? 'translate-x-5' : 'translate-x-0.5'}`} />
               </button>
             </div>
+          </div>
+
+          <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3 shrink-0 mt-6">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
+              <circle cx="9" cy="9" r="8" stroke="#5170ff" strokeWidth="1.4" />
+              <path d="M9 6v3M9 12h0.01" stroke="#5170ff" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <p className="font-sans text-[13px] leading-[1.4] text-left text-primary">
+              Nous utilisons tes préférences uniquement pour te recommander les meilleures activités.
+            </p>
           </div>
 
           <div className="flex flex-col gap-2 shrink-0 pt-4">
