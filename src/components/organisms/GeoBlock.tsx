@@ -52,11 +52,7 @@ export default function GeoBlock({ onCardClick, onViewMap }: GeoBlockProps) {
       <section className="flex flex-col gap-4 py-6">
         {/* Section header with compass icon */}
         <div className="flex items-center gap-2 px-6">
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
-            <path d="M7.5 0.669922C11.2723 0.669922 14.3301 3.7277 14.3301 7.5C14.3301 11.2723 11.2723 14.3301 7.5 14.3301C3.7277 14.3301 0.669922 11.2723 0.669922 7.5C0.669922 3.7277 3.7277 0.669922 7.5 0.669922Z" fill="#C8E5D3" stroke="#16A34A" strokeWidth="1.33929"/>
-            <path d="M11.9398 3.82939L9.897 8.21375L9.06183 6.24431L7.26733 5.07983L11.9398 3.82939Z" fill="#16A34A"/>
-            <path d="M7.5 8.90625C8.27665 8.90625 8.90625 8.27665 8.90625 7.5C8.90625 6.72335 8.27665 6.09375 7.5 6.09375C6.72335 6.09375 6.09375 6.72335 6.09375 7.5C6.09375 8.27665 6.72335 8.90625 7.5 8.90625Z" fill="#16A34A"/>
-          </svg>
+          <img src={import.meta.env.BASE_URL + "icons/compass.svg"} alt="" aria-hidden="true" className="size-[15px]" />
           <h2 className="typo-h3 text-dark whitespace-nowrap">Près de toi</h2>
         </div>
 
@@ -89,12 +85,7 @@ export default function GeoBlock({ onCardClick, onViewMap }: GeoBlockProps) {
         <div className="p-6 flex flex-col gap-4">
           <div className="flex items-start gap-4">
             <div className="bg-white rounded-2xl size-12 flex items-center justify-center shrink-0">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <circle cx="10" cy="10" r="8" fill="#16a34a" opacity="0.2"/>
-                <circle cx="10" cy="10" r="7" fill="none" stroke="#16a34a" strokeWidth="1.5"/>
-                <path d="M10 2 L12 9 L10 8 L8 9 Z" fill="#16a34a"/>
-                <circle cx="10" cy="10" r="1.5" fill="#16a34a"/>
-              </svg>
+              <img src={import.meta.env.BASE_URL + "icons/compass.svg"} alt="" aria-hidden="true" className="size-5" />
             </div>
             <div className="flex flex-col gap-1">
               <h3 className="typo-h3 leading-[21px] text-dark">Près de toi</h3>

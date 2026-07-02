@@ -187,31 +187,31 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           {/* Info chips */}
           <div className="flex flex-wrap gap-2 mb-5">
-            <div className="flex items-center gap-1.5 bg-white/70 border border-black/[0.06] rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
               <span className="text-[11px] leading-none">⭐</span>
               <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">4.9</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/70 border border-black/[0.06] rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
                 <path d="M6 3.5V6L7.5 7.5" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">Demain · 10:00 - 20:00</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/70 border border-black/[0.06] rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M6 1.5C4.3 1.5 3 2.8 3 4.5C3 6.5 6 10.5 6 10.5C6 10.5 9 6.5 9 4.5C9 2.8 7.7 1.5 6 1.5ZM6 5.5C5.4 5.5 5 5.1 5 4.5C5 3.9 5.4 3.5 6 3.5C6.6 3.5 7 3.9 7 4.5C7 5.1 6.6 5.5 6 5.5Z" fill="#9090a0"/>
               </svg>
               <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">Paris 11e</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/70 border border-black/[0.06] rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
                 <path d="M6 3V6H9" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" />
               </svg>
               <span className="font-sans font-medium text-[12px] text-dark">1h</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-[#fff0f2] border border-[#d9547a]/20 rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-[#fff0f2] rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="3.5" r="1.8" stroke="#d9547a" strokeWidth="1.2" />
                 <path d="M1.5 10C1.5 8.3 3.5 7 6 7C8.5 7 10.5 8.3 10.5 10" stroke="#d9547a" strokeWidth="1.2" strokeLinecap="round" />
@@ -323,7 +323,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             </div>
 
             {/* Team review card */}
-            <div className="bg-[#FBEEE8] border border-black/[0.05] rounded-3xl p-5">
+            <div className="bg-[#FBEEE8] rounded-3xl p-5">
               <div className="flex items-center gap-3 mb-3">
                 <button
                   onClick={() => setProfileMember(communityMembers.find(m => m.name === 'Sam') ?? null)}
@@ -356,7 +356,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           <div className="flex gap-4 -mx-4 px-4 pb-5 -mb-5 overflow-x-auto scrollbar-hide mb-5">
             {USER_REVIEWS.map((review) => (
-              <div key={review.id} className="bg-white border border-black/[0.05] rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-3">
+              <div key={review.id} className="bg-white rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-3">
                 <div className="flex items-center gap-2.5">
                   <img src={review.avatar} alt={review.name} className="size-10 rounded-full object-cover shrink-0" />
                   <div className="flex-1 min-w-0">
@@ -379,7 +379,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 <h2 className="font-sans font-bold text-[16px] text-dark">Nombre de places</h2>
                 <p className="font-sans text-[12px] text-muted mt-0.5">6 places restantes</p>
               </div>
-              <div className="flex items-center gap-3 bg-white border border-black/[0.06] rounded-2xl px-3 py-2">
+              <div className="flex items-center gap-3 bg-white rounded-2xl px-3 py-2">
                 <button
                   onClick={() => setPlaces(p => Math.max(1, p - 1))}
                   disabled={places <= 1}
