@@ -2,9 +2,10 @@ import { useState, Fragment } from 'react';
 import AppFooter from '../components/organisms/AppFooter';
 import { ASSETS } from '../utils/data';
 import { PersonalInfoPage, PreferencesPage, PaymentMethodsPage, SettingsPage, HelpPage } from './ProfileSubPages';
+import SuggestActivity from './SuggestActivity';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
-type SubPage = 'personal' | 'preferences' | 'payment' | 'settings' | 'help' | null;
+type SubPage = 'personal' | 'preferences' | 'payment' | 'settings' | 'help' | 'suggest' | null;
 
 interface ProfilePageProps {
   onTabChange: (tab: Tab) => void;
@@ -135,6 +136,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
   if (subPage === 'payment') return <PaymentMethodsPage onBack={() => setSubPage(null)} />;
   if (subPage === 'settings') return <SettingsPage onBack={() => setSubPage(null)} />;
   if (subPage === 'help') return <HelpPage onBack={() => setSubPage(null)} />;
+  if (subPage === 'suggest') return <SuggestActivity onBack={() => setSubPage(null)} />;
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
@@ -248,6 +250,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
               sub="FAQ, nous contacter"
             />
             <Row
+              onClick={() => setSubPage('suggest')}
               icon={
                 <IconTile bg="#edfff5">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
