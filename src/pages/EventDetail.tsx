@@ -104,7 +104,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-svh bg-cream">
+    <div className="flex flex-col min-h-svh bg-[#FDFAF9]">
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
 
         {/* ── Hero image ── */}
@@ -187,10 +187,10 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           {/* Info chips */}
           <div className="flex flex-wrap gap-2 mb-5">
-            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
+            <button onClick={scrollToReviews} className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity">
               <span className="text-[11px] leading-none">⭐</span>
               <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">4.9</span>
-            </div>
+            </button>
             <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />

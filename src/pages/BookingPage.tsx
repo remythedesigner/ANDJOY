@@ -26,7 +26,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
   const total = subtotal + SERVICE_FEE;
 
   return (
-    <div className="flex flex-col min-h-svh bg-cream">
+    <div className="flex flex-col min-h-svh bg-[#FDFAF9]">
       <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
@@ -48,7 +48,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
         <div className="px-5 flex flex-col gap-6">
 
           {/* Event summary card */}
-          <div className="bg-white border border-black/[0.08] rounded-2xl p-4 flex gap-4 items-start shadow-[0px_2px_8px_rgba(0,0,0,0.04)]">
+          <div className="bg-white rounded-2xl p-4 flex gap-4 items-start">
             <img
               src={EVENT_IMAGE}
               alt="Expo Immersive : Lumières d'Orient"
@@ -77,8 +77,8 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 type="text"
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
-                placeholder="Ton prénom"
-                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                placeholder="Prénom"
+                className="bg-[#FFFFFF] rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -87,8 +87,8 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 type="text"
                 value={lastName}
                 onChange={e => setLastName(e.target.value)}
-                placeholder="Ton nom"
-                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                placeholder="Nom"
+                className="bg-[#FFFFFF] rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
           </div>
@@ -101,7 +101,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 <p className="font-sans text-[12px] text-muted mt-0.5">{maxPersons} places restantes</p>
               )}
             </div>
-            <div className="flex items-center gap-3 bg-white border border-black/[0.06] rounded-2xl px-3 py-2">
+            <div className="flex items-center gap-3 bg-[#FFFFFF] rounded-2xl px-3 py-2">
               <button
                 onClick={() => setPersons(p => Math.max(1, p - 1))}
                 disabled={persons <= 1}
