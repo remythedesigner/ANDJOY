@@ -29,6 +29,7 @@ export interface Booking {
   description: string;
   included: string[];
   excluded: string[];
+  rating?: number;
 }
 
 const BOOKINGS: Booking[] = [
@@ -36,7 +37,7 @@ const BOOKINGS: Booking[] = [
     id: '1',
     code: 'E646TT',
     title: "Expo Immersive : Lumières d'Orient",
-    category: 'Expositions',
+    category: 'Exposition',
     date: 'Demain',
     time: '10:00 – 20:00',
     location: 'Atelier des Lumières, Paris 11e',
@@ -74,7 +75,7 @@ const BOOKINGS: Booking[] = [
     id: '3',
     code: 'BX44NP',
     title: 'Atelier Poterie Japonaise',
-    category: 'Ateliers & initiations',
+    category: 'Atelier & initiation',
     date: 'Sam. 7 juin',
     time: '14:00 – 17:00',
     location: 'Studio Argile, Paris 3e',
@@ -349,7 +350,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
 // ─── Review Sheet ─────────────────────────────────────────────────────────────
 
-function ReviewSheet({ booking, onClose }: { booking: Booking; onClose: () => void }) {
+function ReviewSheet({ booking, onClose, onRated }: { booking: Booking; onClose: () => void; onRated?: (rating: number) => void }) {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [comment, setComment] = useState('');
@@ -407,7 +408,7 @@ function ReviewSheet({ booking, onClose }: { booking: Booking; onClose: () => vo
             />
 
             <button
-              onClick={() => { if (rating > 0) setSubmitted(true); }}
+              onClick={() => { if (rating > 0) { onRated?.(rating); setSubmitted(true); } }}
               disabled={rating === 0}
               className="w-full h-12 bg-primary text-white rounded-2xl font-sans font-bold text-[14px] disabled:opacity-35 active:opacity-80 transition-opacity focus-visible:outline-none"
             >
@@ -468,15 +469,25 @@ function BookingCard({ booking, onOpen, onReview }: { booking: Booking; onOpen: 
           </div>
         </div>
         {booking.past ? (
-          <button
-            onClick={onReview}
-            className="shrink-0 h-10 px-4 bg-primary text-white rounded-full font-sans font-bold text-[13px] active:opacity-80 transition-opacity focus-visible:outline-none flex items-center gap-1.5"
-          >
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1L8.5 5H13L9.5 7.5L11 11.5L7 9L3 11.5L4.5 7.5L1 5H5.5L7 1Z" fill="white" />
-            </svg>
-            Donner mon avis
-          </button>
+          booking.rating ? (
+            <div className="shrink-0 flex items-center gap-1.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <svg key={i} width="13" height="13" viewBox="0 0 14 14" fill="none">
+                  <path d="M7 1L8.5 5H13L9.5 7.5L11 11.5L7 9L3 11.5L4.5 7.5L1 5H5.5L7 1Z" fill={i < booking.rating! ? '#f5a623' : '#e2deda'} />
+                </svg>
+              ))}
+            </div>
+          ) : (
+            <button
+              onClick={onReview}
+              className="shrink-0 h-10 px-4 bg-primary text-white rounded-full font-sans font-bold text-[13px] active:opacity-80 transition-opacity focus-visible:outline-none flex items-center gap-1.5"
+            >
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1L8.5 5H13L9.5 7.5L11 11.5L7 9L3 11.5L4.5 7.5L1 5H5.5L7 1Z" fill="white" />
+              </svg>
+              Donner mon avis
+            </button>
+          )
         ) : (
           <button
             onClick={onOpen}
@@ -502,12 +513,13 @@ export default function BilletsPage({ onTabChange }: BilletsPageProps) {
   const [showPast, setShowPast] = useState(false);
   const [selected, setSelected] = useState<Booking | null>(null);
   const [reviewing, setReviewing] = useState<Booking | null>(null);
+  const [bookings, setBookings] = useState(BOOKINGS);
 
   if (selected) {
     return <TicketDetail booking={selected} onBack={() => setSelected(null)} />;
   }
 
-  const filtered = BOOKINGS.filter(b => b.past === showPast);
+  const filtered = bookings.filter(b => b.past === showPast);
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
@@ -570,7 +582,15 @@ export default function BilletsPage({ onTabChange }: BilletsPageProps) {
 
       <AppFooter activeTab="Billets" onTabChange={onTabChange} />
 
-      {reviewing && <ReviewSheet booking={reviewing} onClose={() => setReviewing(null)} />}
+      {reviewing && (
+        <ReviewSheet
+          booking={reviewing}
+          onClose={() => setReviewing(null)}
+          onRated={(rating) => {
+            setBookings(bookings.map(b => b.id === reviewing.id ? { ...b, rating } : b));
+          }}
+        />
+      )}
     </div>
   );
 }

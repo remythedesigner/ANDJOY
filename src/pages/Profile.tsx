@@ -32,7 +32,7 @@ function IconTile({ bg, children }: { bg: string; children: React.ReactNode }) {
   );
 }
 
-function Row({ icon, label, sub, onClick }: { icon: React.ReactNode; label: string; sub: string; onClick?: () => void }) {
+function Row({ icon, label, sub, onClick, incomplete }: { icon: React.ReactNode; label: string; sub: string; onClick?: () => void; incomplete?: boolean }) {
   return (
     <button
       onClick={onClick}
@@ -40,7 +40,12 @@ function Row({ icon, label, sub, onClick }: { icon: React.ReactNode; label: stri
     >
       {icon}
       <div className="flex-1 text-left min-w-0">
-        <p className="font-sans font-semibold text-[15px] text-dark leading-tight">{label}</p>
+        <div className="flex items-center gap-2">
+          <p className="font-sans font-semibold text-[15px] text-dark leading-tight">{label}</p>
+          {incomplete && (
+            <div className="size-2 rounded-full bg-[#f5a623]" />
+          )}
+        </div>
         <p className="font-sans text-[13px] text-muted mt-0.5">{sub}</p>
       </div>
       <ChevronRight />
@@ -184,6 +189,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
               }
               label="Informations personnelles"
               sub="Nom, email, téléphone"
+              incomplete={true}
             />
             <Row
               onClick={() => setSubPage('preferences')}
@@ -240,6 +246,17 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
               }
               label="Aide & support"
               sub="FAQ, nous contacter"
+            />
+            <Row
+              icon={
+                <IconTile bg="#edfff5">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 1v16M1 9h16" stroke="#22c97a" strokeWidth="1.6" strokeLinecap="round" />
+                  </svg>
+                </IconTile>
+              }
+              label="Proposer une activité"
+              sub="Suggérez une nouvelle activité"
             />
           </Section>
 

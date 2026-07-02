@@ -179,7 +179,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           {/* Category + Title + Rating */}
           <div className="flex flex-col gap-2 mb-5">
-            <p className="typo-label text-[#FF6366]">{getCategoryEmoji('Expositions')} EXPOSITIONS</p>
+            <p className="typo-label text-[#FF6366]">{getCategoryEmoji('Exposition')} EXPOSITION</p>
             <h1 className="font-sans font-extrabold text-[22px] text-dark leading-[1.2]">
               Expo Immersive : Lumières d'Orient
             </h1>

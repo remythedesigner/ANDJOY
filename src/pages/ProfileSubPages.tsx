@@ -96,7 +96,7 @@ function Input({ value, onChange, placeholder, type = 'text' }: { value: string;
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full"
+      className={`bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full ${type === 'date' && !value ? 'text-muted/60' : ''}`}
     />
   );
 }
@@ -107,8 +107,8 @@ export function PersonalInfoPage({ onBack }: { onBack: () => void }) {
   const [firstName, setFirstName] = useState('Jane');
   const [lastName, setLastName] = useState('Martin');
   const [email, setEmail] = useState('jane.martin@gmail.com');
-  const [phone, setPhone] = useState('+33 6 12 34 56 78');
-  const [dob, setDob] = useState('1995-04-12');
+  const [phone, setPhone] = useState('');
+  const [dob, setDob] = useState('');
   const [saved, setSaved] = useState(false);
 
   function handleSave() {
@@ -116,10 +116,24 @@ export function PersonalInfoPage({ onBack }: { onBack: () => void }) {
     setTimeout(() => setSaved(false), 2000);
   }
 
+  const isIncomplete = !firstName.trim() || !lastName.trim() || !email.trim() || !phone.trim() || !dob;
+
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <BackHeader title="Informations personnelles" onBack={onBack} />
       <div className="flex-1 overflow-y-auto pb-32 px-4 pt-4 flex flex-col gap-4">
+        {isIncomplete && (
+          <div className="bg-[#fff8ee] rounded-2xl px-4 py-3.5 flex gap-3 items-start">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
+              <circle cx="8" cy="8" r="7" stroke="#f5a623" strokeWidth="1.6" />
+              <path d="M8 7V11" stroke="#f5a623" strokeWidth="1.8" strokeLinecap="round" />
+              <circle cx="8" cy="5" r="0.8" fill="#f5a623" />
+            </svg>
+            <p className="font-sans text-[13px] text-[#c9933f] leading-[1.55]">
+              Remplissez vos informations personnelles pour une meilleure expérience et des recommandations plus précises.
+            </p>
+          </div>
+        )}
         <div className="grid grid-cols-2 gap-3">
           <FieldGroup label="Prénom">
             <Input value={firstName} onChange={setFirstName} placeholder="Prénom" />
@@ -149,7 +163,7 @@ export function PersonalInfoPage({ onBack }: { onBack: () => void }) {
 
 
 export function PreferencesPage({ onBack }: { onBack: () => void }) {
-  const [selected, setSelected] = useState<Set<string>>(new Set(['Bien-être', 'Musique', 'Spectacles']));
+  const [selected, setSelected] = useState<Set<string>>(new Set(['Bien-être', 'Musique', 'Spectacle']));
   const [saved, setSaved] = useState(false);
 
   function toggle(id: string) {
@@ -388,7 +402,7 @@ export function SettingsPage({ onBack }: { onBack: () => void }) {
         <div className="flex flex-col gap-2">
           <SectionLabel>Confidentialité</SectionLabel>
           <Card>
-            <SettingRow label="Géolocalisation" sub="Utilisée pour afficher les activités proches de toi">
+            <SettingRow label="Géolocalisation" sub="Utilisée pour afficher les activités proches de toi et améliorer les recommandations. Données non partagées avec des tiers.">
               <Toggle value={location} onChange={setLocation} />
             </SettingRow>
             <SettingRow label="Données analytiques" sub="Aider à améliorer l'application">
@@ -484,7 +498,7 @@ export function HelpPage({ onBack }: { onBack: () => void }) {
           <SectionLabel>Nous contacter</SectionLabel>
           <Card>
             <a
-              href="mailto:support@joy-app.fr"
+              href="mailto:contact@andjoy-app.com"
               className="flex items-center gap-3 px-4 py-4 active:bg-black/[0.02] focus-visible:outline-none"
             >
               <div className="size-10 rounded-2xl bg-[#eef1ff] flex items-center justify-center shrink-0">
@@ -495,7 +509,7 @@ export function HelpPage({ onBack }: { onBack: () => void }) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="font-sans font-semibold text-[15px] text-dark">Email</p>
-                <p className="font-sans text-[13px] text-muted">support@joy-app.fr</p>
+                <p className="font-sans text-[13px] text-muted">contact@andjoy-app.com</p>
               </div>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-muted shrink-0">
                 <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
