@@ -129,9 +129,13 @@ function TicketDetail({ booking, onBack }: { booking: Booking; onBack: () => voi
   }, []);
 
   function handleShare() {
+    const shareText = `J'ai réservé cette activité sur &JOY : ${booking.title} pour ${booking.persons} personne${booking.persons > 1 ? 's' : ''}, ${booking.date} à ${booking.time.split(' – ')[0]}, ${booking.location}.
+Code de réservation : ${booking.code}.
+Découvre l'application &JOY : https://joydiscover.com`;
+
     navigator.share?.({
       title: booking.title,
-      text: `Mon code de réservation : ${booking.code}`,
+      text: shareText,
     }).catch(() => {});
   }
 

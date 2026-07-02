@@ -327,7 +327,7 @@ function FilterButton({ onClick, activeCount }: { onClick: () => void; activeCou
       className="relative bg-white rounded-2xl size-11 flex items-center justify-center shadow-[0px_2px_12px_0px_rgba(0,0,0,0.12)] shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       aria-label="Filtres avancés"
     >
-      <img src={import.meta.env.BASE_URL + "icons/map-filter.svg"} alt="" aria-hidden="true" className="size-[17px]" />
+      <img src={import.meta.env.BASE_URL + "icons/map-filter.svg"} alt="" aria-hidden="true" className="size-[17px] brightness-0" />
       {activeCount > 0 && (
         <span className="absolute -top-1 -right-1 bg-primary rounded-full size-3" />
       )}
@@ -411,10 +411,10 @@ function SortSelector({ sortBy, onChange }: { sortBy: SortBy; onChange: (s: Sort
         className="flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
       >
         <span className="font-sans text-[12px] text-muted">Trier par</span>
-        <span className="font-sans font-bold text-[12px] text-dark">{current.label}</span>
+        <span className="font-sans font-bold text-[12px] text-primary">{current.label}</span>
         <svg
           width="10" height="10" viewBox="0 0 10 10" fill="none"
-          className={`text-dark transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
+          className={`text-primary transition-transform duration-150 ${open ? 'rotate-180' : ''}`}
         >
           <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -1036,7 +1036,7 @@ export default function MapPage({ onTabChange, onOpenEvent }: MapPageProps) {
             >
               <button
                 onClick={() => { setListOpen(false); setSelectedId(null); }}
-                className="flex items-center gap-2 bg-dark text-white rounded-full px-5 h-11 font-sans font-bold text-[14px] active:opacity-75 transition-opacity focus-visible:outline-none"
+                className="flex items-center gap-2 bg-primary text-white rounded-full px-5 h-11 font-sans font-bold text-[14px] active:opacity-75 transition-opacity focus-visible:outline-none"
                 aria-label="Voir la carte"
               >
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

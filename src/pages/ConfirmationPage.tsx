@@ -11,6 +11,46 @@ interface ConfirmationPageProps {
 
 const EVENT_IMAGE = 'https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=200&h=200&fit=crop';
 
+function Confetti() {
+  const confetti = useMemo(() => {
+    return Array.from({ length: 30 }).map((_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 0.5,
+      duration: 2 + Math.random() * 1,
+    }));
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      <style>{`
+        @keyframes fall {
+          to {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+          }
+        }
+        .confetti-particle {
+          animation: fall linear forwards;
+        }
+      `}</style>
+      {confetti.map(particle => (
+        <div
+          key={particle.id}
+          className="confetti-particle absolute w-2 h-2 rounded-full"
+          style={{
+            left: `${particle.left}%`,
+            top: '-10px',
+            backgroundColor: ['#5170ff', '#FF6366', '#22c55e', '#f5a623'][Math.floor(Math.random() * 4)],
+            animationDelay: `${particle.delay}s`,
+            animationDuration: `${particle.duration}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function generateBookingCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let code = '';
@@ -29,10 +69,14 @@ export default function ConfirmationPage({ onDone, persons, subtotal, serviceFee
   }, []);
 
   function handleShare() {
+    const shareText = `J'ai réservé cette activité sur &JOY : Expo Immersive : Lumières d'Orient pour ${persons} personne${persons > 1 ? 's' : ''}, Demain à 10:00, Atelier des Lumières, Paris 11e.
+Code de réservation : ${bookingCode}.
+Découvre l'application &JOY : https://joydiscover.com`;
+
     if (navigator.share) {
       navigator.share({
         title: "Expo Immersive : Lumières d'Orient",
-        text: `J'y serai ! Code de réservation : ${bookingCode}`,
+        text: shareText,
       }).catch(() => {});
     }
   }
@@ -48,6 +92,7 @@ export default function ConfirmationPage({ onDone, persons, subtotal, serviceFee
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
+      <Confetti />
       <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-32">

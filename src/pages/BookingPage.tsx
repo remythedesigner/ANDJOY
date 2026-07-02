@@ -15,6 +15,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [persons, setPersons] = useState(initialPersons);
+  const [showFeeTooltip, setShowFeeTooltip] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
   const total = subtotal + SERVICE_FEE;
 
   return (
-    <div className="flex flex-col min-h-svh bg-[#FDFAF9]">
+    <div className="flex flex-col min-h-svh bg-cream">
       <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
@@ -48,7 +49,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
         <div className="px-5 flex flex-col gap-6">
 
           {/* Event summary card */}
-          <div className="bg-white rounded-2xl p-4 flex gap-4 items-start">
+          <div className="bg-[#FDFAF9] rounded-2xl p-4 flex gap-4 items-start">
             <img
               src={EVENT_IMAGE}
               alt="Expo Immersive : Lumières d'Orient"
@@ -133,12 +134,21 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
             <div className="flex items-center justify-between py-4">
               <div className="flex items-center gap-1.5">
                 <span className="font-sans text-[14px] text-muted">Frais de service</span>
-                <div className="size-4 rounded-full border border-muted/50 flex items-center justify-center">
+                <button
+                  onClick={() => setShowFeeTooltip(!showFeeTooltip)}
+                  className="size-4 rounded-full border border-muted/50 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  aria-label="Information sur les frais de service"
+                >
                   <span className="font-sans text-[9px] text-muted font-bold">i</span>
-                </div>
+                </button>
               </div>
               <span className="font-sans font-bold text-[14px] text-dark">{SERVICE_FEE.toFixed(2)}€</span>
             </div>
+            {showFeeTooltip && (
+              <div className="bg-[#FDFAF9] rounded-2xl p-3 mb-4">
+                <p className="font-sans text-[13px] text-dark leading-[1.5]">Pour couvrir les frais de paiement en ligne sécurisé de notre partenaire Stripe.</p>
+              </div>
+            )}
             <div className="h-px bg-black/[0.07]" />
             <div className="flex items-center justify-between py-4">
               <span className="font-sans font-bold text-[15px] text-dark">Total</span>

@@ -104,7 +104,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-svh bg-[#FDFAF9]">
+    <div className="flex flex-col min-h-svh bg-cream">
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
 
         {/* ── Hero image ── */}
@@ -187,24 +187,24 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           {/* Info chips */}
           <div className="flex flex-wrap gap-2 mb-5">
-            <button onClick={scrollToReviews} className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity">
+            <button onClick={scrollToReviews} className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity">
               <span className="text-[11px] leading-none">⭐</span>
               <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">4.9</span>
             </button>
-            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
                 <path d="M6 3.5V6L7.5 7.5" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">Demain · 10:00 - 20:00</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M6 1.5C4.3 1.5 3 2.8 3 4.5C3 6.5 6 10.5 6 10.5C6 10.5 9 6.5 9 4.5C9 2.8 7.7 1.5 6 1.5ZM6 5.5C5.4 5.5 5 5.1 5 4.5C5 3.9 5.4 3.5 6 3.5C6.6 3.5 7 3.9 7 4.5C7 5.1 6.6 5.5 6 5.5Z" fill="#9090a0"/>
               </svg>
               <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">Paris 11e</span>
             </div>
-            <div className="flex items-center gap-1.5 bg-white/70 rounded-full px-3 py-1.5">
+            <div className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
                 <path d="M6 3V6H9" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" />
@@ -290,7 +290,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 Ouvrir dans Maps →
               </a>
             </div>
-            <div className="rounded-2xl overflow-hidden h-[180px] relative">
+            <div className="rounded-2xl overflow-hidden h-[180px] relative bg-cream">
               <MapContainer
                 center={[VENUE.lat, VENUE.lng]}
                 zoom={15}
@@ -356,7 +356,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           <div className="flex gap-4 -mx-4 px-4 pb-5 -mb-5 overflow-x-auto scrollbar-hide mb-5">
             {USER_REVIEWS.map((review) => (
-              <div key={review.id} className="bg-white rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-3">
+              <div key={review.id} className="bg-[#FDFAF9] rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-3">
                 <div className="flex items-center gap-2.5">
                   <img src={review.avatar} alt={review.name} className="size-10 rounded-full object-cover shrink-0" />
                   <div className="flex-1 min-w-0">

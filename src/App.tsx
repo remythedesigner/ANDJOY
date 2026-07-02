@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SplashScreen from './pages/SplashScreen';
 import WelcomeScreen from './pages/WelcomeScreen';
 import AuthEmailScreen from './pages/AuthEmailScreen';
@@ -24,11 +24,22 @@ export default function App() {
   const [showBooking, setShowBooking] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [bookingPlaces, setBookingPlaces] = useState(1);
   const [bookingMaxPlaces, setBookingMaxPlaces] = useState<number | undefined>(undefined);
   const [bookingFirstName, setBookingFirstName] = useState('');
   const [bookingLastName, setBookingLastName] = useState('');
   const [paymentAmounts, setPaymentAmounts] = useState({ subtotal: 0, serviceFee: 0 });
+
+  useEffect(() => {
+    if (isProcessing) {
+      const timer = setTimeout(() => {
+        setIsProcessing(false);
+        setShowConfirmation(true);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isProcessing]);
 
   if (onboardingStep === 'splash') {
     return <SplashScreen onComplete={() => setOnboardingStep('welcome')} />;
@@ -60,6 +71,19 @@ export default function App() {
     return <ProfileSetup onComplete={() => setOnboardingStep('done')} />;
   }
 
+  if (isProcessing) {
+    return (
+      <div className="flex flex-col min-h-svh bg-cream items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-16 h-16">
+            <div className="absolute inset-0 rounded-full border-4 border-black/10 border-t-primary animate-spin" />
+          </div>
+          <p className="font-sans text-[14px] text-muted">Traitement du paiement...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (showConfirmation) {
     return (
       <ConfirmationPage
@@ -79,7 +103,7 @@ export default function App() {
         onBack={() => setShowPayment(false)}
         subtotal={paymentAmounts.subtotal}
         serviceFee={paymentAmounts.serviceFee}
-        onConfirm={() => setShowConfirmation(true)}
+        onConfirm={() => setIsProcessing(true)}
       />
     );
   }
