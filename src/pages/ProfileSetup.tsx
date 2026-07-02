@@ -196,7 +196,7 @@ export default function ProfileSetup({ onComplete }: Props) {
             <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3 max-w-[270px] mb-3">
               <span className="text-lg shrink-0 mt-0.5">💡</span>
               <p className="font-sans text-[13px] text-primary leading-[1.4] text-left">
-                Ta géolocalisation est utilisée uniquement pour afficher les activités près de toi.
+                Ce n'est pas obligatoire, mais cela nous permet de te proposer une expérience optimale !
               </p>
             </div>
           </div>
