@@ -40,9 +40,9 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
             <circle cx="30" cy="30" r="28" stroke="#22c55e" strokeWidth="2" />
             <path d="M20 30l6 6 14-14" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <h2 className="font-sans font-extrabold text-[24px] text-dark">Merci !</h2>
-          <p className="font-sans text-[15px] text-muted max-w-[270px]">
-            Nous avons bien reçu ta suggestion. L'équipe &JOY te remerciera bientôt ! 🙏
+          <h2 className="font-sans font-extrabold text-[24px] text-dark">Merci pour ta suggestion !</h2>
+          <p className="font-sans text-[15px] text-muted max-w-[290px] leading-[1.5]">
+            Nous avons bien reçu ta proposition. Si elle rejoint la base de données &JOY, nous te notifierons. 🎉
           </p>
         </div>
       </div>
