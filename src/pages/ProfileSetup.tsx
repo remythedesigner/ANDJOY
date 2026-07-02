@@ -194,10 +194,7 @@ export default function ProfileSetup({ onComplete }: Props) {
               Autorise l'accès à ta position pour découvrir les expériences autour de toi.
             </p>
             <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3 max-w-[270px] mb-3">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
-                <circle cx="9" cy="9" r="8" stroke="#5170ff" strokeWidth="1.4" />
-                <path d="M9 6v3M9 12h0.01" stroke="#5170ff" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
+              <span className="text-lg shrink-0 mt-0.5">💡</span>
               <p className="font-sans text-[13px] text-primary leading-[1.4] text-left">
                 Ta géolocalisation est utilisée uniquement pour afficher les activités près de toi.
               </p>
@@ -277,10 +274,7 @@ export default function ProfileSetup({ onComplete }: Props) {
             </div>
 
             <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="shrink-0 mt-0.5">
-                <circle cx="9" cy="9" r="8" stroke="#5170ff" strokeWidth="1.4" />
-                <path d="M9 6v3M9 12h0.01" stroke="#5170ff" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
+              <span className="text-lg shrink-0 mt-0.5">💡</span>
               <p className="font-sans text-[13px] leading-[1.4] text-left text-primary">
                 Nous utilisons tes préférences uniquement pour te recommander les meilleures activités.
               </p>
