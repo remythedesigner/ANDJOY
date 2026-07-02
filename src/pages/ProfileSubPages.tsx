@@ -130,7 +130,7 @@ export function PersonalInfoPage({ onBack }: { onBack: () => void }) {
               <circle cx="8" cy="5" r="0.8" fill="#f5a623" />
             </svg>
             <p className="font-sans text-[13px] text-[#c9933f] leading-[1.55]">
-              Remplissez vos informations personnelles pour une meilleure expérience et des recommandations plus précises.
+              Remplis tes informations personnelles pour une meilleure expérience et des recommandations plus précises.
             </p>
           </div>
         )}
