@@ -256,7 +256,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
                 </IconTile>
               }
               label="Proposer une activité"
-              sub="Suggérez une nouvelle activité"
+              sub="Nous sommes à ton écoute !"
             />
           </Section>
 
