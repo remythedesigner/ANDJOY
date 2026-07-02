@@ -191,7 +191,7 @@ export default function ProfileSetup({ onComplete }: Props) {
               Activités près{'\n'}de toi
             </h2>
             <p className="font-sans text-[15px] text-muted leading-[1.55] max-w-[270px]">
-              Autorise l'accès à ta position pour découvrir les expériences autour de toi. Tes données ne sont utilisées que pour améliorer ton expérience.
+              Autorise l'accès à ta position pour découvrir les expériences autour de toi. Ta géolocalisation est utilisée uniquement pour afficher les activités près de toi.
             </p>
           </div>
           <div className="flex flex-col gap-2 shrink-0">
