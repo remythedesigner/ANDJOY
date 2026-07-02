@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import AppHeader from '../components/organisms/AppHeader';
 import GreetingSection from '../components/organisms/GreetingSection';
 import HeroCarousel from '../components/organisms/HeroCarousel';
@@ -17,12 +17,14 @@ interface HomeContentProps {
 }
 
 function HomeContent({ onTabChange, onOpenEvent, onOpenProfile }: HomeContentProps) {
+  const [geoGranted, setGeoGranted] = useState(false);
+
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       {/* iOS-style status bar spacer */}
       <div className="shrink-0 bg-cream" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
 
-      <AppHeader onOpenProfile={onOpenProfile} />
+      <AppHeader onOpenProfile={onOpenProfile} geoGranted={geoGranted} />
 
       <main className="flex flex-col flex-1 overflow-x-hidden pb-4">
         <GreetingSection />
@@ -42,7 +44,7 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile }: HomeContentPro
           id="team-picks"
           onCardClick={onOpenEvent}
         />
-        <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} />
+        <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} onGeoGranted={() => setGeoGranted(true)} />
         {/* Made in Paris */}
         <div className="flex items-center justify-center gap-1.5 py-6">
           <span className="font-sans text-[13px] text-muted">Fait à Paris avec</span>

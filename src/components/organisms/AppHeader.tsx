@@ -1,6 +1,6 @@
 import { ASSETS } from '../../utils/data';
 
-export default function AppHeader({ onOpenProfile }: { onOpenProfile?: () => void }) {
+export default function AppHeader({ onOpenProfile, geoGranted = false }: { onOpenProfile?: () => void; geoGranted?: boolean }) {
   return (
     <header className="flex items-center justify-between px-6 py-2 w-full">
       {/* &JOY Logo */}
@@ -18,12 +18,14 @@ export default function AppHeader({ onOpenProfile }: { onOpenProfile?: () => voi
       <div className="flex items-center gap-2">
         {/* Location badge */}
         <div className="bg-[#FDFAF9] rounded-[30px] flex items-center gap-2 px-4 py-2">
-          <span className="relative flex size-[6px] shrink-0" aria-hidden="true">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-            <span className="relative inline-flex size-[6px] rounded-full bg-primary" />
-          </span>
+          {geoGranted && (
+            <span className="relative flex size-[6px] shrink-0" aria-hidden="true">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex size-[6px] rounded-full bg-primary" />
+            </span>
+          )}
           <span className="font-sans font-semibold text-[14px] text-dark-warm whitespace-nowrap">
-            Paris 11e
+            {geoGranted ? 'Paris 11e' : 'Paris'}
           </span>
           <span className="font-sans font-medium text-[14px] text-muted whitespace-nowrap">
             ☀️ 27°

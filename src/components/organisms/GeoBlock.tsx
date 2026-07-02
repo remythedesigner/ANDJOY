@@ -31,19 +31,27 @@ function NearbyCard({ image, category, title, location, date, price, onClick }: 
 interface GeoBlockProps {
   onCardClick?: () => void;
   onViewMap?: () => void;
+  onGeoGranted?: () => void;
 }
 
-export default function GeoBlock({ onCardClick, onViewMap }: GeoBlockProps) {
+export default function GeoBlock({ onCardClick, onViewMap, onGeoGranted }: GeoBlockProps) {
   const [granted, setGranted] = useState(false);
 
   function handleGeoRequest() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
-        () => setGranted(true),
-        () => setGranted(true),
+        () => {
+          setGranted(true);
+          onGeoGranted?.();
+        },
+        () => {
+          setGranted(true);
+          onGeoGranted?.();
+        },
       );
     } else {
       setGranted(true);
+      onGeoGranted?.();
     }
   }
 
