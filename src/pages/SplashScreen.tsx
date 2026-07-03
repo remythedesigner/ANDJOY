@@ -35,17 +35,23 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
       <div style={{ position: 'relative', width: W, height: H }}>
 
         {/* ── Text layer (bottom 84px) — enters first ── */}
-        <img
-          src={import.meta.env.BASE_URL + "logo.svg"}
-          width={W}
-          height={H}
-          alt="&JOY"
+        <div
+          role="img"
+          aria-label="&JOY"
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
+            width: W,
+            height: H,
+            backgroundColor: '#F5A624',
+            WebkitMaskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
+            maskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskSize: `${W}px ${H}px`,
+            maskSize: `${W}px ${H}px`,
             clipPath: `inset(${RAYS_H}px 0 0 0)`,
-            filter: 'brightness(0) saturate(100%) invert(91%) sepia(77%) saturate(715%) hue-rotate(330deg)',
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(10px) scale(0.88)',
             transition: 'opacity 0.45s ease, transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -53,18 +59,22 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         />
 
         {/* ── Rays layer (top 40px) — enters 420ms later ── */}
-        <img
-          src={import.meta.env.BASE_URL + "logo.svg"}
-          width={W}
-          height={H}
-          alt=""
+        <div
           aria-hidden="true"
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
+            width: W,
+            height: H,
+            backgroundColor: '#F5A624',
+            WebkitMaskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
+            maskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskSize: `${W}px ${H}px`,
+            maskSize: `${W}px ${H}px`,
             clipPath: `inset(0 0 ${TEXT_H}px 0)`,
-            filter: 'brightness(0) saturate(100%) invert(91%) sepia(77%) saturate(715%) hue-rotate(330deg)',
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0) scale(1)' : 'translateY(-6px) scale(0.8)',
             transformOrigin: 'center bottom',
