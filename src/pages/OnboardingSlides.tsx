@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SafeAreaSpacer } from '../components/atoms';
 
 const SLIDES = [
   {
@@ -41,7 +42,7 @@ export default function OnboardingSlides({ onComplete }: OnboardingSlidesProps) 
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       {/* Logo */}
       <div className="flex justify-center pt-4 shrink-0">
@@ -50,7 +51,7 @@ export default function OnboardingSlides({ onComplete }: OnboardingSlidesProps) 
 
       {/* Illustration placeholder */}
       <div className="flex-1 px-6 pt-4 pb-2 flex flex-col">
-        <div className="flex-1 rounded-[32px] bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+        <div className="flex-1 rounded-4xl bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
             <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />

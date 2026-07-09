@@ -65,7 +65,7 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
     >
       <div
         ref={sheetRef}
-        className="bg-[#faf4f1] rounded-t-[32px] pt-4 pb-10 flex flex-col overflow-hidden max-h-[88svh]"
+        className="bg-cream rounded-t-4xl pt-4 pb-10 flex flex-col overflow-hidden max-h-[88svh]"
         onClick={e => e.stopPropagation()}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -84,7 +84,7 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
             <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
           </div>
           <h2 className="font-sans font-extrabold text-[20px] text-dark">{member.name}</h2>
-          <p className="font-sans font-medium text-[13px] text-[#8B5CF6] mt-0.5">
+          <p className="font-sans font-medium text-[13px] text-accent-purple mt-0.5">
             {member.gender === 'female' ? 'Ambassadrice' : 'Ambassadeur'} &JOY
           </p>
           <p className="font-sans text-[13px] text-muted mt-1 text-center leading-[1.5] max-w-[260px]">{member.bio}</p>

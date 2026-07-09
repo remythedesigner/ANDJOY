@@ -12,7 +12,7 @@ function NearbyCard({ image, category, title, location, date, price, onClick }: 
     >
       <img src={image} alt={title} className="size-20 rounded-xl object-cover shrink-0" loading="lazy" />
       <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-        <p className="typo-label text-[#FF6366]">{getCategoryEmoji(category)} {category}</p>
+        <p className="typo-label text-accent-coral">{getCategoryEmoji(category)} {category}</p>
         <p className="typo-title text-dark leading-[18px] line-clamp-2">{title}</p>
         <div className="flex items-center gap-1 mt-1">
           <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-[11px] shrink-0" />
@@ -88,7 +88,7 @@ export default function GeoBlock({ onCardClick, onViewMap, onGeoGranted }: GeoBl
   return (
     <section className="px-6 py-6" aria-label="Activités proches de toi">
       <div
-        className="bg-[#FDFAF9] rounded-3xl overflow-hidden"
+        className="bg-surface rounded-3xl overflow-hidden"
       >
         <div className="p-6 flex flex-col gap-4">
           <div className="flex items-start gap-4">

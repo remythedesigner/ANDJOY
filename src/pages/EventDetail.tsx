@@ -4,13 +4,15 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { getCategoryEmoji } from '../utils/categories';
 import MemberProfileSheet from '../components/organisms/MemberProfileSheet';
+import { PRIMARY_HEX } from '../utils/theme';
+import { Pill, PrimaryButton, StepperButton } from '../components/atoms';
 import { communityMembers } from '../utils/data';
 import type { CommunityMember } from '../utils/types';
 
 const VENUE = { lat: 48.8556, lng: 2.3722 };
 
 const venueMarker = L.divIcon({
-  html: `<div style="width:14px;height:14px;border-radius:50%;background:#5170ff;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
+  html: `<div style="width:14px;height:14px;border-radius:50%;background:${PRIMARY_HEX};border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
   className: '',
   iconAnchor: [7, 7],
 });
@@ -179,7 +181,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           {/* Category + Title + Rating */}
           <div className="flex flex-col gap-2 mb-5">
-            <p className="typo-label text-[#FF6366]">{getCategoryEmoji('Exposition')} EXPOSITION</p>
+            <p className="typo-label text-accent-coral">{getCategoryEmoji('Exposition')} EXPOSITION</p>
             <h1 className="font-sans font-extrabold text-[22px] text-dark leading-[1.2]">
               Expo Immersive : Lumières d'Orient
             </h1>
@@ -187,37 +189,40 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           {/* Info chips */}
           <div className="flex flex-wrap gap-2 mb-5">
-            <button onClick={scrollToReviews} className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity">
-              <span className="text-[11px] leading-none">⭐</span>
-              <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">4.9</span>
-            </button>
-            <div className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5">
+            <Pill onClick={scrollToReviews} icon={<span className="text-[11px] leading-none">⭐</span>}>
+              4.9
+            </Pill>
+            <Pill icon={
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
                 <path d="M6 3.5V6L7.5 7.5" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">Demain · 10:00 - 20:00</span>
-            </div>
-            <div className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5">
+            }>
+              Demain · 10:00 - 20:00
+            </Pill>
+            <Pill icon={
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M6 1.5C4.3 1.5 3 2.8 3 4.5C3 6.5 6 10.5 6 10.5C6 10.5 9 6.5 9 4.5C9 2.8 7.7 1.5 6 1.5ZM6 5.5C5.4 5.5 5 5.1 5 4.5C5 3.9 5.4 3.5 6 3.5C6.6 3.5 7 3.9 7 4.5C7 5.1 6.6 5.5 6 5.5Z" fill="#9090a0"/>
               </svg>
-              <span className="font-sans font-medium text-[12px] text-dark whitespace-nowrap">Paris 11e</span>
-            </div>
-            <div className="flex items-center gap-1.5 bg-[#FDFAF9] rounded-full px-3 py-1.5">
+            }>
+              Paris 11e
+            </Pill>
+            <Pill icon={
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
                 <path d="M6 3V6H9" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" />
               </svg>
-              <span className="font-sans font-medium text-[12px] text-dark">1h</span>
-            </div>
-            <div className="flex items-center gap-1.5 bg-[#fff0f2] rounded-full px-3 py-1.5">
+            }>
+              1h
+            </Pill>
+            <Pill tone="alert" icon={
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="3.5" r="1.8" stroke="#d9547a" strokeWidth="1.2" />
                 <path d="M1.5 10C1.5 8.3 3.5 7 6 7C8.5 7 10.5 8.3 10.5 10" stroke="#d9547a" strokeWidth="1.2" strokeLinecap="round" />
               </svg>
-              <span className="font-sans font-bold text-[12px] text-[#d9547a] whitespace-nowrap">6 places restantes</span>
-            </div>
+            }>
+              6 places restantes
+            </Pill>
           </div>
 
           <div className="h-px bg-black/[0.06] mb-5" />
@@ -323,7 +328,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             </div>
 
             {/* Team review card */}
-            <div className="bg-[#FBEEE8] rounded-3xl p-5">
+            <div className="bg-badge-cream rounded-3xl p-5">
               <div className="flex items-center gap-3 mb-3">
                 <button
                   onClick={() => setProfileMember(communityMembers.find(m => m.name === 'Sam') ?? null)}
@@ -341,7 +346,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 </button>
                 <div className="flex-1 min-w-0">
                   <p className="font-sans font-bold text-[14px] text-dark">Sam</p>
-                  <p className="font-sans font-medium text-[13px] text-[#8B5CF6]">Rédactrice &JOY</p>
+                  <p className="font-sans font-medium text-[13px] text-accent-purple">Rédactrice &JOY</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-[22px] leading-none" role="img" aria-label="reaction">🤩</span>
@@ -356,7 +361,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
           <div className="flex gap-4 -mx-4 px-4 pb-5 -mb-5 overflow-x-auto scrollbar-hide mb-5">
             {USER_REVIEWS.map((review) => (
-              <div key={review.id} className="bg-[#FDFAF9] rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-3">
+              <div key={review.id} className="bg-surface rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-3">
                 <div className="flex items-center gap-2.5">
                   <img src={review.avatar} alt={review.name} className="size-10 rounded-full object-cover shrink-0" />
                   <div className="flex-1 min-w-0">
@@ -380,23 +385,19 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 <p className="font-sans text-[12px] text-muted mt-0.5">6 places restantes</p>
               </div>
               <div className="flex items-center gap-3 bg-white rounded-2xl px-3 py-2">
-                <button
+                <StepperButton
+                  variant="decrement"
                   onClick={() => setPlaces(p => Math.max(1, p - 1))}
                   disabled={places <= 1}
-                  className="size-8 rounded-xl bg-black/[0.04] flex items-center justify-center font-sans font-bold text-[18px] text-dark disabled:opacity-25 focus-visible:outline-none active:opacity-60 transition-opacity"
-                  aria-label="Retirer une place"
-                >
-                  −
-                </button>
+                  label="Retirer une place"
+                />
                 <span className="font-sans font-bold text-[18px] text-dark w-5 text-center tabular-nums">{places}</span>
-                <button
+                <StepperButton
+                  variant="increment"
                   onClick={() => setPlaces(p => Math.min(REMAINING_SEATS, p + 1))}
                   disabled={places >= REMAINING_SEATS}
-                  className="size-8 rounded-xl bg-primary flex items-center justify-center font-sans font-bold text-[18px] text-white disabled:opacity-25 focus-visible:outline-none active:opacity-80 transition-opacity"
-                  aria-label="Ajouter une place"
-                >
-                  +
-                </button>
+                  label="Ajouter une place"
+                />
               </div>
             </div>
           </section>
@@ -405,13 +406,10 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
       </div>
 
       {/* ── Sticky CTA ── */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#faf4f1]/95 backdrop-blur-sm px-4 pt-3 pb-8 border-t border-black/[0.05]" style={{ zIndex: 1001 }}>
-        <button
-          onClick={() => onBook(places, REMAINING_SEATS)}
-          className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-90 transition-opacity"
-        >
+      <div className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-4 pt-3 pb-8 border-t border-black/[0.05]" style={{ zIndex: 1001 }}>
+        <PrimaryButton onClick={() => onBook(places, REMAINING_SEATS)}>
           Réserver — 22 €
-        </button>
+        </PrimaryButton>
       </div>
       {profileMember && (
         <MemberProfileSheet member={profileMember} onClose={() => setProfileMember(null)} />

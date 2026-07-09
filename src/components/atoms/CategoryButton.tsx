@@ -11,7 +11,7 @@ export default function CategoryButton({ id, emoji, color, selected, onToggle }:
     <button
       onClick={() => onToggle(id)}
       className={`flex items-center gap-3 p-4 rounded-2xl border-2 transition-all focus-visible:outline-none ${
-        selected ? 'border-primary bg-[#eef1ff]' : 'border-transparent bg-white'
+        selected ? 'border-primary bg-primary-light' : 'border-transparent bg-white'
       }`}
       style={!selected ? { boxShadow: '0px 2px 8px rgba(0,0,0,0.05)' } : {}}
     >

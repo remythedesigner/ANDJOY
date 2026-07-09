@@ -1,23 +1,16 @@
 import { useState } from 'react';
 import { CATEGORIES } from '../utils/categories';
 import CategoryButton from '../components/atoms/CategoryButton';
+import { BackButton, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 // ─── Shared primitives ────────────────────────────────────────────────────────
 
 function BackHeader({ title, onBack }: { title: string; onBack: () => void }) {
   return (
     <>
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
       <div className="flex items-center gap-3 px-4 pt-4 pb-2 shrink-0">
-        <button
-          onClick={onBack}
-          className="size-9 flex items-center justify-center focus-visible:outline-none"
-          aria-label="Retour"
-        >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M14 18L7 11L14 4" stroke="#1a1a24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+        <BackButton onClick={onBack} />
         <h1 className="font-sans font-extrabold text-[22px] text-dark leading-tight">{title}</h1>
       </div>
     </>
@@ -63,7 +56,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function StickyFooter({ children }: { children: React.ReactNode }) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#faf4f1]/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]" style={{ zIndex: 1001 }}>
+    <div className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]" style={{ zIndex: 1001 }}>
       {children}
     </div>
   );
@@ -71,12 +64,9 @@ function StickyFooter({ children }: { children: React.ReactNode }) {
 
 function SaveButton({ onSave, saved }: { onSave: () => void; saved: boolean }) {
   return (
-    <button
-      onClick={onSave}
-      className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none active:opacity-90 transition-all"
-    >
+    <PrimaryButton onClick={onSave}>
       {saved ? 'Enregistré ✓' : 'Enregistrer'}
-    </button>
+    </PrimaryButton>
   );
 }
 
@@ -301,7 +291,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
 
       {showAddCard && (
         <div className="fixed inset-0 z-50 flex flex-col justify-end" style={{ background: 'rgba(0,0,0,0.35)' }} onClick={() => setShowAddCard(false)}>
-          <div className="bg-white rounded-t-[32px] px-5 pt-4 pb-10 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+          <div className="bg-white rounded-t-4xl px-5 pt-4 pb-10 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
             <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-2" />
             <p className="font-sans font-bold text-[17px] text-dark mb-4">Ajouter une carte</p>
 
@@ -413,7 +403,7 @@ export function SettingsPage({ onBack }: { onBack: () => void }) {
 
         <div className="flex flex-col gap-2">
           <SectionLabel>Compte</SectionLabel>
-          <button className="w-full h-12 flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-[#d9547a] active:opacity-70 transition-opacity focus-visible:outline-none">
+          <button className="w-full h-12 flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-accent-pink active:opacity-70 transition-opacity focus-visible:outline-none">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M2 4h12M5 4V2h6v2M6 7v5M10 7v5M3 4l1 9a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1l1-9" stroke="#d9547a" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -501,7 +491,7 @@ export function HelpPage({ onBack }: { onBack: () => void }) {
               href="mailto:contact@andjoy-app.com"
               className="flex items-center gap-3 px-4 py-4 active:bg-black/[0.02] focus-visible:outline-none"
             >
-              <div className="size-10 rounded-2xl bg-[#eef1ff] flex items-center justify-center shrink-0">
+              <div className="size-10 rounded-2xl bg-primary-light flex items-center justify-center shrink-0">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                   <rect x="1.5" y="3.5" width="15" height="11" rx="2" stroke="#5170ff" strokeWidth="1.6" />
                   <path d="M1.5 6l7.5 5 7.5-5" stroke="#5170ff" strokeWidth="1.6" strokeLinecap="round" />

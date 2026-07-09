@@ -1,4 +1,6 @@
 import { useEffect, useRef, useMemo } from 'react';
+import { PrimaryButton, SafeAreaSpacer } from '../components/atoms';
+import { CONFETTI_COLORS } from '../utils/theme';
 
 interface ConfirmationPageProps {
   onDone: () => void;
@@ -41,7 +43,7 @@ function Confetti() {
           style={{
             left: `${particle.left}%`,
             top: '-10px',
-            backgroundColor: ['#5170ff', '#FF6366', '#22c55e', '#f5a623'][Math.floor(Math.random() * 4)],
+            backgroundColor: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
             animationDelay: `${particle.delay}s`,
             animationDuration: `${particle.duration}s`,
           }}
@@ -93,12 +95,12 @@ Découvre l'application &JOY : https://joydiscover.com`;
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <Confetti />
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-32">
         {/* Success banner */}
         <div className="px-5 pt-6 pb-2 flex flex-col items-center text-center gap-3">
-          <div className="size-16 rounded-full bg-[#eef1ff] flex items-center justify-center">
+          <div className="size-16 rounded-full bg-primary-light flex items-center justify-center">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
               <path d="M6 15.5L12 21.5L24 9" stroke="#5170ff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -109,7 +111,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
         <div className="px-5 flex flex-col gap-5 mt-4">
 
           {/* Ticket card */}
-          <div className="rounded-3xl overflow-hidden border border-black/[0.07] shadow-[0px_4px_20px_rgba(0,0,0,0.07)]">
+          <div className="rounded-3xl overflow-hidden border border-black/[0.07] shadow-card">
             {/* Event header */}
             <div className="flex gap-3 items-center p-4 bg-white">
               <img
@@ -140,7 +142,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
                 {bookingCode.split('').map((char, i) => (
                   <div
                     key={i}
-                    className="size-10 rounded-xl bg-[#eef1ff] flex items-center justify-center font-sans font-extrabold text-[20px] text-primary"
+                    className="size-10 rounded-xl bg-primary-light flex items-center justify-center font-sans font-extrabold text-[20px] text-primary"
                   >
                     {char}
                   </div>
@@ -186,7 +188,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
           </div>
 
           {/* Info note */}
-          <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex gap-3 items-start">
+          <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex gap-3 items-start">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
               <circle cx="8" cy="8" r="7" stroke="#5170ff" strokeWidth="1.6" />
               <path d="M8 7V11" stroke="#5170ff" strokeWidth="1.8" strokeLinecap="round" />
@@ -202,15 +204,12 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
       {/* CTA */}
       <div
-        className="fixed bottom-0 left-0 right-0 bg-[#faf4f1]/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
+        className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
         style={{ zIndex: 1001 }}
       >
-        <button
-          onClick={onDone}
-          className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none active:opacity-90 transition-opacity"
-        >
+        <PrimaryButton onClick={onDone}>
           Voir mes billets
-        </button>
+        </PrimaryButton>
       </div>
     </div>
   );

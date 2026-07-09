@@ -16,7 +16,7 @@ export default function GreetingSection() {
 
       {/* Quote pill */}
       <div
-        className="bg-[#FDFAF9] flex items-center gap-2 px-4 py-4 rounded-[30px] w-full"
+        className="bg-surface flex items-center gap-2 px-4 py-4 rounded-[30px] w-full"
       >
         <svg width="20" height="20" viewBox="0 0 23 59" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
           <path d="M20.2897 48.7657C20.6616 48.5662 21.0443 48.5339 21.4417 48.6659C21.8427 48.7906 22.1381 49.0293 22.3313 49.3787C22.5572 49.7707 22.6084 50.1484 22.4916 50.5191C22.375 50.8825 22.1345 51.1605 21.7626 51.3599L9.46899 57.9741C9.10076 58.1739 8.72158 58.2165 8.33148 58.1024C7.94503 57.9884 7.64245 57.739 7.42733 57.3613C7.23411 57.0262 7.19035 56.6628 7.29608 56.2635C7.39452 55.8716 7.62785 55.5793 7.99609 55.3798L20.2897 48.7657Z" fill="#5170FF"/>

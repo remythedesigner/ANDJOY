@@ -7,6 +7,7 @@ import CommunitySection from '../components/organisms/CommunitySection';
 import GeoBlock from '../components/organisms/GeoBlock';
 import AppFooter from '../components/organisms/AppFooter';
 import { ASSETS, lovedEvents, teamFavorites } from '../utils/data';
+import { SafeAreaSpacer } from '../components/atoms';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
 
@@ -22,7 +23,7 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = fal
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       {/* iOS-style status bar spacer */}
-      <div className="shrink-0 bg-cream" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer className="bg-cream" />
 
       <AppHeader onOpenProfile={onOpenProfile} geoGranted={geoGranted} />
 

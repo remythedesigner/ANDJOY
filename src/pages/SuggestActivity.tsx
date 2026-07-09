@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BackButton, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 interface SuggestActivityProps {
   onBack: () => void;
@@ -56,19 +57,11 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       {/* Header */}
       <div className="flex items-center gap-3 px-4 pt-4 pb-2 shrink-0">
-        <button
-          onClick={onBack}
-          className="size-9 flex items-center justify-center focus-visible:outline-none"
-          aria-label="Retour"
-        >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <path d="M14 18L7 11L14 4" stroke="#1a1a24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
+        <BackButton onClick={onBack} />
         <h1 className="font-sans font-extrabold text-[22px] text-dark leading-tight">Proposer une activité</h1>
       </div>
 
@@ -131,13 +124,9 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
 
         {/* Submit Button */}
         <div className="flex flex-col gap-2 pt-6 pb-safe">
-          <button
-            onClick={handleSubmit}
-            disabled={!title.trim() || !category || !location.trim()}
-            className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none active:opacity-90 transition-all disabled:opacity-35"
-          >
+          <PrimaryButton onClick={handleSubmit} disabled={!title.trim() || !category || !location.trim()}>
             Envoyer la suggestion
-          </button>
+          </PrimaryButton>
           <button
             onClick={onBack}
             className="w-full h-12 font-sans text-[14px] text-muted"

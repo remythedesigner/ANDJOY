@@ -5,6 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import AppFooter from '../components/organisms/AppFooter';
 import { ASSETS } from '../utils/data';
 import { CATEGORIES, getCategoryEmoji } from '../utils/categories';
+import { PRIMARY_HEX } from '../utils/theme';
+import { PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
 type DateFilter = 'all' | 'today' | 'week' | 'weekend' | 'custom';
@@ -128,7 +130,7 @@ const USER_MARKER_ICON = L.divIcon({
   iconAnchor: [20, 20],
   html: `<div style="width:40px;height:40px;position:relative;">
     <div style="width:40px;height:40px;border-radius:50%;background:rgba(81,112,255,0.2);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);animation:joy-pulse 2s ease-in-out infinite;"></div>
-    <div style="width:22px;height:22px;border-radius:50%;background:#5170ff;border:3px solid white;box-shadow:0 2px 10px rgba(81,112,255,0.5);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+    <div style="width:22px;height:22px;border-radius:50%;background:${PRIMARY_HEX};border:3px solid white;box-shadow:0 2px 10px rgba(81,112,255,0.5);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
   </div>`,
 });
 
@@ -139,7 +141,7 @@ function makeClusterIcon(count: number) {
     iconAnchor: [29, 57],
     html: `<div style="width:58px;height:58px;display:flex;align-items:center;justify-content:center;">
       <div style="transform:rotate(-45deg);width:40px;height:40px;">
-        <div style="width:40px;height:40px;background:#5170ff;border-radius:20px 20px 20px 0;box-shadow:0px 2px 6px rgba(81,112,255,0.4);display:flex;align-items:center;justify-content:center;">
+        <div style="width:40px;height:40px;background:${PRIMARY_HEX};border-radius:20px 20px 20px 0;box-shadow:0px 2px 6px rgba(81,112,255,0.4);display:flex;align-items:center;justify-content:center;">
           <span style="transform:rotate(45deg);font-size:15px;font-weight:800;color:white;font-family:sans-serif;line-height:1;">${count}</span>
         </div>
       </div>
@@ -250,7 +252,7 @@ function FlyToUser({ position }: { position: [number, number] | null }) {
 }
 
 function makeMarkerIcon(emoji: string, selected: boolean) {
-  const bg = selected ? '#5170ff' : 'white';
+  const bg = selected ? PRIMARY_HEX : 'white';
   return L.divIcon({
     className: '',
     iconSize: [58, 58],
@@ -289,7 +291,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
 function SearchBar({ onClick, value, onChange, inputRef }: { onClick?: () => void; value?: string; onChange?: (v: string) => void; inputRef?: React.RefObject<HTMLInputElement | null> }) {
   if (onChange !== undefined) {
     return (
-      <div className="flex-1 bg-white rounded-2xl h-11 flex items-center gap-2 px-3 shadow-[0px_2px_12px_0px_rgba(0,0,0,0.12)] focus-within:ring-2 focus-within:ring-primary">
+      <div className="flex-1 bg-white rounded-2xl h-11 flex items-center gap-2 px-3 shadow-sheet focus-within:ring-2 focus-within:ring-primary">
         <img src={import.meta.env.BASE_URL + "icons/map-search.svg"} alt="" aria-hidden="true" className="size-[15px] shrink-0" />
         <input
           ref={inputRef}
@@ -311,7 +313,7 @@ function SearchBar({ onClick, value, onChange, inputRef }: { onClick?: () => voi
   return (
     <button
       onClick={onClick}
-      className="flex-1 bg-white rounded-2xl h-11 flex items-center gap-2 px-3 shadow-[0px_2px_12px_0px_rgba(0,0,0,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary text-left"
+      className="flex-1 bg-white rounded-2xl h-11 flex items-center gap-2 px-3 shadow-sheet focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary text-left"
       aria-label="Chercher une activité"
     >
       <img src={import.meta.env.BASE_URL + "icons/map-search.svg"} alt="" aria-hidden="true" className="size-[15px] shrink-0" />
@@ -324,7 +326,7 @@ function FilterButton({ onClick, activeCount }: { onClick: () => void; activeCou
   return (
     <button
       onClick={onClick}
-      className="relative bg-white rounded-2xl size-11 flex items-center justify-center shadow-[0px_2px_12px_0px_rgba(0,0,0,0.12)] shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      className="relative bg-white rounded-2xl size-11 flex items-center justify-center shadow-sheet shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       aria-label="Filtres avancés"
     >
       <img src={import.meta.env.BASE_URL + "icons/map-filter.svg"} alt="" aria-hidden="true" className="size-[17px] brightness-0" />
@@ -449,7 +451,7 @@ function ResultCard({ image, category, title, location, time, price, originalPri
     >
       <img src={image} alt={title} className="size-20 rounded-xl object-cover shrink-0" loading="lazy" />
       <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-        <p className="typo-label text-[#FF6366]">{getCategoryEmoji(category)} {category}</p>
+        <p className="typo-label text-accent-coral">{getCategoryEmoji(category)} {category}</p>
         <p className="typo-title text-dark leading-[18px] line-clamp-2">{title}</p>
         <div className="flex items-center gap-1 mt-1">
           <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-[11px] shrink-0" />
@@ -461,7 +463,7 @@ function ResultCard({ image, category, title, location, time, price, originalPri
         </div>
       </div>
       <div className="flex flex-col items-end shrink-0">
-        <span className={`typo-title ${originalPrice ? 'text-[#FF6366]' : 'text-dark'}`}>{price}</span>
+        <span className={`typo-title ${originalPrice ? 'text-accent-coral' : 'text-dark'}`}>{price}</span>
         {originalPrice && (
           <span className="font-sans text-[11px] text-muted line-through">{originalPrice}</span>
         )}
@@ -519,7 +521,7 @@ function FilterSheet({
     `h-9 px-4 rounded-full font-sans font-bold text-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
       selected
         ? 'bg-primary text-white'
-        : 'bg-white text-dark shadow-[0px_2px_8px_0px_rgba(0,0,0,0.08)]'
+        : 'bg-white text-dark shadow-chip'
     }`;
 
   const sectionTitle = 'font-sans font-bold text-[14px] text-dark mb-3';
@@ -528,7 +530,7 @@ function FilterSheet({
   return (
     <div className="fixed inset-0 z-[3000] flex flex-col bg-cream overflow-hidden">
       {/* Status bar */}
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       {/* Header */}
       <div className="relative flex items-center justify-between px-4 pt-4 pb-4 shrink-0">
@@ -597,7 +599,7 @@ function FilterSheet({
               <button
                 onClick={() => onPersonCount(Math.max(1, personCount - 1))}
                 disabled={personCount <= 1}
-                className="w-8 h-8 rounded-full bg-white shadow-[0px_2px_8px_0px_rgba(0,0,0,0.08)] flex items-center justify-center font-sans font-bold text-[18px] text-dark disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-opacity"
+                className="w-8 h-8 rounded-full bg-white shadow-chip flex items-center justify-center font-sans font-bold text-[18px] text-dark disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-opacity"
                 aria-label="Moins"
               >
                 −
@@ -607,7 +609,7 @@ function FilterSheet({
               </span>
               <button
                 onClick={() => onPersonCount(personCount + 1)}
-                className="w-8 h-8 rounded-full bg-white shadow-[0px_2px_8px_0px_rgba(0,0,0,0.08)] flex items-center justify-center font-sans font-bold text-[18px] text-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="w-8 h-8 rounded-full bg-white shadow-chip flex items-center justify-center font-sans font-bold text-[18px] text-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label="Plus"
               >
                 +
@@ -638,7 +640,7 @@ function FilterSheet({
             onChange={e => onMaxPrice(Number(e.target.value))}
             className="w-full"
             style={{
-              background: `linear-gradient(to right, #5170ff 0%, #5170ff ${(maxPrice / MAX_PRICE) * 100}%, #e2deda ${(maxPrice / MAX_PRICE) * 100}%, #e2deda 100%)`,
+              background: `linear-gradient(to right, ${PRIMARY_HEX} 0%, ${PRIMARY_HEX} ${(maxPrice / MAX_PRICE) * 100}%, #e2deda ${(maxPrice / MAX_PRICE) * 100}%, #e2deda 100%)`,
             }}
             aria-label="Prix maximum"
           />
@@ -660,12 +662,9 @@ function FilterSheet({
 
       {/* Footer */}
       <div className="shrink-0 px-4 pt-3 pb-8 border-t border-black/[0.05] bg-cream">
-        <button
-          onClick={onClose}
-          className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-90 transition-opacity"
-        >
+        <PrimaryButton onClick={onClose}>
           {activityLabel(filteredCount)}
-        </button>
+        </PrimaryButton>
       </div>
     </div>
   );
@@ -913,7 +912,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
             className="absolute top-0 left-0 right-0 z-[1000] flex flex-col pointer-events-none transition-opacity duration-300"
             style={{ opacity: listOpen ? 0 : 1, pointerEvents: listOpen ? 'none' : undefined }}
           >
-            <div style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+            <SafeAreaSpacer />
             <div className="flex gap-2.5 pt-4 pb-2 px-4 pointer-events-auto">
               <SearchBar onClick={() => { focusSearchOnOpen.current = true; setListOpen(true); }} />
               <FilterButton onClick={() => setFilterSheetOpen(true)} activeCount={activeFilterCount} />
@@ -932,7 +931,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
           {/* Navigate button */}
           <button
             onClick={handleLocate}
-            className={`absolute right-4 z-[1001] rounded-2xl size-11 flex items-center justify-center shadow-[0px_2px_12px_rgba(0,0,0,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-[opacity,bottom,background-color] duration-300 active:opacity-75 ${userPosition ? 'bg-[#eef1ff]' : 'bg-white'}`}
+            className={`absolute right-4 z-[1001] rounded-2xl size-11 flex items-center justify-center shadow-[0px_2px_12px_rgba(0,0,0,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-[opacity,bottom,background-color] duration-300 active:opacity-75 ${userPosition ? 'bg-primary-light' : 'bg-white'}`}
             style={{
               opacity: listOpen ? 0 : 1,
               pointerEvents: listOpen ? 'none' : 'auto',
@@ -1005,7 +1004,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
               }}
             >
               {/* Safe-area spacer — matches the map overlay's top gap */}
-              <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+              <SafeAreaSpacer />
 
               {/* Search + filters header */}
               <div className="shrink-0 flex flex-col gap-4 pt-4 pb-3 px-4">

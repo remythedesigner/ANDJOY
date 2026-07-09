@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { PRIMARY_HEX } from '../utils/theme';
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -27,7 +28,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
       style={{
-        backgroundColor: '#5170FF',
+        backgroundColor: PRIMARY_HEX,
         opacity: phase === 'exit' ? 0 : 1,
         transition: phase === 'exit' ? 'opacity 0.45s ease' : undefined,
       }}
@@ -44,7 +45,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             left: 0,
             width: W,
             height: H,
-            backgroundColor: '#F5A624',
+            backgroundColor: '#f5a623',
             WebkitMaskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
             maskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
             WebkitMaskRepeat: 'no-repeat',
@@ -67,7 +68,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
             left: 0,
             width: W,
             height: H,
-            backgroundColor: '#F5A624',
+            backgroundColor: '#f5a623',
             WebkitMaskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
             maskImage: `url(${import.meta.env.BASE_URL}logo.svg)`,
             WebkitMaskRepeat: 'no-repeat',

@@ -30,7 +30,7 @@ export default function VCard({ event, onClick }: VCardProps) {
         {/* Scarcity / New badge (top right) */}
         {badge && badgeVariant === 'scarcity' && (
           <div className="absolute top-2 left-1/4 right-0 mx-auto w-fit">
-            <span className="bg-[#f5a623] text-white text-[12px] font-semibold font-sans px-2 py-1 rounded-full whitespace-nowrap">
+            <span className="bg-accent-orange text-white text-[12px] font-semibold font-sans px-2 py-1 rounded-full whitespace-nowrap">
               {badge}
             </span>
           </div>
@@ -47,7 +47,7 @@ export default function VCard({ event, onClick }: VCardProps) {
         <div className="absolute bottom-2 left-2 flex items-center gap-2">
           {originalPrice ? (
             <>
-              <span className="bg-[#FF6366] text-white text-[12px] font-bold font-sans px-2 py-1 rounded-[14px] whitespace-nowrap">
+              <span className="bg-accent-coral text-white text-[12px] font-bold font-sans px-2 py-1 rounded-[14px] whitespace-nowrap">
                 {price}
               </span>
               <span className="text-white/55 text-[10px] font-semibold font-sans line-through whitespace-nowrap">
@@ -64,7 +64,7 @@ export default function VCard({ event, onClick }: VCardProps) {
 
       {/* Content */}
       <div className="p-4 flex flex-col gap-0">
-        <p className="typo-label text-[#FF6366]">
+        <p className="typo-label text-accent-coral">
           {getCategoryEmoji(category)} {category}
         </p>
         <p className="typo-title text-dark mt-1">

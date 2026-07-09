@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CATEGORIES } from '../utils/categories';
 import CategoryButton from '../components/atoms/CategoryButton';
+import { SafeAreaSpacer } from '../components/atoms';
 
 interface Props {
   onComplete: () => void;
@@ -8,7 +9,7 @@ interface Props {
 
 function LocationIllustration() {
   return (
-    <div className="w-[260px] aspect-square rounded-[32px] bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+    <div className="w-[260px] aspect-square rounded-4xl bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
         <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
         <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
@@ -90,7 +91,7 @@ export default function ProfileSetup({ onComplete }: Props) {
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(20px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer size="lg" />
 
       {/* Nav bar */}
       <div className="flex items-center gap-4 px-5 pt-4 pb-3 shrink-0">
@@ -193,7 +194,7 @@ export default function ProfileSetup({ onComplete }: Props) {
             <p className="font-sans text-[14px] text-muted leading-[1.5] mb-5 max-w-[270px]">
               Autorise l'accès à ta position pour découvrir les expériences autour de toi.
             </p>
-            <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3 max-w-[270px] mb-3">
+            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3 max-w-[270px] mb-3">
               <span className="text-lg shrink-0 mt-0.5">💡</span>
               <p className="font-sans text-[13px] text-primary leading-[1.4] text-left">
                 Ce n'est pas obligatoire, mais cela nous permet de te proposer une expérience optimale !
@@ -273,7 +274,7 @@ export default function ProfileSetup({ onComplete }: Props) {
               </button>
             </div>
 
-            <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex items-start gap-3">
+            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
               <span className="text-lg shrink-0 mt-0.5">💡</span>
               <p className="font-sans text-[13px] leading-[1.4] text-left text-primary">
                 Que des messages utiles, c'est promis ! Tu peux changer tes préférences à tout moment depuis ton profil.

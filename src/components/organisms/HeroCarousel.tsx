@@ -91,7 +91,7 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
               {/* Scarcity badge */}
               {ev.scarcityBadge && (
                 <div className="absolute top-8 right-4">
-                  <span className="bg-[#f5a623] text-white font-sans font-semibold text-[14px] px-4 py-2 rounded-full whitespace-nowrap">
+                  <span className="bg-accent-orange text-white font-sans font-semibold text-[14px] px-4 py-2 rounded-full whitespace-nowrap">
                     {ev.scarcityBadge}
                   </span>
                 </div>
@@ -99,7 +99,7 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
 
               {/* Content */}
               <div className="absolute bottom-0 left-0 right-0 p-6">
-                <p className="typo-label text-[#FF6366] tracking-[0.544px]">{getCategoryEmoji(ev.category)} {ev.category}</p>
+                <p className="typo-label text-accent-coral tracking-[0.544px]">{getCategoryEmoji(ev.category)} {ev.category}</p>
                 <h3 className="typo-h2 text-white mt-1 max-w-[284px]">{ev.title}</h3>
                 <div className="flex gap-2 mt-2">
                   <div className="bg-white/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
@@ -112,7 +112,7 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 mt-4">
-                  <span className="text-white font-sans font-extrabold text-[16px] leading-6 px-4 py-1 rounded-[14px] bg-[#FF6366]">
+                  <span className="text-white font-sans font-extrabold text-[16px] leading-6 px-4 py-1 rounded-[14px] bg-accent-coral">
                     {ev.price}
                   </span>
                   {ev.originalPrice && (

@@ -17,7 +17,7 @@ export default function AppHeader({ onOpenProfile, geoGranted = false }: { onOpe
       {/* Right side: location + profile */}
       <div className="flex items-center gap-2">
         {/* Location badge */}
-        <div className="bg-[#FDFAF9] rounded-[30px] flex items-center gap-2 px-4 py-2">
+        <div className="bg-surface rounded-[30px] flex items-center gap-2 px-4 py-2">
           {geoGranted && (
             <span className="relative flex size-[6px] shrink-0" aria-hidden="true">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />

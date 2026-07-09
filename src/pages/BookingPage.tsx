@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { BackButton, PrimaryButton, SafeAreaSpacer, StepperButton } from '../components/atoms';
 
 const EVENT_IMAGE = 'https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=200&h=200&fit=crop';
 const PRICE_PER_PERSON = 22;
@@ -28,28 +29,20 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
 
         {/* Header */}
         <div className="flex items-center gap-4 px-5 pt-4 pb-5">
-          <button
-            onClick={onBack}
-            className="size-9 flex items-center justify-center focus-visible:outline-none"
-            aria-label="Retour"
-          >
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M14 18L7 11L14 4" stroke="#1a1a24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+          <BackButton onClick={onBack} />
           <h1 className="font-sans font-extrabold text-[24px] text-dark leading-tight">Récapitulatif</h1>
         </div>
 
         <div className="px-5 flex flex-col gap-6">
 
           {/* Event summary card */}
-          <div className="bg-[#FDFAF9] rounded-2xl p-4 flex gap-4 items-start">
+          <div className="bg-surface rounded-2xl p-4 flex gap-4 items-start">
             <img
               src={EVENT_IMAGE}
               alt="Expo Immersive : Lumières d'Orient"
@@ -79,7 +72,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
                 placeholder="Prénom"
-                className="bg-[#FFFFFF] rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -89,7 +82,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 value={lastName}
                 onChange={e => setLastName(e.target.value)}
                 placeholder="Nom"
-                className="bg-[#FFFFFF] rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
           </div>
@@ -102,24 +95,20 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 <p className="font-sans text-[12px] text-muted mt-0.5">{maxPersons} places restantes</p>
               )}
             </div>
-            <div className="flex items-center gap-3 bg-[#FFFFFF] rounded-2xl px-3 py-2">
-              <button
+            <div className="flex items-center gap-3 bg-white rounded-2xl px-3 py-2">
+              <StepperButton
+                variant="decrement"
                 onClick={() => setPersons(p => Math.max(1, p - 1))}
                 disabled={persons <= 1}
-                className="size-8 rounded-xl bg-black/[0.04] flex items-center justify-center font-sans font-bold text-[18px] text-dark disabled:opacity-25 focus-visible:outline-none active:opacity-60 transition-opacity"
-                aria-label="Retirer une personne"
-              >
-                −
-              </button>
+                label="Retirer une personne"
+              />
               <span className="font-sans font-bold text-[18px] text-dark w-5 text-center tabular-nums">{persons}</span>
-              <button
+              <StepperButton
+                variant="increment"
                 onClick={() => setPersons(p => maxPersons !== undefined ? Math.min(maxPersons, p + 1) : p + 1)}
                 disabled={maxPersons !== undefined && persons >= maxPersons}
-                className="size-8 rounded-xl bg-primary flex items-center justify-center font-sans font-bold text-[18px] text-white disabled:opacity-25 focus-visible:outline-none active:opacity-80 transition-opacity"
-                aria-label="Ajouter une personne"
-              >
-                +
-              </button>
+                label="Ajouter une personne"
+              />
             </div>
           </div>
 
@@ -145,7 +134,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
               <span className="font-sans font-bold text-[14px] text-dark">{SERVICE_FEE.toFixed(2)}€</span>
             </div>
             {showFeeTooltip && (
-              <div className="bg-[#FDFAF9] rounded-2xl p-3 mb-4">
+              <div className="bg-surface rounded-2xl p-3 mb-4">
                 <p className="font-sans text-[13px] text-dark leading-[1.5]">Pour couvrir les frais de paiement en ligne sécurisé de notre partenaire Stripe.</p>
               </div>
             )}
@@ -161,16 +150,15 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
 
       {/* Sticky CTA */}
       <div
-        className="fixed bottom-0 left-0 right-0 bg-[#faf4f1]/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
+        className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
         style={{ zIndex: 1001 }}
       >
-        <button
+        <PrimaryButton
           onClick={() => onPay(subtotal, SERVICE_FEE, firstName, lastName, persons)}
           disabled={!firstName.trim() || !lastName.trim()}
-          className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none active:opacity-90 transition-opacity disabled:opacity-40"
         >
           Procéder au paiement
-        </button>
+        </PrimaryButton>
       </div>
     </div>
   );

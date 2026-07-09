@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SafeAreaSpacer } from '../components/atoms';
 
 type Step = 'email' | 'verify-code' | 'signin' | 'signup' | 'forgot-password' | 'reset-password';
 
@@ -151,7 +152,7 @@ export default function AuthEmailScreen({ onCompleteSignup, onCompleteSignin, on
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(20px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer size="lg" />
 
       {/* Header */}
       <div className="flex items-center px-4 pt-3 pb-2 shrink-0">

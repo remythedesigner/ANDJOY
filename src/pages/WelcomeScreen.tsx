@@ -1,3 +1,5 @@
+import { SafeAreaSpacer } from '../components/atoms';
+
 interface WelcomeScreenProps {
   onApple: () => void;
   onGoogle: () => void;
@@ -28,7 +30,7 @@ function GoogleIcon() {
 export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }: WelcomeScreenProps) {
   return (
     <div className="flex flex-col min-h-svh bg-cream overflow-hidden">
-      <div className="shrink-0" style={{ height: 'max(20px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer size="lg" />
 
       {/* Logo */}
       <div className="flex justify-center pt-6 px-6">
@@ -44,7 +46,7 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
 
       {/* Illustration placeholder */}
       <div className="flex-1 px-6 py-6 flex flex-col">
-        <div className="flex-1 rounded-[32px] bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+        <div className="flex-1 rounded-4xl bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
             <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
@@ -58,7 +60,7 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
       <div className="px-5 flex flex-col gap-3 pb-4">
         <button
           onClick={onApple}
-          className="w-full h-[54px] bg-[#1a1a24] rounded-full flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dark"
+          className="w-full h-[54px] bg-dark rounded-full flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dark"
         >
           <span className="text-white"><AppleIcon /></span>
           <span className="font-sans font-bold text-[15px] text-white">Continuer avec Apple</span>

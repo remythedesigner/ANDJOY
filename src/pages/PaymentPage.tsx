@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { BackButton, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 interface PaymentPageProps {
   onBack: () => void;
@@ -59,20 +60,12 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-36">
         {/* Header */}
         <div className="flex items-center gap-4 px-5 pt-4 pb-6">
-          <button
-            onClick={onBack}
-            className="size-9 flex items-center justify-center focus-visible:outline-none"
-            aria-label="Retour"
-          >
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M14 18L7 11L14 4" stroke="#1a1a24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+          <BackButton onClick={onBack} />
           <h1 className="font-sans font-extrabold text-[24px] text-dark">Paiement</h1>
         </div>
 
@@ -199,16 +192,12 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
 
       {/* Sticky CTA */}
       <div
-        className="fixed bottom-0 left-0 right-0 bg-[#faf4f1]/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
+        className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
         style={{ zIndex: 1001 }}
       >
-        <button
-          onClick={onConfirm}
-          disabled={!cardReady}
-          className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-90 transition-opacity disabled:opacity-40"
-        >
+        <PrimaryButton onClick={onConfirm} disabled={!cardReady}>
           Payer {total.toFixed(2)}€
-        </button>
+        </PrimaryButton>
       </div>
     </div>
   );

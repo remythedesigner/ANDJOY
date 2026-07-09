@@ -3,6 +3,7 @@ import AppFooter from '../components/organisms/AppFooter';
 import { ASSETS } from '../utils/data';
 import { PersonalInfoPage, PreferencesPage, PaymentMethodsPage, SettingsPage, HelpPage } from './ProfileSubPages';
 import SuggestActivity from './SuggestActivity';
+import { SafeAreaSpacer } from '../components/atoms';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
 type SubPage = 'personal' | 'preferences' | 'payment' | 'settings' | 'help' | 'suggest' | null;
@@ -44,7 +45,7 @@ function Row({ icon, label, sub, onClick, incomplete }: { icon: React.ReactNode;
         <div className="flex items-center gap-2">
           <p className="font-sans font-semibold text-[15px] text-dark leading-tight">{label}</p>
           {incomplete && (
-            <div className="size-2 rounded-full bg-[#f5a623]" />
+            <div className="size-2 rounded-full bg-accent-orange" />
           )}
         </div>
         <p className="font-sans text-[13px] text-muted mt-0.5">{sub}</p>
@@ -101,7 +102,7 @@ function PhotoEditSheet({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col justify-end" style={{ background: 'rgba(0,0,0,0.35)' }} onClick={onClose}>
-      <div className="bg-white rounded-t-[32px] px-5 pt-4 pb-10 flex flex-col gap-3" onClick={e => e.stopPropagation()}>
+      <div className="bg-white rounded-t-4xl px-5 pt-4 pb-10 flex flex-col gap-3" onClick={e => e.stopPropagation()}>
         <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-2" />
         <p className="font-sans font-bold text-[17px] text-dark mb-1">Photo de profil</p>
         <div className="flex flex-col divide-y divide-black/[0.06]">
@@ -109,7 +110,7 @@ function PhotoEditSheet({ onClose }: { onClose: () => void }) {
             <button
               key={label}
               onClick={onClose}
-              className={`flex items-center gap-3.5 py-4 w-full active:bg-black/[0.03] transition-colors focus-visible:outline-none rounded-xl ${danger ? 'text-[#d9547a]' : 'text-dark'}`}
+              className={`flex items-center gap-3.5 py-4 w-full active:bg-black/[0.03] transition-colors focus-visible:outline-none rounded-xl ${danger ? 'text-accent-pink' : 'text-dark'}`}
             >
               <span className="shrink-0">{icon}</span>
               <span className="font-sans font-semibold text-[15px]">{label}</span>
@@ -140,7 +141,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       <div className="flex-1 overflow-y-auto pb-8">
         {/* Avatar + name */}
@@ -265,7 +266,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
 
           {/* Sign out */}
           <div className="mx-4">
-            <button onClick={onSignOut} className="w-full h-12 flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-[#d9547a] active:opacity-70 transition-opacity focus-visible:outline-none">
+            <button onClick={onSignOut} className="w-full h-12 flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-accent-pink active:opacity-70 transition-opacity focus-visible:outline-none">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 14H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h3" stroke="#d9547a" strokeWidth="1.6" strokeLinecap="round" />
                 <path d="M11 11l3-3-3-3M14 8H6" stroke="#d9547a" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />

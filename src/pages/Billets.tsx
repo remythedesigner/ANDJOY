@@ -4,6 +4,8 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import AppFooter from '../components/organisms/AppFooter';
 import { getCategoryEmoji } from '../utils/categories';
+import { PRIMARY_HEX } from '../utils/theme';
+import { SafeAreaSpacer } from '../components/atoms';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
 
@@ -113,7 +115,7 @@ const BOOKINGS: Booking[] = [
 
 const pinIcon = new L.DivIcon({
   className: '',
-  html: `<div style="width:28px;height:28px;background:#5170ff;border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(81,112,255,0.4)"></div>`,
+  html: `<div style="width:28px;height:28px;background:${PRIMARY_HEX};border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(81,112,255,0.4)"></div>`,
   iconSize: [28, 28],
   iconAnchor: [14, 14],
 });
@@ -149,7 +151,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-8">
         {/* Header */}
@@ -173,7 +175,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
         <div className="px-5 flex flex-col gap-5">
           {/* Ticket card */}
-          <div className="rounded-3xl overflow-hidden border border-black/[0.07] shadow-[0px_4px_20px_rgba(0,0,0,0.07)]">
+          <div className="rounded-3xl overflow-hidden border border-black/[0.07] shadow-card">
             {/* Main infos */}
             <div className="bg-white px-5 py-4 flex flex-col gap-3.5">
               <div className="flex items-center gap-3">
@@ -232,7 +234,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
                   <div
                     key={i}
                     className={`size-10 rounded-xl flex items-center justify-center font-sans font-extrabold text-[20px] ${
-                      booking.past ? 'bg-black/[0.05] text-muted' : 'bg-[#eef1ff] text-primary'
+                      booking.past ? 'bg-black/[0.05] text-muted' : 'bg-primary-light text-primary'
                     }`}
                   >
                     {char}
@@ -247,7 +249,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
           {/* Info note */}
           {!booking.past && (
-            <div className="bg-[#eef1ff] rounded-2xl px-4 py-3.5 flex gap-3 items-start">
+            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex gap-3 items-start">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
                 <circle cx="8" cy="8" r="7" stroke="#5170ff" strokeWidth="1.6" />
                 <path d="M8 7V11" stroke="#5170ff" strokeWidth="1.8" strokeLinecap="round" />
@@ -359,7 +361,7 @@ function ReviewSheet({ booking, onClose, onRated }: { booking: Booking; onClose:
   return (
     <div className="fixed inset-0 z-50 flex flex-col justify-end" style={{ background: 'rgba(0,0,0,0.35)' }} onClick={onClose}>
       <div
-        className="bg-white rounded-t-[32px] px-5 pt-5 pb-10 flex flex-col gap-4"
+        className="bg-white rounded-t-4xl px-5 pt-5 pb-10 flex flex-col gap-4"
         onClick={e => e.stopPropagation()}
       >
         {/* Handle */}
@@ -523,7 +525,7 @@ export default function BilletsPage({ onTabChange }: BilletsPageProps) {
 
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div className="shrink-0" style={{ height: 'max(12px, env(safe-area-inset-top))' }} aria-hidden="true" />
+      <SafeAreaSpacer />
 
       <div className="flex-1 overflow-y-auto pb-8">
         {/* Header */}

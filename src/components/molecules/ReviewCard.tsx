@@ -11,7 +11,7 @@ export default function ReviewCard({ review, onEventClick, onAuthorClick }: Revi
 
   return (
     <article
-      className="bg-[#FDFAF9] rounded-[24px] shrink-0 w-[280px] p-4 flex flex-col gap-0"
+      className="bg-surface rounded-3xl shrink-0 w-[280px] p-4 flex flex-col gap-0"
     >
       {/* Header */}
       <div className="flex items-center gap-2.5">

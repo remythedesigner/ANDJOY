@@ -29,7 +29,7 @@ export default function CommunitySection({ onEventClick }: CommunitySectionProps
             aria-label={`Voir le profil de ${member.name}`}
           >
             <div
-              className="rounded-[24px] p-[2.5px] size-[52px] shrink-0"
+              className="rounded-3xl p-[2.5px] size-[52px] shrink-0"
               style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, rgba(139,92,246,0.25) 100%)' }}
             >
               <div className="border-[2.5px] border-white rounded-full w-full h-full overflow-hidden">
