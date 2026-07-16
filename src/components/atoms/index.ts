@@ -1,6 +1,11 @@
 export { default as BackButton } from './BackButton';
+export { default as ButtonFooter } from './ButtonFooter';
 export { default as CategoryButton } from './CategoryButton';
+export { default as IconButton } from './IconButton';
+export { default as PageHeader } from './PageHeader';
 export { default as Pill } from './Pill';
+export { default as PriceBadgeM } from './PriceBadgeM';
+export { default as PriceBadgeS } from './PriceBadgeS';
 export { default as PrimaryButton } from './PrimaryButton';
 export { default as SafeAreaSpacer } from './SafeAreaSpacer';
 export { default as SectionHeader } from './SectionHeader';

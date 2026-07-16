@@ -38,21 +38,21 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
       </div>
 
       {/* Headline */}
-      <div className="px-20 pt-7 text-center">
-        <h1 className="font-sans font-extrabold text-[36px] leading-[1.1] text-dark">
+      <div className="px-11 py-6 text-center">
+        <h1 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark">
           Mets plus de joie<br />dans tes sorties à Paris
         </h1>
       </div>
 
       {/* Illustration placeholder */}
       <div className="flex-1 px-6 py-6 flex flex-col">
-        <div className="flex-1 rounded-4xl bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+        <div className="flex-1 rounded-4xl bg-surface border-2 border-dashed border-[rgba(128,128,128,0.55)] flex flex-col items-center justify-center gap-3 text-[rgba(128,128,128,0.55)]">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
             <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
             <path d="M4 28l8-7 6 6 4-4 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="font-sans font-semibold text-[13px]">Illustration</span>
+          <span className="font-sans font-bold text-[13px]">Illustration</span>
         </div>
       </div>
 
@@ -63,26 +63,26 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
           className="w-full h-[54px] bg-dark rounded-full flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dark"
         >
           <span className="text-white"><AppleIcon /></span>
-          <span className="font-sans font-bold text-[15px] text-white">Continuer avec Apple</span>
+          <span className="font-sans font-semibold text-[14px] text-white">Continuer avec Apple</span>
         </button>
 
         <button
           onClick={onGoogle}
-          className="w-full h-[54px] bg-white border border-black/[0.12] rounded-full flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="w-full h-[54px] bg-white rounded-full shadow-[0px_2px_6px_rgba(0,0,0,0.12)] flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <GoogleIcon />
-          <span className="font-sans font-bold text-[15px] text-dark">Continuer avec Google</span>
+          <span className="font-sans font-semibold text-[14px] text-dark">Continuer avec Google</span>
         </button>
 
         <button
           onClick={onEmail}
-          className="w-full h-[54px] bg-white border border-black/[0.12] rounded-full flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="w-full h-[54px] rounded-full flex items-center justify-center gap-3 active:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <rect x="1.5" y="3.5" width="15" height="11" rx="2" stroke="#1a1a24" strokeWidth="1.4" />
             <path d="M1.5 6.5L9 11L16.5 6.5" stroke="#1a1a24" strokeWidth="1.4" strokeLinecap="round" />
           </svg>
-          <span className="font-sans font-bold text-[15px] text-dark">Continuer avec un email</span>
+          <span className="font-sans font-semibold text-[14px] text-dark">Continuer avec un email</span>
         </button>
       </div>
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useMemo } from 'react';
-import { PrimaryButton, SafeAreaSpacer } from '../components/atoms';
+import { ButtonFooter, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 import { CONFETTI_COLORS } from '../utils/theme';
 
 interface ConfirmationPageProps {
@@ -203,14 +203,11 @@ Découvre l'application &JOY : https://joydiscover.com`;
       </div>
 
       {/* CTA */}
-      <div
-        className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
-        style={{ zIndex: 1001 }}
-      >
+      <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
         <PrimaryButton onClick={onDone}>
           Voir mes billets
         </PrimaryButton>
-      </div>
+      </ButtonFooter>
     </div>
   );
 }

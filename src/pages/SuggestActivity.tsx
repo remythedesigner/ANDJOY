@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BackButton, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
+import { PageHeader, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 interface SuggestActivityProps {
   onBack: () => void;
@@ -60,32 +60,29 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
       <SafeAreaSpacer />
 
       {/* Header */}
-      <div className="flex items-center gap-3 px-4 pt-4 pb-2 shrink-0">
-        <BackButton onClick={onBack} />
-        <h1 className="font-sans font-extrabold text-[22px] text-dark leading-tight">Proposer une activité</h1>
-      </div>
+      <PageHeader title="Proposer une activité" onBack={onBack} />
 
       <main className="flex-1 overflow-y-auto px-6 py-6 flex flex-col">
         <div className="flex flex-col gap-5">
           {/* Title */}
           <div className="flex flex-col gap-2">
-            <label className="font-sans font-bold text-[14px] text-dark">Nom de l'activité *</label>
+            <label className="typo-title text-dark">Nom de l'activité *</label>
             <input
               type="text"
               value={title}
               onChange={e => setTitle(e.target.value)}
               placeholder="Ex: Atelier de céramique"
-              className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
+              className="bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
             />
           </div>
 
           {/* Category */}
           <div className="flex flex-col gap-2">
-            <label className="font-sans font-bold text-[14px] text-dark">Catégorie *</label>
+            <label className="typo-title text-dark">Catégorie *</label>
             <select
               value={category}
               onChange={e => setCategory(e.target.value)}
-              className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
+              className="bg-white rounded-2xl px-4 h-14 typo-input focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
             >
               <option value="">Sélectionne une catégorie</option>
               {CATEGORIES.map(cat => (
@@ -96,24 +93,24 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
 
           {/* Address */}
           <div className="flex flex-col gap-2">
-            <label className="font-sans font-bold text-[14px] text-dark">Adresse *</label>
+            <label className="typo-title text-dark">Adresse *</label>
             <input
               type="text"
               value={location}
               onChange={e => setLocation(e.target.value)}
               placeholder="Ex: 123 Rue de la Paix, Paris 11e"
-              className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
+              className="bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
             />
           </div>
 
           {/* Description */}
           <div className="flex flex-col gap-2">
-            <label className="font-sans font-bold text-[14px] text-dark">Description</label>
+            <label className="typo-title text-dark">Description</label>
             <textarea
               value={description}
               onChange={e => setDescription(e.target.value)}
               placeholder="Dis-nous en plus sur cette activité..."
-              className="bg-white rounded-2xl px-4 py-3 font-sans text-[15px] placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark resize-none h-32"
+              className="bg-white rounded-2xl px-4 py-3 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark resize-none h-32"
             />
           </div>
 

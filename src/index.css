@@ -39,20 +39,50 @@
   /* H1 — Page greeting (Bodoni Moda, 34px) */
   .typo-h1 { @apply font-serif font-semibold text-[34px] leading-[1.04]; }
 
+  /* Hero — Hero banner heading (Outfit, 32px) */
+  .typo-hero { @apply font-sans font-extrabold text-[32px] leading-[1.25]; }
+
+  /* Page title — Screen headings (Outfit, 30px) */
+  .typo-pagetitle { @apply font-sans font-extrabold text-[30px] leading-[1.15]; }
+
   /* H2 — Hero / featured card title (Outfit, 20px) */
   .typo-h2 { @apply font-sans font-extrabold text-[20px] leading-[25px]; }
 
   /* H3 — Section & block headings (Outfit, 18px) */
   .typo-h3 { @apply font-sans font-extrabold text-[18px] leading-[25px]; }
 
+  /* Emphasis — Strong 16px copy (Outfit bold, 16px) */
+  .typo-emphasis { @apply font-sans font-bold text-[16px] leading-[1.5]; }
+
+  /* Hero subtitle — Hero banner subtext (Outfit, 16px) */
+  .typo-hero-subtitle { @apply font-sans font-normal text-[16px] leading-[1.5]; }
+
   /* Title — Card / item titles (Outfit bold, 14px) */
   .typo-title { @apply font-sans font-bold text-[14px] leading-[18px]; }
 
   /* Body — Descriptive / paragraph text (Outfit, 14px) */
-  .typo-body { @apply font-sans font-normal text-[14px] leading-[19px]; }
+  .typo-body { @apply font-sans font-normal text-[14px] leading-[20px]; }
 
-  /* Caption — Timestamps, distances, metadata (DM Sans, 12px) */
-  .typo-caption { @apply font-meta text-[12px] leading-[17px]; }
+  /* Review — Review quote body (Bodoni Moda, 14px) */
+  .typo-review { @apply font-serif font-normal text-[14px] leading-[1.6]; }
+
+  /* Input — Form field text (Outfit semibold, 14px) */
+  .typo-input { @apply font-sans font-semibold text-[14px] leading-none; }
+
+  /* Eyebrow — Step / progress labels (Outfit semibold, 14px) */
+  .typo-eyebrow { @apply font-sans font-semibold text-[14px] leading-[1.3] tracking-[0.4px]; }
+
+  /* Caption — Timestamps, distances, metadata (Outfit, 12px) */
+  .typo-caption { @apply font-sans font-normal text-[12px] leading-[1.5]; }
+
+  /* Meta — Secondary metadata (Outfit, 12px) */
+  .typo-meta { @apply font-sans font-normal text-[12px] leading-[1.3]; }
+
+  /* Chip — Compact badge text (Outfit bold, 12px) */
+  .typo-chip { @apply font-sans font-bold text-[12px] leading-[18px]; }
+
+  /* Micro — Small semibold labels (Outfit semibold, 12px) */
+  .typo-micro { @apply font-sans font-semibold text-[12px] leading-[14px]; }
 
   /* Label — Category tags, uppercase micro-labels (Outfit bold, 10px) */
   .typo-label { @apply font-sans font-bold text-[10px] leading-[15px] tracking-[0.5px] uppercase; }

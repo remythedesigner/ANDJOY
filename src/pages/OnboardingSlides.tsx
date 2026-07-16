@@ -51,23 +51,23 @@ export default function OnboardingSlides({ onComplete }: OnboardingSlidesProps) 
 
       {/* Illustration placeholder */}
       <div className="flex-1 px-6 pt-4 pb-2 flex flex-col">
-        <div className="flex-1 rounded-4xl bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+        <div className="flex-1 rounded-4xl bg-surface border-2 border-dashed border-[rgba(128,128,128,0.55)] flex flex-col items-center justify-center gap-3 text-[rgba(128,128,128,0.55)]">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
             <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
             <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
             <path d="M4 28l8-7 6 6 4-4 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="font-sans font-semibold text-[13px]">Illustration</span>
+          <span className="font-sans font-bold text-[13px]">Illustration</span>
         </div>
       </div>
 
       {/* Centered content */}
-      <div className="flex flex-col items-center text-center px-7 pt-4 pb-[112px] shrink-0">
+      <div className="flex flex-col items-center text-center px-10 pt-4 pb-[112px] shrink-0">
         <div key={animKey} className="flex flex-col items-center animate-onboard-in">
-          <h2 className="font-sans font-extrabold text-[32px] leading-[1.1] text-dark mb-3 whitespace-pre-line">
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-3 whitespace-pre-line">
             {title}
           </h2>
-          <p className="font-sans text-[15px] text-muted leading-[1.55] max-w-[280px]">
+          <p className="typo-hero-subtitle text-muted">
             {subtitle}
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function OnboardingSlides({ onComplete }: OnboardingSlidesProps) 
               key={i}
               onClick={() => goTo(i)}
               className={`rounded-full transition-all duration-300 focus-visible:outline-none ${
-                i === index ? 'w-8 h-3 bg-primary' : 'w-3 h-3 bg-primary/25'
+                i === index ? 'w-8 h-3 bg-muted' : 'w-3 h-3 bg-muted/50'
               }`}
               aria-label={`Slide ${i + 1}`}
             />
@@ -89,7 +89,7 @@ export default function OnboardingSlides({ onComplete }: OnboardingSlidesProps) 
         </div>
         <button
           onClick={handleCta}
-          className="w-full h-[56px] bg-primary text-white rounded-2xl font-sans font-bold text-[17px] active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="w-full h-[56px] bg-primary text-white rounded-full shadow-[0px_2px_6px_rgba(0,0,0,0.12)] font-sans font-bold text-[16px] active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {cta}
         </button>

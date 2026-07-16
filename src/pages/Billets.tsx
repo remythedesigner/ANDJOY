@@ -3,9 +3,8 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import AppFooter from '../components/organisms/AppFooter';
-import { getCategoryEmoji } from '../utils/categories';
 import { PRIMARY_HEX } from '../utils/theme';
-import { SafeAreaSpacer } from '../components/atoms';
+import { IconButton, SafeAreaSpacer } from '../components/atoms';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
 
@@ -156,15 +155,15 @@ Découvre l'application &JOY : https://joydiscover.com`;
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-8">
         {/* Header */}
         <div className="relative px-5 pt-4 mb-5">
-          <button
+          <IconButton
             onClick={onBack}
-            className="size-9 bg-white rounded-full flex items-center justify-center shadow-[0px_2px_8px_rgba(0,0,0,0.10)] focus-visible:outline-none mb-4"
+            className="mb-4"
             aria-label="Retour"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M13 17L6 10L13 3" stroke="#1a1a24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </button>
+          </IconButton>
           <div className="flex items-center gap-2 mb-1">
             {booking.past && (
               <span className="bg-black/10 text-muted font-sans text-[11px] font-bold rounded-full px-2.5 py-0.5">Passé</span>
@@ -188,7 +187,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
                   <p className="font-sans text-[13px] text-muted">{booking.time}</p>
                 </div>
               </div>
-              <div className="h-px bg-black/[0.05]" />
+              <div className="h-px bg-black/[0.06]" />
               <div className="flex items-center gap-3">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0">
                   <path d="M7 1C5.07 1 3.5 2.57 3.5 4.5C3.5 7 7 13 7 13C7 13 10.5 7 10.5 4.5C10.5 2.57 8.93 1 7 1Z" stroke="#9090a0" strokeWidth="1.4" />
@@ -207,7 +206,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
                   Y aller
                 </a>
               </div>
-              <div className="h-px bg-black/[0.05]" />
+              <div className="h-px bg-black/[0.06]" />
               <div className="flex items-center gap-3">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0">
                   <circle cx="7" cy="4" r="2.2" stroke="#9090a0" strokeWidth="1.4" />
@@ -234,7 +233,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
                   <div
                     key={i}
                     className={`size-10 rounded-xl flex items-center justify-center font-sans font-extrabold text-[20px] ${
-                      booking.past ? 'bg-black/[0.05] text-muted' : 'bg-primary-light text-primary'
+                      booking.past ? 'bg-black/[0.06] text-muted' : 'bg-primary-light text-primary'
                     }`}
                   >
                     {char}
@@ -429,7 +428,7 @@ function BookingCard({ booking, onOpen, onReview }: { booking: Booking; onOpen: 
   return (
     <div
       onClick={!booking.past ? onOpen : undefined}
-      className={`bg-white rounded-3xl overflow-hidden shadow-[0px_2px_10px_rgba(0,0,0,0.06)] ${!booking.past ? 'cursor-pointer active:opacity-70 transition-opacity' : ''}`}
+      className={`bg-white rounded-3xl overflow-hidden shadow-sheet ${!booking.past ? 'cursor-pointer active:opacity-70 transition-opacity' : ''}`}
     >
       {/* Big visual */}
       <div className="relative h-[200px]">
@@ -447,8 +446,7 @@ function BookingCard({ booking, onOpen, onReview }: { booking: Booking; onOpen: 
         )}
 
         <div className="absolute bottom-4 left-4 right-4">
-          <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-white/70">{booking.category}</span>
-          <h2 className="font-sans font-extrabold text-[17px] text-white leading-tight mt-0.5">{booking.title}</h2>
+          <h2 className="typo-h3 text-white">{booking.title}</h2>
         </div>
       </div>
 
@@ -457,24 +455,24 @@ function BookingCard({ booking, onOpen, onReview }: { booking: Booking; onOpen: 
         <div className="flex-1 flex flex-col gap-1 min-w-0">
           <div className="flex items-center gap-1.5">
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-              <circle cx="6" cy="6" r="4.5" stroke={booking.past ? '#9090a0' : '#1a1a24'} strokeWidth="1.3" />
-              <path d="M6 3.5V6L7.5 7.5" stroke={booking.past ? '#9090a0' : '#1a1a24'} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="6" cy="6" r="4.5" stroke={booking.past ? '#525157' : '#1a1a24'} strokeWidth="1.3" />
+              <path d="M6 3.5V6L7.5 7.5" stroke={booking.past ? '#525157' : '#1a1a24'} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className={`font-sans text-[13px] truncate ${booking.past ? 'text-muted' : 'text-dark'}`}>{booking.date} · {booking.time}</span>
+            <span className={`typo-title truncate ${booking.past ? 'text-dark-warm' : 'text-dark'}`}>{booking.date} · {booking.time}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-              <path d="M6 1C4.07 1 2.5 2.57 2.5 4.5C2.5 7 6 11 6 11C6 11 9.5 7 9.5 4.5C9.5 2.57 7.93 1 6 1Z" stroke={booking.past ? '#9090a0' : '#1a1a24'} strokeWidth="1.3" />
-              <circle cx="6" cy="4.5" r="1.2" stroke={booking.past ? '#9090a0' : '#1a1a24'} strokeWidth="1.1" />
+              <path d="M6 1C4.07 1 2.5 2.57 2.5 4.5C2.5 7 6 11 6 11C6 11 9.5 7 9.5 4.5C9.5 2.57 7.93 1 6 1Z" stroke="#9090a0" strokeWidth="1.3" />
+              <circle cx="6" cy="4.5" r="1.2" stroke="#9090a0" strokeWidth="1.1" />
             </svg>
-            <span className={`font-sans text-[13px] truncate ${booking.past ? 'text-muted' : 'text-dark'}`}>{booking.location}</span>
+            <span className="typo-caption text-muted truncate">{booking.location}</span>
           </div>
         </div>
         {booking.past ? (
           booking.rating ? (
-            <div className="shrink-0 flex items-center gap-1.5">
+            <div className="shrink-0 flex items-center gap-0.5">
               {Array.from({ length: 5 }).map((_, i) => (
-                <svg key={i} width="13" height="13" viewBox="0 0 14 14" fill="none">
+                <svg key={i} width="12" height="12" viewBox="0 0 14 14" fill="none">
                   <path d="M7 1L8.5 5H13L9.5 7.5L11 11.5L7 9L3 11.5L4.5 7.5L1 5H5.5L7 1Z" fill={i < booking.rating! ? '#f5a623' : '#e2deda'} />
                 </svg>
               ))}
@@ -559,7 +557,7 @@ export default function BilletsPage({ onTabChange }: BilletsPageProps) {
         <div className="px-5 flex flex-col gap-4">
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center text-center pt-16 gap-3">
-              <div className="size-16 rounded-full bg-black/[0.05] flex items-center justify-center">
+              <div className="size-16 rounded-full bg-black/[0.06] flex items-center justify-center">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                   <rect x="2" y="5" width="24" height="20" rx="4" stroke="#9090a0" strokeWidth="1.8" />
                   <path d="M8 3V7M20 3V7" stroke="#9090a0" strokeWidth="1.8" strokeLinecap="round" />

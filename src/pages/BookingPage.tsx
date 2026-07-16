@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BackButton, PrimaryButton, SafeAreaSpacer, StepperButton } from '../components/atoms';
+import { ButtonFooter, PageHeader, PrimaryButton, SafeAreaSpacer, StepperButton } from '../components/atoms';
 
 const EVENT_IMAGE = 'https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=200&h=200&fit=crop';
 const PRICE_PER_PERSON = 22;
@@ -34,10 +34,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
 
         {/* Header */}
-        <div className="flex items-center gap-4 px-5 pt-4 pb-5">
-          <BackButton onClick={onBack} />
-          <h1 className="font-sans font-extrabold text-[24px] text-dark leading-tight">Récapitulatif</h1>
-        </div>
+        <PageHeader title="Récapitulatif" onBack={onBack} />
 
         <div className="px-5 flex flex-col gap-6">
 
@@ -66,23 +63,23 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
           {/* Form fields */}
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
-              <label className="font-sans font-bold text-[15px] text-dark">Prénom</label>
+              <label className="typo-title text-dark">Prénom</label>
               <input
                 type="text"
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
                 placeholder="Prénom"
-                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-sans font-bold text-[15px] text-dark">Nom</label>
+              <label className="typo-title text-dark">Nom</label>
               <input
                 type="text"
                 value={lastName}
                 onChange={e => setLastName(e.target.value)}
                 placeholder="Nom"
-                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
           </div>
@@ -114,12 +111,12 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
 
           {/* Price breakdown */}
           <div className="flex flex-col">
-            <div className="h-px bg-black/[0.07]" />
+            <div className="h-px bg-black/[0.06]" />
             <div className="flex items-center justify-between py-4">
               <span className="font-sans text-[14px] text-muted">{persons} × {PRICE_PER_PERSON}€</span>
               <span className="font-sans font-bold text-[14px] text-dark">{subtotal.toFixed(2)}€</span>
             </div>
-            <div className="h-px bg-black/[0.07]" />
+            <div className="h-px bg-black/[0.06]" />
             <div className="flex items-center justify-between py-4">
               <div className="flex items-center gap-1.5">
                 <span className="font-sans text-[14px] text-muted">Frais de service</span>
@@ -138,7 +135,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 <p className="font-sans text-[13px] text-dark leading-[1.5]">Pour couvrir les frais de paiement en ligne sécurisé de notre partenaire Stripe.</p>
               </div>
             )}
-            <div className="h-px bg-black/[0.07]" />
+            <div className="h-px bg-black/[0.06]" />
             <div className="flex items-center justify-between py-4">
               <span className="font-sans font-bold text-[15px] text-dark">Total</span>
               <span className="font-sans font-bold text-[17px] text-dark">{total.toFixed(2)}€</span>
@@ -149,17 +146,14 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
       </div>
 
       {/* Sticky CTA */}
-      <div
-        className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
-        style={{ zIndex: 1001 }}
-      >
+      <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
         <PrimaryButton
           onClick={() => onPay(subtotal, SERVICE_FEE, firstName, lastName, persons)}
           disabled={!firstName.trim() || !lastName.trim()}
         >
           Procéder au paiement
         </PrimaryButton>
-      </div>
+      </ButtonFooter>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { ASSETS, heroEvents } from '../../utils/data';
 import { getCategoryEmoji } from '../../utils/categories';
+import PriceBadgeM from '../atoms/PriceBadgeM';
 
 const SLIDE_DURATION = 4000;
 
@@ -102,22 +103,17 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
                 <p className="typo-label text-accent-coral tracking-[0.544px]">{getCategoryEmoji(ev.category)} {ev.category}</p>
                 <h3 className="typo-h2 text-white mt-1 max-w-[284px]">{ev.title}</h3>
                 <div className="flex gap-2 mt-2">
-                  <div className="bg-white/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
+                  <div className="bg-black/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
                     <img src={ASSETS.icons.clock} alt="" aria-hidden="true" className="size-[11px] brightness-0 invert" />
-                    <span className="typo-caption font-semibold text-white">{ev.time}</span>
+                    <span className="typo-caption text-white">{ev.time}</span>
                   </div>
-                  <div className="bg-white/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
+                  <div className="bg-black/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
                     <img src={ASSETS.icons.pin} alt="" aria-hidden="true" className="size-[11px] brightness-0 invert" />
-                    <span className="typo-caption font-semibold text-white">{ev.location}</span>
+                    <span className="typo-caption text-white">{ev.location}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 mt-4">
-                  <span className="text-white font-sans font-extrabold text-[16px] leading-6 px-4 py-1 rounded-[14px] bg-accent-coral">
-                    {ev.price}
-                  </span>
-                  {ev.originalPrice && (
-                    <span className="typo-caption text-white/50 line-through">{ev.originalPrice}</span>
-                  )}
+                <div className="mt-4">
+                  <PriceBadgeM price={ev.price} originalPrice={ev.originalPrice} />
                 </div>
               </div>
             </div>

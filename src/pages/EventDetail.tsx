@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { getCategoryEmoji } from '../utils/categories';
 import MemberProfileSheet from '../components/organisms/MemberProfileSheet';
 import { PRIMARY_HEX } from '../utils/theme';
-import { Pill, PrimaryButton, StepperButton } from '../components/atoms';
+import { ButtonFooter, IconButton, Pill, PrimaryButton, StepperButton } from '../components/atoms';
 import { communityMembers } from '../utils/data';
 import type { CommunityMember } from '../utils/types';
 
@@ -122,19 +122,19 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
 
-          <button
+          <IconButton
             onClick={onBack}
-            className="absolute left-4 bg-white rounded-full size-9 flex items-center justify-center shadow-[0px_2px_8px_rgba(0,0,0,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="absolute left-4"
             style={{ top: 'calc(max(12px, env(safe-area-inset-top)) + 8px)' }}
             aria-label="Retour"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <path d="M11 14L6 9L11 4" stroke="#1a1a24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </button>
+          </IconButton>
 
-          <button
-            className="absolute right-4 bg-white rounded-full size-9 flex items-center justify-center shadow-[0px_2px_8px_rgba(0,0,0,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          <IconButton
+            className="absolute right-4"
             style={{ top: 'calc(max(12px, env(safe-area-inset-top)) + 8px)' }}
             aria-label="Partager"
             onClick={() => {
@@ -148,7 +148,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
               <circle cx="12" cy="12.5" r="1.5" stroke="#1a1a24" strokeWidth="1.3" />
               <path d="M4.5 6.8L10.5 3.2M4.5 8.2L10.5 11.8" stroke="#1a1a24" strokeWidth="1.3" strokeLinecap="round" />
             </svg>
-          </button>
+          </IconButton>
 
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
             {IMAGES.map((_, i) => (
@@ -156,7 +156,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 key={i}
                 onClick={() => setActiveImage(i)}
                 aria-label={`Image ${i + 1}`}
-                className={`rounded-full transition-all duration-200 ${i === activeImage ? 'w-4 h-[5px] bg-white' : 'size-[5px] bg-white/50'}`}
+                className={`rounded-full transition-all duration-200 ${i === activeImage ? 'w-5 h-[5px] bg-white' : 'size-[5px] bg-white'}`}
               />
             ))}
           </div>
@@ -217,8 +217,8 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             </Pill>
             <Pill tone="alert" icon={
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="3.5" r="1.8" stroke="#d9547a" strokeWidth="1.2" />
-                <path d="M1.5 10C1.5 8.3 3.5 7 6 7C8.5 7 10.5 8.3 10.5 10" stroke="#d9547a" strokeWidth="1.2" strokeLinecap="round" />
+                <circle cx="6" cy="3.5" r="1.8" stroke="#ff6366" strokeWidth="1.2" />
+                <path d="M1.5 10C1.5 8.3 3.5 7 6 7C8.5 7 10.5 8.3 10.5 10" stroke="#ff6366" strokeWidth="1.2" strokeLinecap="round" />
               </svg>
             }>
               6 places restantes
@@ -345,32 +345,32 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                   </div>
                 </button>
                 <div className="flex-1 min-w-0">
-                  <p className="font-sans font-bold text-[14px] text-dark">Sam</p>
-                  <p className="font-sans font-medium text-[13px] text-accent-purple">Rédactrice &JOY</p>
+                  <p className="typo-title text-dark">Sam</p>
+                  <p className="typo-caption text-accent-purple">Rédactrice &JOY</p>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   <span className="text-[22px] leading-none" role="img" aria-label="reaction">🤩</span>
                 </div>
               </div>
-              <p className="font-['Bodoni_Moda'] text-[14px] text-dark/80 leading-[1.6]">
+              <p className="typo-review text-dark/80">
                 "Bluffant. On entre dans un tableau, littéralement. La musique colle parfaitement aux projections, on prend une vraie claque visuelle. Y aller en début de séance pour profiter des meilleurs coins."
               </p>
-              <p className="font-sans text-[11px] text-muted mt-3">Testé le 12 juin 2026</p>
+              <p className="typo-caption text-muted mt-3">Testé le 12 juin 2026</p>
             </div>
           </section>
 
           <div className="flex gap-4 -mx-4 px-4 pb-5 -mb-5 overflow-x-auto scrollbar-hide mb-5">
             {USER_REVIEWS.map((review) => (
-              <div key={review.id} className="bg-surface rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-3">
+              <div key={review.id} className="bg-surface rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-2.5">
                 <div className="flex items-center gap-2.5">
                   <img src={review.avatar} alt={review.name} className="size-10 rounded-full object-cover shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="font-sans font-bold text-[14px] text-dark leading-tight">{review.name}</p>
-                    <p className="font-sans text-[12px] text-muted leading-tight">{review.date}</p>
+                    <p className="typo-title text-dark">{review.name}</p>
+                    <p className="typo-caption text-muted">{review.date}</p>
                   </div>
                   <Stars rating={review.rating} />
                 </div>
-                <p className="font-['Bodoni_Moda'] text-[14px] text-dark/80 leading-[1.6]">"{review.text}"</p>
+                <p className="typo-review text-dark/80">"{review.text}"</p>
               </div>
             ))}
           </div>
@@ -406,11 +406,11 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
       </div>
 
       {/* ── Sticky CTA ── */}
-      <div className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-4 pt-3 pb-8 border-t border-black/[0.05]" style={{ zIndex: 1001 }}>
+      <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
         <PrimaryButton onClick={() => onBook(places, REMAINING_SEATS)}>
           Réserver — 22 €
         </PrimaryButton>
-      </div>
+      </ButtonFooter>
       {profileMember && (
         <MemberProfileSheet member={profileMember} onClose={() => setProfileMember(null)} />
       )}

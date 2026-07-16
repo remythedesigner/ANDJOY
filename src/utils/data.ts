@@ -44,7 +44,7 @@ export const heroEvents: HeroEvent[] = [
   {
     image: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=600&h=372&fit=crop',
     overlay: '',
-    category: 'Spectacles',
+    category: 'Spectacle',
     title: 'Soirée Jazz · L\'Atelier des Îles',
     time: 'Auj. 21h00',
     location: 'Paris 5e',
@@ -56,7 +56,7 @@ export const heroEvents: HeroEvent[] = [
   {
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=372&fit=crop',
     overlay: '',
-    category: 'Ateliers & initiations',
+    category: 'Atelier & initiation',
     title: 'Atelier Pâtisserie · Macarons',
     time: 'Auj. 15h00',
     location: 'Paris 6e',
@@ -71,7 +71,7 @@ export const lovedEvents: Event[] = [
   {
     id: 'standup',
     image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop',
-    category: 'Spectacles',
+    category: 'Spectacle',
     title: 'Soirée Stand-Up · Les Révélations',
     date: 'Sam 21 juin · 20h30',
     location: 'Paris 10e · 800 m',
@@ -89,7 +89,7 @@ export const lovedEvents: Event[] = [
   {
     id: 'patisserie',
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop',
-    category: 'Ateliers & initiations',
+    category: 'Atelier & initiation',
     title: 'Atelier Pâtisserie · Croissants maison',
     date: 'Sam 21 juin · 10h00',
     location: 'Paris 6e · 1.8 km',
@@ -104,7 +104,7 @@ export const teamFavorites: Event[] = [
   {
     id: 'cabaret',
     image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=300&fit=crop',
-    category: 'Spectacles',
+    category: 'Spectacle',
     title: 'Cabaret · Le Moulin Rouge',
     date: 'Sam 21 juin · 21h30',
     location: 'Paris 18e · 4 km',
@@ -125,7 +125,7 @@ export const teamFavorites: Event[] = [
   {
     id: 'expo',
     image: 'https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=400&h=300&fit=crop',
-    category: 'Expositions',
+    category: 'Exposition',
     title: "Expo photo · Paris vu d'en haut",
     date: "Ouvert jusqu'au 30 juin",
     location: 'Paris 8e · 2.2 km',
@@ -134,7 +134,7 @@ export const teamFavorites: Event[] = [
   {
     id: 'sashiko',
     image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop',
-    category: 'Ateliers & initiations',
+    category: 'Atelier & initiation',
     title: 'Sashiko · Broderie japonaise',
     date: 'Dim 22 juin · 14h00',
     location: 'Paris 3e · 1.5 km',
@@ -148,7 +148,7 @@ export const nearbyEvents: Event[] = [
   {
     id: 'nearby-standup',
     image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop',
-    category: 'Spectacles',
+    category: 'Spectacle',
     title: 'Soirée Stand-Up · Les Révélations',
     date: 'Sam 21 juin · 20h30',
     location: 'Paris 10e · 800 m',
@@ -166,7 +166,7 @@ export const nearbyEvents: Event[] = [
   {
     id: 'nearby-sashiko',
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop',
-    category: 'Ateliers & initiations',
+    category: 'Atelier & initiation',
     title: 'Sashiko · Broderie japonaise',
     date: 'Dim 22 juin · 14h00',
     location: 'Paris 3e · 1.5 km',

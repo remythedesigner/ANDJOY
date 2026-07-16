@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CATEGORIES } from '../utils/categories';
 import CategoryButton from '../components/atoms/CategoryButton';
-import { SafeAreaSpacer } from '../components/atoms';
+import { PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 interface Props {
   onComplete: () => void;
@@ -9,13 +9,13 @@ interface Props {
 
 function LocationIllustration() {
   return (
-    <div className="w-[260px] aspect-square rounded-4xl bg-white/60 border-2 border-dashed border-black/10 flex flex-col items-center justify-center gap-3 text-black/20">
+    <div className="w-[260px] aspect-square rounded-4xl bg-white/60 border-2 border-dashed border-muted flex flex-col items-center justify-center gap-3 text-muted">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
         <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
         <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
         <path d="M4 28l8-7 6 6 4-4 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <span className="font-sans font-semibold text-[13px]">Illustration</span>
+      <span className="font-sans font-bold text-[13px]">Illustration</span>
     </div>
   );
 }
@@ -61,7 +61,7 @@ function NotificationIllustration() {
 
 function BackIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
       <path d="M12.5 15L7.5 10L12.5 5" stroke="#1a1a24" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -113,14 +113,14 @@ export default function ProfileSetup({ onComplete }: Props) {
 
       {/* Step: Nickname */}
       {step === 0 && (
-        <div key="nickname" className="flex flex-col flex-1 px-6 pt-6 pb-4 animate-onboard-in">
-          <p className="font-sans text-[13px] text-primary font-semibold tracking-wide uppercase mb-3">
+        <div key="nickname" className="flex flex-col flex-1 p-6 animate-onboard-in">
+          <p className="typo-eyebrow text-primary uppercase mb-4">
             Étape 1 sur 4
           </p>
-          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-2">
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-4">
             Comment souhaites-tu{'\n'}que l'on t'appelle ?
           </h2>
-          <p className="font-sans text-[14px] text-muted leading-[1.5] mb-8">
+          <p className="typo-body text-muted mb-4">
             Ton prénom / surnom sera affiché sur ton profil.
           </p>
           <input
@@ -129,16 +129,12 @@ export default function ProfileSetup({ onComplete }: Props) {
             value={nickname}
             onChange={e => setNickname(e.target.value)}
             placeholder="Appelle-moi..."
-            className="w-full h-[56px] rounded-2xl bg-white border border-black/[0.1] px-4 font-sans text-[16px] text-dark placeholder:text-muted outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/15 transition-all"
+            className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-dark/60 outline-none focus:ring-2 focus:ring-primary/15 transition-all"
           />
           <div className="flex-1" />
-          <button
-            onClick={next}
-            disabled={nickname.trim().length === 0}
-            className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity"
-          >
+          <PrimaryButton onClick={next} disabled={nickname.trim().length === 0} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
             Continuer
-          </button>
+          </PrimaryButton>
         </div>
       )}
 
@@ -146,13 +142,13 @@ export default function ProfileSetup({ onComplete }: Props) {
       {step === 1 && (
         <div key="categories" className="flex flex-col flex-1 animate-onboard-in overflow-hidden">
           <div className="flex-1 overflow-y-auto px-6 pt-6 pb-4">
-            <p className="font-sans text-[13px] text-primary font-semibold tracking-wide uppercase mb-3">
+            <p className="typo-eyebrow text-primary uppercase mb-4">
               Étape 2 sur 4
             </p>
-            <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-2">
+            <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-4">
               Dis-nous ce que{'\n'}tu aimes
             </h2>
-            <p className="font-sans text-[14px] text-muted leading-[1.5] mb-6">
+            <p className="typo-body text-muted mb-4">
               Sélectionne au moins 3 catégories.
             </p>
             <div className="grid grid-cols-2 gap-3">
@@ -169,13 +165,9 @@ export default function ProfileSetup({ onComplete }: Props) {
             </div>
           </div>
           <div className="px-6 pb-4 shrink-0">
-            <button
-              onClick={next}
-              disabled={selected.size < 3}
-              className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white disabled:opacity-35 active:opacity-80 transition-opacity"
-            >
+            <PrimaryButton onClick={next} disabled={selected.size < 3} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
               Continuer
-            </button>
+            </PrimaryButton>
           </div>
         </div>
       )}
@@ -183,34 +175,31 @@ export default function ProfileSetup({ onComplete }: Props) {
       {/* Step: Geolocation */}
       {step === 2 && (
         <div key="geo" className="flex flex-col flex-1 px-6 pt-4 pb-4 animate-onboard-in">
-          <p className="font-sans text-[13px] text-primary font-semibold tracking-wide uppercase mb-3">
+          <p className="typo-eyebrow text-primary uppercase mb-4">
             Étape 3 sur 4
           </p>
           <div className="flex-1 flex flex-col items-center justify-center text-center">
             <LocationIllustration />
-            <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mt-7 mb-3">
+            <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mt-7 mb-4">
               Activités près{'\n'}de toi
             </h2>
-            <p className="font-sans text-[14px] text-muted leading-[1.5] mb-5 max-w-[270px]">
+            <p className="typo-hero-subtitle text-muted mb-4">
               Autorise l'accès à ta position pour découvrir les expériences autour de toi.
             </p>
-            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3 max-w-[270px] mb-3">
+            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
               <span className="text-lg shrink-0 mt-0.5">💡</span>
-              <p className="font-sans text-[13px] text-primary leading-[1.4] text-left">
+              <p className="typo-caption text-primary text-left">
                 Ce n'est pas obligatoire, mais cela nous permet de te proposer une expérience optimale !
               </p>
             </div>
           </div>
           <div className="flex flex-col gap-2 shrink-0">
-            <button
-              onClick={next}
-              className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white active:opacity-80 transition-opacity"
-            >
+            <PrimaryButton onClick={next} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
               Autoriser la localisation
-            </button>
+            </PrimaryButton>
             <button
               onClick={next}
-              className="w-full h-[44px] font-sans text-[14px] text-muted"
+              className="w-full h-[44px] typo-body text-muted"
             >
               Ignorer pour l'instant
             </button>
@@ -221,24 +210,24 @@ export default function ProfileSetup({ onComplete }: Props) {
       {/* Step: Notifications */}
       {step === 3 && (
         <div key="notifs" className="flex flex-col flex-1 px-6 pt-4 pb-4 animate-onboard-in overflow-hidden">
-          <p className="font-sans text-[13px] text-primary font-semibold tracking-wide uppercase mb-3">
+          <p className="typo-eyebrow text-primary uppercase mb-4">
             Étape 4 sur 4
           </p>
-          <h2 className="font-sans font-extrabold text-[28px] leading-[1.15] text-dark mb-6">
+          <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mb-4">
             Reste dans{'\n'}la boucle
           </h2>
 
           <div className="flex-1 overflow-y-auto flex flex-col gap-3">
             <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
               <div className="flex-1 min-w-0">
-                <p className="font-sans font-semibold text-[15px] text-dark">Rappels de tes activités</p>
+                <p className="typo-emphasis text-dark">Rappels de tes activités</p>
                 <p className="font-sans text-[12px] text-muted mt-0.5">Lieu, date, horaire...</p>
               </div>
               <button
                 role="switch"
                 aria-checked={activityReminders}
                 onClick={() => setActivityReminders(!activityReminders)}
-                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${activityReminders ? 'bg-primary' : 'bg-black/[0.12]'}`}
+                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${activityReminders ? 'bg-primary' : 'bg-black/[0.16]'}`}
               >
                 <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${activityReminders ? 'translate-x-5' : 'translate-x-0.5'}`} />
               </button>
@@ -246,14 +235,14 @@ export default function ProfileSetup({ onComplete }: Props) {
 
             <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
               <div className="flex-1 min-w-0">
-                <p className="font-sans font-semibold text-[15px] text-dark">Nouvelles activités</p>
+                <p className="typo-emphasis text-dark">Nouvelles activités</p>
                 <p className="font-sans text-[12px] text-muted mt-0.5">Basées sur tes préférences pour améliorer ton expérience</p>
               </div>
               <button
                 role="switch"
                 aria-checked={newActivities}
                 onClick={() => setNewActivities(!newActivities)}
-                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${newActivities ? 'bg-primary' : 'bg-black/[0.12]'}`}
+                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${newActivities ? 'bg-primary' : 'bg-black/[0.16]'}`}
               >
                 <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${newActivities ? 'translate-x-5' : 'translate-x-0.5'}`} />
               </button>
@@ -261,14 +250,14 @@ export default function ProfileSetup({ onComplete }: Props) {
 
             <div className="flex items-center justify-between gap-3 bg-white rounded-2xl px-4 py-4">
               <div className="flex-1 min-w-0">
-                <p className="font-sans font-semibold text-[15px] text-dark">Promotions</p>
+                <p className="typo-emphasis text-dark">Promotions</p>
                 <p className="font-sans text-[12px] text-muted mt-0.5">Offres spéciales et bons plans</p>
               </div>
               <button
                 role="switch"
                 aria-checked={promotions}
                 onClick={() => setPromotions(!promotions)}
-                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${promotions ? 'bg-primary' : 'bg-black/[0.12]'}`}
+                className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${promotions ? 'bg-primary' : 'bg-black/[0.16]'}`}
               >
                 <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${promotions ? 'translate-x-5' : 'translate-x-0.5'}`} />
               </button>
@@ -276,22 +265,19 @@ export default function ProfileSetup({ onComplete }: Props) {
 
             <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
               <span className="text-lg shrink-0 mt-0.5">💡</span>
-              <p className="font-sans text-[13px] leading-[1.4] text-left text-primary">
-                Que des messages utiles, c'est promis ! Tu peux changer tes préférences à tout moment depuis ton profil.
+              <p className="typo-caption text-left text-primary">
+                On ne t'envoie que des messages utiles, c'est promis ! Tu peux changer tes préférences à tout moment depuis ton profil.
               </p>
             </div>
           </div>
 
           <div className="flex flex-col gap-2 shrink-0 pt-4">
-            <button
-              onClick={next}
-              className="w-full h-[54px] bg-primary rounded-full font-sans font-bold text-[15px] text-white active:opacity-80 transition-opacity"
-            >
+            <PrimaryButton onClick={next} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
               Continuer
-            </button>
+            </PrimaryButton>
             <button
               onClick={next}
-              className="w-full h-[44px] font-sans text-[14px] text-muted"
+              className="w-full h-[44px] typo-body text-muted"
             >
               Ignorer pour l'instant
             </button>

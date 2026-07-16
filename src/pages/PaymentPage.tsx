@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { BackButton, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
+import { ButtonFooter, PageHeader, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 interface PaymentPageProps {
   onBack: () => void;
@@ -64,10 +64,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-36">
         {/* Header */}
-        <div className="flex items-center gap-4 px-5 pt-4 pb-6">
-          <BackButton onClick={onBack} />
-          <h1 className="font-sans font-extrabold text-[24px] text-dark">Paiement</h1>
-        </div>
+        <PageHeader title="Paiement" onBack={onBack} />
 
         <div className="px-5 flex flex-col gap-5">
 
@@ -95,14 +92,14 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
 
           {/* Divider */}
           <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-black/[0.07]" />
+            <div className="flex-1 h-px bg-black/[0.06]" />
             <span className="font-sans text-[13px] text-muted">ou payer par carte</span>
-            <div className="flex-1 h-px bg-black/[0.07]" />
+            <div className="flex-1 h-px bg-black/[0.06]" />
           </div>
 
           {/* Card number */}
           <div className="flex flex-col gap-2">
-            <label className="font-sans font-bold text-[15px] text-dark">Numéro de carte</label>
+            <label className="typo-title text-dark">Numéro de carte</label>
             <div className="relative">
               <input
                 type="text"
@@ -110,7 +107,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
                 value={cardNumber}
                 onChange={e => setCardNumber(formatCardNumber(e.target.value))}
                 placeholder="1234 5678 9012 3456"
-                className="w-full bg-white rounded-2xl px-4 pr-12 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="w-full bg-white rounded-2xl px-4 pr-12 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted/50">
                 <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
@@ -124,25 +121,25 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
           {/* Expiry + CVV */}
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-2">
-              <label className="font-sans font-bold text-[15px] text-dark">Expiration</label>
+              <label className="typo-title text-dark">Expiration</label>
               <input
                 type="text"
                 inputMode="numeric"
                 value={expiry}
                 onChange={e => setExpiry(formatExpiry(e.target.value))}
                 placeholder="MM/AA"
-                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
             <div className="flex flex-col gap-2">
-              <label className="font-sans font-bold text-[15px] text-dark">CVV</label>
+              <label className="typo-title text-dark">CVV</label>
               <input
                 type="text"
                 inputMode="numeric"
                 value={cvv}
                 onChange={e => setCvv(e.target.value.replace(/\D/g, '').slice(0, 4))}
                 placeholder="123"
-                className="bg-white rounded-2xl px-4 h-14 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
           </div>
@@ -153,7 +150,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
               role="switch"
               aria-checked={saveCard}
               onClick={() => setSaveCard(s => !s)}
-              className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${saveCard ? 'bg-primary' : 'bg-black/[0.12]'}`}
+              className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${saveCard ? 'bg-primary' : 'bg-black/[0.16]'}`}
             >
               <span
                 className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${saveCard ? 'translate-x-5' : 'translate-x-0.5'}`}
@@ -166,7 +163,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
 
           {/* Price summary */}
           <div className="flex flex-col">
-            <div className="h-px bg-black/[0.07]" />
+            <div className="h-px bg-black/[0.06]" />
             <div className="flex items-center justify-between py-3.5">
               <span className="font-sans text-[14px] text-muted">Sous-total</span>
               <span className="font-sans text-[14px] text-dark">{subtotal.toFixed(2)}€</span>
@@ -180,7 +177,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
               </div>
               <span className="font-sans text-[14px] text-dark">{serviceFee.toFixed(2)}€</span>
             </div>
-            <div className="h-px bg-black/[0.07]" />
+            <div className="h-px bg-black/[0.06]" />
             <div className="flex items-center justify-between py-3.5">
               <span className="font-sans font-bold text-[15px] text-dark">Total</span>
               <span className="font-sans font-bold text-[18px] text-dark">{total.toFixed(2)}€</span>
@@ -191,14 +188,11 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
       </div>
 
       {/* Sticky CTA */}
-      <div
-        className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]"
-        style={{ zIndex: 1001 }}
-      >
+      <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
         <PrimaryButton onClick={onConfirm} disabled={!cardReady}>
           Payer {total.toFixed(2)}€
         </PrimaryButton>
-      </div>
+      </ButtonFooter>
     </div>
   );
 }

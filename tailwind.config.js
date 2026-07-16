@@ -6,7 +6,7 @@ export default {
       colors: {
         primary: '#5170ff',
         'primary-light': '#eef1ff',
-        'dark-warm': '#2b211c',
+        'dark-warm': '#525157',
         dark: '#1a1a24',
         muted: '#9090a0',
         cream: '#faf4f1',
@@ -26,7 +26,6 @@ export default {
       fontFamily: {
         serif: ['"Bodoni Moda"', 'Georgia', 'serif'],
         sans: ['Outfit', 'system-ui', 'sans-serif'],
-        meta: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'hero-fade': {

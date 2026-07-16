@@ -6,7 +6,7 @@ import AppFooter from '../components/organisms/AppFooter';
 import { ASSETS } from '../utils/data';
 import { CATEGORIES, getCategoryEmoji } from '../utils/categories';
 import { PRIMARY_HEX } from '../utils/theme';
-import { PrimaryButton, SafeAreaSpacer } from '../components/atoms';
+import { ButtonFooter, PrimaryButton, PriceBadgeS, SafeAreaSpacer } from '../components/atoms';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
 type DateFilter = 'all' | 'today' | 'week' | 'weekend' | 'custom';
@@ -210,7 +210,7 @@ function ClusteredMarkers({
   }, [map, events, selectedId]);
 
   useEffect(() => { compute(); }, [compute]);
-  useMapEvents({ moveend: compute, zoomend: compute });
+  useMapEvents({ moveend: compute, zoomend: compute, click: () => onSelect(null) });
 
   return (
     <>
@@ -219,7 +219,12 @@ function ClusteredMarkers({
           key={e.id}
           position={[e.lat, e.lng]}
           icon={icons[e.id]}
-          eventHandlers={{ click: () => onSelect(e.id === selectedId ? null : e.id) }}
+          eventHandlers={{
+            click: (evt) => {
+              L.DomEvent.stopPropagation(evt);
+              onSelect(e.id === selectedId ? null : e.id);
+            },
+          }}
         />
       ))}
       {clusters.map(cluster => (
@@ -228,7 +233,8 @@ function ClusteredMarkers({
           position={[cluster.lat, cluster.lng]}
           icon={makeClusterIcon(cluster.ids.length)}
           eventHandlers={{
-            click: () => {
+            click: (evt) => {
+              L.DomEvent.stopPropagation(evt);
               onSelect(null);
               map.flyTo([cluster.lat, cluster.lng], map.getZoom() + 2, { duration: 0.5 });
             },
@@ -259,8 +265,8 @@ function makeMarkerIcon(emoji: string, selected: boolean) {
     iconAnchor: [29, 57],
     html: `<div style="width:58px;height:58px;display:flex;align-items:center;justify-content:center;">
       <div style="transform:rotate(-45deg);width:40px;height:40px;">
-        <div style="width:40px;height:40px;background:${bg};border-radius:20px 20px 20px 0;box-shadow:0px 2px 4px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;">
-          <span style="transform:rotate(45deg);font-size:17px;line-height:1;display:block;user-select:none;">${emoji}</span>
+        <div style="width:40px;height:40px;background:${bg};border-radius:20px 20px 20px 0;box-shadow:0px 2px 8px rgba(0,0,0,0.18);display:flex;align-items:center;justify-content:center;">
+          <span style="transform:rotate(45deg);font-size:20px;line-height:1;display:block;user-select:none;">${emoji}</span>
         </div>
       </div>
     </div>`,
@@ -279,7 +285,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
       role="switch"
       aria-checked={checked}
       onClick={() => onChange(!checked)}
-      className={`relative w-11 h-6 rounded-full overflow-hidden transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${checked ? 'bg-primary' : 'bg-black/20'}`}
+      className={`relative w-11 h-6 rounded-full overflow-hidden transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${checked ? 'bg-primary' : 'bg-black/[0.16]'}`}
     >
       <span
         className={`absolute left-0 top-1 w-4 h-4 bg-white rounded-full shadow transition-transform ${checked ? 'translate-x-6' : 'translate-x-1'}`}
@@ -292,14 +298,14 @@ function SearchBar({ onClick, value, onChange, inputRef }: { onClick?: () => voi
   if (onChange !== undefined) {
     return (
       <div className="flex-1 bg-white rounded-2xl h-11 flex items-center gap-2 px-3 shadow-sheet focus-within:ring-2 focus-within:ring-primary">
-        <img src={import.meta.env.BASE_URL + "icons/map-search.svg"} alt="" aria-hidden="true" className="size-[15px] shrink-0" />
+        <img src={import.meta.env.BASE_URL + "icons/map-search.svg"} alt="" aria-hidden="true" className="size-5 shrink-0" />
         <input
           ref={inputRef}
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder="Chercher une activité…"
-          className="flex-1 bg-transparent font-sans text-[14px] text-dark placeholder:text-dark/50 outline-none"
+          className="flex-1 bg-transparent font-sans font-semibold text-[14px] text-dark placeholder:text-dark/50 outline-none"
           aria-label="Chercher une activité"
         />
         {value && (
@@ -316,8 +322,8 @@ function SearchBar({ onClick, value, onChange, inputRef }: { onClick?: () => voi
       className="flex-1 bg-white rounded-2xl h-11 flex items-center gap-2 px-3 shadow-sheet focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary text-left"
       aria-label="Chercher une activité"
     >
-      <img src={import.meta.env.BASE_URL + "icons/map-search.svg"} alt="" aria-hidden="true" className="size-[15px] shrink-0" />
-      <span className="font-sans text-[14px] text-dark/50 select-none">Chercher une activité…</span>
+      <img src={import.meta.env.BASE_URL + "icons/map-search.svg"} alt="" aria-hidden="true" className="size-5 shrink-0" />
+      <span className="font-sans font-semibold text-[14px] text-dark/50 select-none">Chercher une activité…</span>
     </button>
   );
 }
@@ -353,10 +359,10 @@ function DatePills({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const pillClass = (selected: boolean) =>
-    `shrink-0 h-[34px] rounded-2xl px-4 font-sans font-bold text-[12px] leading-[18px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+    `shrink-0 h-9 rounded-full px-4 font-sans font-bold text-[12px] leading-[18px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
       selected
-        ? 'bg-primary text-white drop-shadow-[0px_2px_4px_rgba(0,0,0,0.1)]'
-        : 'bg-white text-dark shadow-[0px_2px_8px_0px_rgba(0,0,0,0.1)]'
+        ? 'bg-primary text-white'
+        : 'bg-white text-dark shadow-[0px_2px_4px_rgba(0,0,0,0.08)]'
     }`;
 
   return (
@@ -445,7 +451,7 @@ function SortSelector({ sortBy, onChange }: { sortBy: SortBy; onChange: (s: Sort
 function ResultCard({ image, category, title, location, time, price, originalPrice, onClick }: MapEvent & { onClick?: () => void }) {
   return (
     <article
-      className="bg-white rounded-2xl flex items-center gap-3 p-3 shadow-[0px_2px_8px_rgba(0,0,0,0.06)] cursor-pointer active:opacity-80 transition-opacity"
+      className="bg-white rounded-2xl flex items-center gap-3 p-3 shadow-chip cursor-pointer active:opacity-80 transition-opacity"
       onClick={onClick}
       role={onClick ? 'button' : undefined}
     >
@@ -453,21 +459,16 @@ function ResultCard({ image, category, title, location, time, price, originalPri
       <div className="flex-1 min-w-0 flex flex-col gap-0.5">
         <p className="typo-label text-accent-coral">{getCategoryEmoji(category)} {category}</p>
         <p className="typo-title text-dark leading-[18px] line-clamp-2">{title}</p>
-        <div className="flex items-center gap-1 mt-1">
-          <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-[11px] shrink-0" />
-          <span className="typo-caption text-muted truncate">{location}</span>
+        <div className="flex items-center gap-0.5">
+          <img src={ASSETS.icons.clockSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
+          <span className="typo-caption text-dark-warm truncate">{time}</span>
         </div>
         <div className="flex items-center gap-1">
-          <img src={ASSETS.icons.clockSmall} alt="" aria-hidden="true" className="size-[11px] shrink-0" />
-          <span className="typo-caption text-muted truncate">{time}</span>
+          <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
+          <span className="typo-caption text-dark-warm truncate">{location}</span>
         </div>
       </div>
-      <div className="flex flex-col items-end shrink-0">
-        <span className={`typo-title ${originalPrice ? 'text-accent-coral' : 'text-dark'}`}>{price}</span>
-        {originalPrice && (
-          <span className="font-sans text-[11px] text-muted line-through">{originalPrice}</span>
-        )}
-      </div>
+      <PriceBadgeS price={price} originalPrice={originalPrice} className="shrink-0" surface="card" />
     </article>
   );
 }
@@ -518,7 +519,7 @@ function FilterSheet({
   }
 
   const pillClass = (selected: boolean) =>
-    `h-9 px-4 rounded-full font-sans font-bold text-[12px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+    `h-9 px-4 rounded-full typo-chip transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
       selected
         ? 'bg-primary text-white'
         : 'bg-white text-dark shadow-chip'
@@ -661,11 +662,11 @@ function FilterSheet({
       </div>
 
       {/* Footer */}
-      <div className="shrink-0 px-4 pt-3 pb-8 border-t border-black/[0.05] bg-cream">
+      <ButtonFooter className="shrink-0">
         <PrimaryButton onClick={onClose}>
           {activityLabel(filteredCount)}
         </PrimaryButton>
-      </div>
+      </ButtonFooter>
     </div>
   );
 }
@@ -878,34 +879,36 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
 
 
   // ── Unified map + animated sheet view ──────────────────────────────────────
-  const PEEK_H = 76; // px — height of the collapsed sheet handle
+  const TAB_BAR_CLEARANCE = 98; // px — space reserved for the floating tab bar, which overlays (not reserves) layout
+  const PEEK_H = 76 + TAB_BAR_CLEARANCE; // px — visible collapsed-sheet handle, clearing the tab bar
 
   return (
     <>
-      <div className="flex flex-col h-svh overflow-hidden">
-        <div className="relative flex-1 overflow-hidden">
+      {/* Map — fixed full-viewport background layer, so it extends behind the floating tab bar */}
+      <MapContainer
+        center={[48.856, 2.348]}
+        zoom={13}
+        style={{ height: '100%', width: '100%' }}
+        className="fixed inset-0"
+        zoomControl={false}
+        attributionControl={false}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        />
+        <ClusteredMarkers
+          events={filteredEvents}
+          selectedId={selectedId}
+          icons={icons}
+          onSelect={setSelectedId}
+        />
+        {userPosition && <Marker position={userPosition} icon={USER_MARKER_ICON} />}
+        <FlyToUser position={userPosition} />
+      </MapContainer>
 
-          {/* Map — always rendered */}
-          <MapContainer
-            center={[48.856, 2.348]}
-            zoom={13}
-            style={{ height: '100%', width: '100%' }}
-            zoomControl={false}
-            attributionControl={false}
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            />
-            <ClusteredMarkers
-              events={filteredEvents}
-              selectedId={selectedId}
-              icons={icons}
-              onSelect={setSelectedId}
-            />
-            {userPosition && <Marker position={userPosition} icon={USER_MARKER_ICON} />}
-            <FlyToUser position={userPosition} />
-          </MapContainer>
+      <div className="relative h-svh overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
           {/* Search header overlay — fades out when sheet opens */}
           <div
@@ -935,7 +938,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
             style={{
               opacity: listOpen ? 0 : 1,
               pointerEvents: listOpen ? 'none' : 'auto',
-              bottom: selectedEvent && !listOpen ? '152px' : '112px',
+              bottom: (selectedEvent && !listOpen ? 152 : 112) + TAB_BAR_CLEARANCE,
             }}
             aria-label="Ma position"
             aria-pressed={!!userPosition}
@@ -952,7 +955,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
 
           {/* Floating selected card */}
           {selectedEvent && !listOpen && (
-            <div className="absolute bottom-4 left-4 right-4 z-[1000]">
+            <div className="absolute left-4 right-4 z-[1000] pointer-events-auto" style={{ bottom: 16 + TAB_BAR_CLEARANCE }}>
               <div className="relative">
                 <ResultCard {...selectedEvent} onClick={onOpenEvent} />
                 <button
@@ -970,7 +973,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
 
           {/* ── Animated bottom sheet ─────────────────────────────────────────── */}
           <div
-            className="absolute inset-x-0 bottom-0 z-[1000] flex flex-col bg-cream rounded-t-3xl shadow-[0px_-4px_24px_rgba(0,0,0,0.08)]"
+            className="absolute inset-x-0 bottom-0 z-[1000] flex flex-col bg-cream rounded-t-3xl shadow-[0px_-4px_24px_rgba(0,0,0,0.08)] pointer-events-auto"
             onTouchStart={handleSheetTouchStart}
             onTouchMove={handleSheetTouchMove}
             onTouchEnd={handleSheetTouchEnd}
@@ -1025,7 +1028,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
               </div>
 
               {/* Results */}
-              <div className="flex-1 overflow-y-auto px-4 pt-1 pb-6 flex flex-col gap-3" aria-label="Résultats">
+              <div className="flex-1 overflow-y-auto px-4 pt-1 flex flex-col gap-3" style={{ paddingBottom: 24 + TAB_BAR_CLEARANCE }} aria-label="Résultats">
                 {filteredEvents.map(event => (
                   <ResultCard key={event.id} {...event} onClick={onOpenEvent} />
                 ))}
@@ -1037,12 +1040,13 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
 
             {/* "Carte" button — visible when list is open, above tab bar */}
             <div
-              className="shrink-0 flex items-center justify-center pt-3 pb-5 border-t border-black/[0.05]"
+              className="shrink-0 flex items-center justify-center pt-3 border-t border-black/[0.05]"
               style={{
                 opacity: listOpen ? 1 : 0,
                 pointerEvents: listOpen ? 'auto' : 'none',
                 transition: 'opacity 0.2s ease',
                 transitionDelay: listOpen ? '0.3s' : '0s',
+                paddingBottom: 20 + TAB_BAR_CLEARANCE,
               }}
             >
               <button
@@ -1060,7 +1064,9 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
           </div>
         </div>
 
-        <AppFooter activeTab="Carte" onTabChange={onTabChange} />
+        <div className="absolute inset-x-0 bottom-0 z-[1002] pointer-events-auto">
+          <AppFooter activeTab="Carte" onTabChange={onTabChange} />
+        </div>
       </div>
 
       {filterSheetOpen && <FilterSheet {...filterSheetProps} />}

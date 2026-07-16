@@ -1,6 +1,7 @@
 import type { Event } from '../../utils/types';
 import { ASSETS } from '../../utils/data';
 import { getCategoryEmoji } from '../../utils/categories';
+import PriceBadgeS from '../atoms/PriceBadgeS';
 
 interface VCardProps {
   event: Event;
@@ -24,9 +25,6 @@ export default function VCard({ event, onClick }: VCardProps) {
           className="absolute inset-0 w-full h-full object-cover"
           loading="lazy"
         />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent to-[60%]" />
-
         {/* Scarcity / New badge (top right) */}
         {badge && badgeVariant === 'scarcity' && (
           <div className="absolute top-2 left-1/4 right-0 mx-auto w-fit">
@@ -44,41 +42,28 @@ export default function VCard({ event, onClick }: VCardProps) {
         )}
 
         {/* Price badge */}
-        <div className="absolute bottom-2 left-2 flex items-center gap-2">
-          {originalPrice ? (
-            <>
-              <span className="bg-accent-coral text-white text-[12px] font-bold font-sans px-2 py-1 rounded-[14px] whitespace-nowrap">
-                {price}
-              </span>
-              <span className="text-white/55 text-[10px] font-semibold font-sans line-through whitespace-nowrap">
-                {originalPrice}
-              </span>
-            </>
-          ) : (
-            <span className="bg-black/45 text-white text-[12px] font-bold font-sans px-2 py-1 rounded-[14px] whitespace-nowrap">
-              {price}
-            </span>
-          )}
+        <div className="absolute bottom-2 left-2">
+          <PriceBadgeS price={price} originalPrice={originalPrice} />
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-4 flex flex-col gap-0">
+      <div className="p-4 flex flex-col gap-1">
         <p className="typo-label text-accent-coral">
           {getCategoryEmoji(category)} {category}
         </p>
-        <p className="typo-title text-dark mt-1">
+        <p className="typo-title text-dark">
           {title}
         </p>
-        <div className="flex items-center gap-2 mt-2">
-          <img src={ASSETS.icons.clockSmall} alt="" aria-hidden="true" className="w-[11px] h-[11px] shrink-0" />
-          <span className="typo-caption text-muted whitespace-nowrap">
+        <div className="flex items-center gap-1">
+          <img src={ASSETS.icons.clockSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
+          <span className="typo-caption text-dark-warm whitespace-nowrap">
             {date}
           </span>
         </div>
-        <div className="flex items-center gap-2 mt-1">
-          <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="w-[11px] h-[11px] shrink-0" />
-          <span className="typo-caption text-muted whitespace-nowrap">
+        <div className="flex items-center gap-1">
+          <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
+          <span className="typo-caption text-dark-warm whitespace-nowrap">
             {location}
           </span>
         </div>

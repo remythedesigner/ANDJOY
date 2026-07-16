@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CATEGORIES } from '../utils/categories';
 import CategoryButton from '../components/atoms/CategoryButton';
-import { BackButton, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
+import { ButtonFooter, PageHeader, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 // ─── Shared primitives ────────────────────────────────────────────────────────
 
@@ -9,10 +9,7 @@ function BackHeader({ title, onBack }: { title: string; onBack: () => void }) {
   return (
     <>
       <SafeAreaSpacer />
-      <div className="flex items-center gap-3 px-4 pt-4 pb-2 shrink-0">
-        <BackButton onClick={onBack} />
-        <h1 className="font-sans font-extrabold text-[22px] text-dark leading-tight">{title}</h1>
-      </div>
+      <PageHeader title={title} onBack={onBack} />
     </>
   );
 }
@@ -23,7 +20,7 @@ function Toggle({ value, onChange }: { value: boolean; onChange: (v: boolean) =>
       role="switch"
       aria-checked={value}
       onClick={() => onChange(!value)}
-      className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${value ? 'bg-primary' : 'bg-black/[0.12]'}`}
+      className={`relative w-11 h-6 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 ${value ? 'bg-primary' : 'bg-black/[0.16]'}`}
     >
       <span className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${value ? 'translate-x-5' : 'translate-x-0.5'}`} />
     </button>
@@ -56,9 +53,9 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function StickyFooter({ children }: { children: React.ReactNode }) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm px-5 pt-3 pb-8 border-t border-black/[0.05]" style={{ zIndex: 1001 }}>
+    <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
       {children}
-    </div>
+    </ButtonFooter>
   );
 }
 
@@ -86,7 +83,7 @@ function Input({ value, onChange, placeholder, type = 'text' }: { value: string;
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className={`bg-white rounded-2xl px-4 h-14 font-sans text-[15px] placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full ${type === 'date' ? (value ? 'text-dark' : 'text-muted/60') : 'text-dark'}`}
+      className={`bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full ${type === 'date' ? (value ? 'text-dark' : 'text-muted/60') : 'text-dark'}`}
     />
   );
 }
@@ -200,8 +197,8 @@ export function PreferencesPage({ onBack }: { onBack: () => void }) {
 // ─── 3. Moyens de paiement ────────────────────────────────────────────────────
 
 const SAVED_CARDS = [
-  { id: '1', brand: 'Visa', last4: '4242', expiry: '08/27', color: '#1a1f71' },
-  { id: '2', brand: 'Mastercard', last4: '8350', expiry: '03/26', color: '#eb001b' },
+  { id: '1', brand: 'Visa', last4: '4242', expiry: '08/27' },
+  { id: '2', brand: 'Mastercard', last4: '8350', expiry: '03/26' },
 ];
 
 function CardBrandIcon({ brand }: { brand: string }) {
@@ -243,8 +240,8 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
       <BackHeader title="Moyens de paiement" onBack={onBack} />
       <div className="flex-1 overflow-y-auto pb-8 px-4 pt-4 flex flex-col gap-4">
         {cards.map(card => (
-          <div key={card.id} className="rounded-3xl overflow-hidden" style={{ background: `linear-gradient(135deg, ${card.color}ee, ${card.color}99)` }}>
-            <div className="p-5 flex flex-col gap-6">
+          <div key={card.id} className="rounded-3xl overflow-hidden" style={{ backgroundImage: 'linear-gradient(151.98deg, rgba(81,112,255,0.93) 0%, rgba(81,112,255,0.6) 71.429%)' }}>
+            <div className="p-5 flex flex-col gap-5">
               <div className="flex items-center justify-between">
                 <CardBrandIcon brand={card.brand} />
                 <button
@@ -257,16 +254,16 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                   </svg>
                 </button>
               </div>
-              <p className="font-sans font-bold text-[18px] text-white tracking-[0.15em]">
+              <p className="font-sans font-bold text-[18px] text-white tracking-[2px]">
                 •••• •••• •••• {card.last4}
               </p>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-sans text-[11px] text-white/60 uppercase tracking-widest">Expire</p>
+                  <p className="font-sans text-[11px] text-white/60 uppercase tracking-[1px]">Expire</p>
                   <p className="font-sans font-bold text-[14px] text-white">{card.expiry}</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-sans text-[11px] text-white/60 uppercase tracking-widest">Titulaire</p>
+                  <p className="font-sans text-[11px] text-white/60 uppercase tracking-[1px]">Titulaire</p>
                   <p className="font-sans font-bold text-[14px] text-white">Jane Martin</p>
                 </div>
               </div>
@@ -296,47 +293,47 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
             <p className="font-sans font-bold text-[17px] text-dark mb-4">Ajouter une carte</p>
 
             <div>
-              <label className="font-sans font-bold text-[15px] text-dark block mb-2">Numéro de carte</label>
+              <label className="typo-title text-dark block mb-2">Numéro de carte</label>
               <input
                 type="text"
                 value={cardNumber}
                 onChange={e => setCardNumber(e.target.value)}
                 placeholder="1234 5678 9012 3456"
-                className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
               />
             </div>
 
             <div className="flex gap-3">
               <div className="flex-1">
-                <label className="font-sans font-bold text-[15px] text-dark block mb-2">Expiration</label>
+                <label className="typo-title text-dark block mb-2">Expiration</label>
                 <input
                   type="text"
                   value={expiry}
                   onChange={e => setExpiry(e.target.value)}
                   placeholder="MM/YY"
-                  className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                  className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
                 />
               </div>
               <div className="flex-1">
-                <label className="font-sans font-bold text-[15px] text-dark block mb-2">CVC</label>
+                <label className="typo-title text-dark block mb-2">CVC</label>
                 <input
                   type="text"
                   value={cvc}
                   onChange={e => setCvc(e.target.value)}
                   placeholder="123"
-                  className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                  className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="font-sans font-bold text-[15px] text-dark block mb-2">Titulaire</label>
+              <label className="typo-title text-dark block mb-2">Titulaire</label>
               <input
                 type="text"
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Jane Martin"
-                className="w-full bg-white rounded-2xl px-4 h-12 font-sans text-[15px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
               />
             </div>
 

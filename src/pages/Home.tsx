@@ -48,7 +48,7 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = fal
         <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} onGeoGranted={onGeoGranted} />
         {/* Made in Paris */}
         <div className="flex items-center justify-center gap-1.5 py-6">
-          <span className="font-sans text-[13px] text-muted">Fait à Paris avec</span>
+          <span className="typo-meta text-muted">Fait à Paris avec</span>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M7 12.5C7 12.5 1 8.5 1 4.5C1 2.567 2.567 1 4.5 1C5.6 1 6.574 1.524 7 2.35C7.426 1.524 8.4 1 9.5 1C11.433 1 13 2.567 13 4.5C13 8.5 7 12.5 7 12.5Z" fill="#FF6366"/>
           </svg>

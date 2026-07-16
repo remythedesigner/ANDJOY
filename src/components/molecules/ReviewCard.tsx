@@ -32,14 +32,14 @@ export default function ReviewCard({ review, onEventClick, onAuthorClick }: Revi
           </div>
         </button>
         <div className="flex-1 min-w-0">
-          <span className="font-sans font-bold text-[14px] text-dark leading-tight block">{author}</span>
-          <span className="font-sans text-[12px] text-muted leading-tight">{timeAgo}</span>
+          <span className="typo-title text-dark block">{author}</span>
+          <span className="typo-caption text-muted">{timeAgo}</span>
         </div>
         <span className="text-[22px] leading-none shrink-0" role="img" aria-label="reaction">{emoji}</span>
       </div>
 
       {/* Review text */}
-      <p className="font-['Bodoni_Moda'] text-[14px] leading-[1.6] text-dark/80 mt-3 mb-4">
+      <p className="typo-review text-dark-warm mt-3 mb-4">
         {text}
       </p>
 
@@ -56,10 +56,10 @@ export default function ReviewCard({ review, onEventClick, onAuthorClick }: Revi
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10" />
         <div className="relative flex flex-col justify-center h-full px-4 gap-1">
-          <p className="font-sans font-bold text-[13px] leading-tight text-white">
+          <p className="typo-title text-white">
             {eventTitle}
           </p>
-          <p className="font-sans text-[11px] font-semibold text-white/70">
+          <p className="typo-micro text-white/70">
             Voir l'événement →
           </p>
         </div>

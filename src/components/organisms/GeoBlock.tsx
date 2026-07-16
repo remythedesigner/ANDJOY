@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { ASSETS, nearbyEvents } from '../../utils/data';
 import type { Event } from '../../utils/types';
 import { getCategoryEmoji } from '../../utils/categories';
+import PriceBadgeS from '../atoms/PriceBadgeS';
 
 function NearbyCard({ image, category, title, location, date, price, onClick }: Event & { onClick?: () => void }) {
   return (
     <article
-      className="bg-white rounded-2xl flex items-center gap-3 p-3 shadow-[0px_2px_8px_rgba(0,0,0,0.06)] cursor-pointer active:opacity-80 transition-opacity"
+      className="bg-white rounded-2xl flex items-center gap-3 p-3 shadow-chip cursor-pointer active:opacity-80 transition-opacity"
       onClick={onClick}
       role={onClick ? 'button' : undefined}
     >
@@ -14,16 +15,16 @@ function NearbyCard({ image, category, title, location, date, price, onClick }: 
       <div className="flex-1 min-w-0 flex flex-col gap-0.5">
         <p className="typo-label text-accent-coral">{getCategoryEmoji(category)} {category}</p>
         <p className="typo-title text-dark leading-[18px] line-clamp-2">{title}</p>
-        <div className="flex items-center gap-1 mt-1">
-          <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-[11px] shrink-0" />
-          <span className="typo-caption text-muted truncate">{location}</span>
+        <div className="flex items-center gap-0.5">
+          <img src={ASSETS.icons.clockSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
+          <span className="typo-caption text-dark-warm truncate">{date}</span>
         </div>
         <div className="flex items-center gap-1">
-          <img src={ASSETS.icons.clockSmall} alt="" aria-hidden="true" className="size-[11px] shrink-0" />
-          <span className="typo-caption text-muted truncate">{date}</span>
+          <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
+          <span className="typo-caption text-dark-warm truncate">{location}</span>
         </div>
       </div>
-      <span className="typo-title text-dark shrink-0">{price}</span>
+      <PriceBadgeS price={price} className="shrink-0" />
     </article>
   );
 }

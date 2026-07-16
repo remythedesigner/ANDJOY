@@ -25,9 +25,9 @@ const navItems: { label: Tab; icon: string; activeIcon: string; sparkle?: string
 
 export default function AppFooter({ activeTab = 'Accueil', onTabChange }: AppFooterProps) {
   return (
-    <footer className="sticky bottom-0 bg-surface border-t border-black/[0.05]" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
-      <nav aria-label="Navigation principale">
-        <ul className="flex items-center justify-center gap-10 list-none p-0 m-0 px-4 py-4">
+    <footer className="sticky bottom-0 flex justify-center px-4" style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}>
+      <nav aria-label="Navigation principale" className="flex-1 min-w-0">
+        <ul className="flex items-end justify-center gap-6 list-none p-0 m-0 bg-white/75 backdrop-blur-[6px] rounded-full shadow-[0px_2px_20px_rgba(0,0,0,0.1)] px-1 pt-4 pb-3">
           {navItems.map(({ icon, activeIcon, label, sparkle }) => {
             const active = label === activeTab;
             return (
