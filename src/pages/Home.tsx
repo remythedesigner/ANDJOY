@@ -36,6 +36,7 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = fal
           events={lovedEvents}
           id="loves"
           onCardClick={onOpenEvent}
+          geoGranted={geoGranted}
         />
         <CommunitySection onEventClick={onOpenEvent} />
         <EventsSection
@@ -44,6 +45,7 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = fal
           events={teamFavorites}
           id="team-picks"
           onCardClick={onOpenEvent}
+          geoGranted={geoGranted}
         />
         <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} onGeoGranted={onGeoGranted} />
         {/* Made in Paris */}

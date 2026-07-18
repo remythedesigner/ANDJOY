@@ -448,7 +448,8 @@ function SortSelector({ sortBy, onChange }: { sortBy: SortBy; onChange: (s: Sort
   );
 }
 
-function ResultCard({ image, category, title, location, time, price, originalPrice, onClick }: MapEvent & { onClick?: () => void }) {
+function ResultCard({ image, category, title, location, time, price, originalPrice, onClick, geoGranted }: MapEvent & { onClick?: () => void; geoGranted?: boolean }) {
+  const place = geoGranted ? location : location.split(' · ')[0];
   return (
     <article
       className="bg-white rounded-2xl flex items-center gap-3 p-3 shadow-chip cursor-pointer active:opacity-80 transition-opacity"
@@ -465,7 +466,7 @@ function ResultCard({ image, category, title, location, time, price, originalPri
         </div>
         <div className="flex items-center gap-1">
           <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
-          <span className="typo-caption text-dark-warm truncate">{location}</span>
+          <span className="typo-caption text-dark-warm truncate">{place}</span>
         </div>
       </div>
       <PriceBadgeS price={price} originalPrice={originalPrice} className="shrink-0" surface="card" />
@@ -954,7 +955,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
           {selectedEvent && !listOpen && (
             <div className="absolute left-4 right-4 z-[1000] pointer-events-auto" style={{ bottom: 16 + TAB_BAR_CLEARANCE }}>
               <div className="relative">
-                <ResultCard {...selectedEvent} onClick={onOpenEvent} />
+                <ResultCard {...selectedEvent} onClick={onOpenEvent} geoGranted={geoGranted} />
                 <button
                   onClick={() => setSelectedId(null)}
                   className="absolute -top-2 -right-2 bg-white rounded-full size-6 flex items-center justify-center shadow-[0px_2px_8px_rgba(0,0,0,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity"
@@ -1027,7 +1028,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
               {/* Results */}
               <div className="flex-1 overflow-y-auto px-4 pt-1 flex flex-col gap-3" style={{ paddingBottom: 24 + TAB_BAR_CLEARANCE }} aria-label="Résultats">
                 {filteredEvents.map(event => (
-                  <ResultCard key={event.id} {...event} onClick={onOpenEvent} />
+                  <ResultCard key={event.id} {...event} onClick={onOpenEvent} geoGranted={geoGranted} />
                 ))}
                 {filteredEvents.length === 0 && (
                   <p className="text-center font-sans text-[14px] text-muted mt-8">Aucune activité trouvée</p>

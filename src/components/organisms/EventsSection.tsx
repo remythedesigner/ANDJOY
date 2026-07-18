@@ -8,9 +8,10 @@ interface EventsSectionProps {
   events: Event[];
   id?: string;
   onCardClick?: () => void;
+  geoGranted?: boolean;
 }
 
-export default function EventsSection({ iconSrc, title, events, id, onCardClick }: EventsSectionProps) {
+export default function EventsSection({ iconSrc, title, events, id, onCardClick, geoGranted }: EventsSectionProps) {
   return (
     <section className="flex flex-col gap-0 py-6" aria-labelledby={id}>
       <SectionHeader icon={iconSrc} title={title} />
@@ -22,7 +23,7 @@ export default function EventsSection({ iconSrc, title, events, id, onCardClick 
       >
         {events.map((event) => (
           <div key={event.id} role="listitem">
-            <VCard event={event} onClick={onCardClick} />
+            <VCard event={event} onClick={onCardClick} geoGranted={geoGranted} />
           </div>
         ))}
       </div>

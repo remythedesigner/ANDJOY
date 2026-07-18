@@ -6,10 +6,12 @@ import PriceBadgeS from '../atoms/PriceBadgeS';
 interface VCardProps {
   event: Event;
   onClick?: () => void;
+  geoGranted?: boolean;
 }
 
-export default function VCard({ event, onClick }: VCardProps) {
+export default function VCard({ event, onClick, geoGranted = false }: VCardProps) {
   const { image, category, title, date, location, price, originalPrice, badge, badgeVariant } = event;
+  const place = geoGranted ? location : location.split(' · ')[0];
 
   return (
     <article
@@ -64,7 +66,7 @@ export default function VCard({ event, onClick }: VCardProps) {
         <div className="flex items-center gap-1">
           <img src={ASSETS.icons.pinSmall} alt="" aria-hidden="true" className="size-3 shrink-0" />
           <span className="typo-caption text-dark-warm whitespace-nowrap">
-            {location}
+            {place}
           </span>
         </div>
       </div>
