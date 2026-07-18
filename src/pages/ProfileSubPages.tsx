@@ -31,8 +31,8 @@ function SettingRow({ label, sub, children }: { label: string; sub?: string; chi
   return (
     <div className="flex items-center justify-between gap-3 px-4 py-4">
       <div className="flex-1 min-w-0">
-        <p className="font-sans font-semibold text-[15px] text-dark">{label}</p>
-        {sub && <p className="font-sans text-[13px] text-muted mt-0.5 leading-snug">{sub}</p>}
+        <p className="font-sans font-bold text-[16px] leading-[1.5] text-dark">{label}</p>
+        {sub && <p className="font-sans text-[12px] text-muted mt-0.5 leading-[1.3]">{sub}</p>}
       </div>
       {children}
     </div>
@@ -41,14 +41,14 @@ function SettingRow({ label, sub, children }: { label: string; sub?: string; chi
 
 function Card({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`mx-4 bg-white rounded-3xl overflow-hidden divide-y divide-black/[0.05] shadow-[0px_2px_12px_rgba(0,0,0,0.04)] ${className}`}>
+    <div className={`mx-4 bg-white rounded-3xl overflow-hidden divide-y divide-black/[0.06] shadow-[0px_2px_12px_rgba(0,0,0,0.04)] ${className}`}>
       {children}
     </div>
   );
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <p className="font-sans font-bold text-[12px] text-muted uppercase tracking-widest px-5 mb-2">{children}</p>;
+  return <p className="font-sans font-bold text-[12px] text-muted uppercase px-5">{children}</p>;
 }
 
 function StickyFooter({ children }: { children: React.ReactNode }) {
@@ -70,7 +70,7 @@ function SaveButton({ onSave, saved }: { onSave: () => void; saved: boolean }) {
 function FieldGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-2">
-      <label className="font-sans font-bold text-[14px] text-dark px-1">{label}</label>
+      <label className="font-sans font-bold text-[14px] text-dark">{label}</label>
       {children}
     </div>
   );
@@ -108,16 +108,12 @@ export function PersonalInfoPage({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <BackHeader title="Informations personnelles" onBack={onBack} />
-      <div className="flex-1 overflow-y-auto pb-32 px-4 pt-4 flex flex-col gap-4">
+      <div className="flex-1 overflow-y-auto pb-32 px-4 flex flex-col gap-4">
         {isIncomplete && (
-          <div className="bg-[#fff8ee] rounded-2xl px-4 py-3.5 flex gap-3 items-start">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
-              <circle cx="8" cy="8" r="7" stroke="#f5a623" strokeWidth="1.6" />
-              <path d="M8 7V11" stroke="#f5a623" strokeWidth="1.8" strokeLinecap="round" />
-              <circle cx="8" cy="5" r="0.8" fill="#f5a623" />
-            </svg>
-            <p className="font-sans text-[13px] text-[#c9933f] leading-[1.55]">
-              Remplis tes informations personnelles pour une meilleure expérience et des recommandations plus précises.
+          <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
+            <span className="text-lg shrink-0 mt-0.5">💡</span>
+            <p className="typo-caption text-primary text-left">
+              Complète tes informations personnelles pour une meilleure expérience et des recommandations plus précises.
             </p>
           </div>
         )}
@@ -170,8 +166,8 @@ export function PreferencesPage({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <BackHeader title="Préférences" onBack={onBack} />
-      <div className="flex-1 overflow-y-auto pb-32 px-4 pt-3 flex flex-col gap-5">
-        <p className="font-sans text-[14px] text-muted leading-[1.6]">
+      <div className="flex-1 overflow-y-auto pb-32 px-4 flex flex-col gap-6">
+        <p className="typo-body text-muted">
           Sélectionne tes catégories préférées pour personnaliser tes recommandations.
         </p>
         <div className="grid grid-cols-2 gap-3">
@@ -238,7 +234,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <BackHeader title="Moyens de paiement" onBack={onBack} />
-      <div className="flex-1 overflow-y-auto pb-8 px-4 pt-4 flex flex-col gap-4">
+      <div className="flex-1 overflow-y-auto pb-8 px-4 flex flex-col gap-4">
         {cards.map(card => (
           <div key={card.id} className="rounded-3xl overflow-hidden" style={{ backgroundImage: 'linear-gradient(151.98deg, rgba(81,112,255,0.93) 0%, rgba(81,112,255,0.6) 71.429%)' }}>
             <div className="p-5 flex flex-col gap-5">
@@ -246,7 +242,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                 <CardBrandIcon brand={card.brand} />
                 <button
                   onClick={() => removeCard(card.id)}
-                  className="size-7 rounded-full bg-white/20 flex items-center justify-center focus-visible:outline-none active:opacity-70"
+                  className="size-8 rounded-full bg-white/65 backdrop-blur-[2px] flex items-center justify-center focus-visible:outline-none active:opacity-70"
                   aria-label="Supprimer la carte"
                 >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -277,7 +273,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
 
         <button
           onClick={() => setShowAddCard(true)}
-          className="flex items-center justify-center gap-2 w-full h-14 rounded-2xl border-2 border-dashed border-black/[0.12] font-sans font-bold text-[14px] text-muted active:opacity-70 transition-opacity focus-visible:outline-none"
+          className="flex items-center justify-center gap-2 w-full h-14 rounded-2xl font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M9 3v12M3 9h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -288,9 +284,9 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
 
       {showAddCard && (
         <div className="fixed inset-0 z-50 flex flex-col justify-end" style={{ background: 'rgba(0,0,0,0.35)' }} onClick={() => setShowAddCard(false)}>
-          <div className="bg-white rounded-t-4xl px-5 pt-4 pb-10 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
-            <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-2" />
-            <p className="font-sans font-bold text-[17px] text-dark mb-4">Ajouter une carte</p>
+          <div className="bg-cream rounded-t-4xl px-4 pt-4 pb-10 flex flex-col gap-4" onClick={e => e.stopPropagation()}>
+            <div className="w-10 h-1 rounded-full bg-black/10 mx-auto" />
+            <p className="font-sans font-extrabold text-[18px] leading-[25px] text-dark">Ajouter une carte</p>
 
             <div>
               <label className="typo-title text-dark block mb-2">Numéro de carte</label>
@@ -299,7 +295,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                 value={cardNumber}
                 onChange={e => setCardNumber(e.target.value)}
                 placeholder="1234 5678 9012 3456"
-                className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
 
@@ -311,7 +307,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                   value={expiry}
                   onChange={e => setExpiry(e.target.value)}
                   placeholder="MM/YY"
-                  className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                  className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
                 />
               </div>
               <div className="flex-1">
@@ -321,7 +317,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                   value={cvc}
                   onChange={e => setCvc(e.target.value)}
                   placeholder="123"
-                  className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                  className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
                 />
               </div>
             </div>
@@ -333,13 +329,13 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Jane Martin"
-                className="w-full bg-white rounded-2xl px-4 h-12 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border border-black/[0.08]"
+                className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
 
             <button
               onClick={handleAddCard}
-              className="w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none active:opacity-90 transition-opacity disabled:opacity-40"
+              className="w-full bg-primary text-white rounded-2xl h-14 font-sans font-bold text-[16px] shadow-[0px_2px_6px_rgba(0,0,0,0.12)] focus-visible:outline-none active:opacity-90 transition-opacity disabled:opacity-40"
               disabled={!cardNumber.trim() || !expiry.trim() || !cvc.trim() || !name.trim()}
             >
               Ajouter
@@ -369,7 +365,7 @@ export function SettingsPage({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <BackHeader title="Paramètres" onBack={onBack} />
-      <div className="flex-1 overflow-y-auto pb-32 pt-4 flex flex-col gap-5">
+      <div className="flex-1 overflow-y-auto pb-32 pt-3 flex flex-col gap-5">
 
         <div className="flex flex-col gap-2">
           <SectionLabel>Notifications</SectionLabel>
@@ -449,7 +445,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(o => !o)}
         className="flex items-center justify-between w-full px-4 py-4 text-left active:bg-black/[0.02] focus-visible:outline-none"
       >
-        <span className="font-sans font-semibold text-[15px] text-dark pr-3 leading-snug">{q}</span>
+        <span className="font-sans font-bold text-[16px] leading-[1.5] text-dark">{q}</span>
         <svg
           width="16" height="16" viewBox="0 0 16 16" fill="none"
           className={`shrink-0 text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -458,7 +454,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         </svg>
       </button>
       {open && (
-        <p className="font-sans text-[14px] text-muted px-4 pb-4 leading-[1.65]">{a}</p>
+        <p className="font-sans text-[14px] text-muted px-4 pb-4 leading-[20px]">{a}</p>
       )}
     </div>
   );
@@ -468,7 +464,7 @@ export function HelpPage({ onBack }: { onBack: () => void }) {
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       <BackHeader title="Aide & support" onBack={onBack} />
-      <div className="flex-1 overflow-y-auto pb-8 pt-4 flex flex-col gap-5">
+      <div className="flex-1 overflow-y-auto pb-6 pt-3 flex flex-col gap-5">
 
         <div className="flex flex-col gap-2">
           <SectionLabel>Questions fréquentes</SectionLabel>
@@ -495,8 +491,8 @@ export function HelpPage({ onBack }: { onBack: () => void }) {
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-sans font-semibold text-[15px] text-dark">Email</p>
-                <p className="font-sans text-[13px] text-muted">contact@andjoy-app.com</p>
+                <p className="font-sans font-bold text-[16px] leading-[1.5] text-dark">Email</p>
+                <p className="font-sans text-[12px] text-muted">contact@andjoy-app.com</p>
               </div>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-muted shrink-0">
                 <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -505,7 +501,7 @@ export function HelpPage({ onBack }: { onBack: () => void }) {
           </Card>
         </div>
 
-        <p className="text-center font-sans text-[12px] text-muted px-5 leading-[1.6]">
+        <p className="text-center font-sans text-[12px] text-muted px-5 leading-[1.5]">
           Notre équipe répond généralement sous 24h les jours ouvrés.
         </p>
 

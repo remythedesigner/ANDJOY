@@ -9,7 +9,7 @@ interface Props {
 
 function LocationIllustration() {
   return (
-    <div className="w-[260px] aspect-square rounded-4xl bg-white/60 border-2 border-dashed border-muted flex flex-col items-center justify-center gap-3 text-muted">
+    <div className="w-full h-full rounded-4xl bg-white/60 border-2 border-dashed border-muted flex flex-col items-center justify-center gap-3 text-muted">
       <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
         <rect x="4" y="8" width="32" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
         <circle cx="14" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
@@ -174,26 +174,28 @@ export default function ProfileSetup({ onComplete }: Props) {
 
       {/* Step: Geolocation */}
       {step === 2 && (
-        <div key="geo" className="flex flex-col flex-1 px-6 pt-4 pb-4 animate-onboard-in">
-          <p className="typo-eyebrow text-primary uppercase mb-4">
+        <div key="geo" className="flex flex-col flex-1 animate-onboard-in">
+          <p className="typo-eyebrow text-primary uppercase p-6">
             Étape 3 sur 4
           </p>
-          <div className="flex-1 flex flex-col items-center justify-center text-center">
+          <div className="h-[300px] p-6 shrink-0">
             <LocationIllustration />
-            <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark mt-7 mb-4">
-              Activités près{'\n'}de toi
+          </div>
+          <div className="flex-1 flex flex-col items-center gap-4 px-10 py-6 text-center">
+            <h2 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark">
+              Trouve des activités autour de toi
             </h2>
-            <p className="typo-hero-subtitle text-muted mb-4">
-              Autorise l'accès à ta position pour découvrir les expériences autour de toi.
+            <p className="typo-hero-subtitle text-muted">
+              Autorise l'accès à ta position pour découvrir les expériences proches de toi.
             </p>
-            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
+            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3 w-full">
               <span className="text-lg shrink-0 mt-0.5">💡</span>
               <p className="typo-caption text-primary text-left">
                 Ce n'est pas obligatoire, mais cela nous permet de te proposer une expérience optimale !
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-2 shrink-0">
+          <div className="flex flex-col gap-2 shrink-0 px-7 pb-4">
             <PrimaryButton onClick={next} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
               Autoriser la localisation
             </PrimaryButton>

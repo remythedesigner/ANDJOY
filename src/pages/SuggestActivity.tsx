@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PageHeader, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
+import { ButtonFooter, PageHeader, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 interface SuggestActivityProps {
   onBack: () => void;
@@ -32,25 +32,23 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
 
   if (submitted) {
     return (
-      <div className="flex flex-col min-h-svh bg-cream items-center justify-center px-6">
-        <div className="flex flex-col items-center gap-6 text-center">
-          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-            <circle cx="30" cy="30" r="28" stroke="#22c55e" strokeWidth="2" />
-            <path d="M20 30l6 6 14-14" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+      <div className="flex flex-col min-h-svh bg-cream">
+        <div className="flex-1 flex flex-col items-center justify-center gap-6 text-center px-6">
+          <div className="size-16 rounded-full bg-primary-light flex items-center justify-center shrink-0">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M6 14l5 5 11-11" stroke="#5170ff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
           <div className="flex flex-col gap-2">
             <h2 className="font-sans font-extrabold text-[24px] text-dark">Merci pour ta suggestion !</h2>
             <p className="font-sans text-[15px] text-muted max-w-[290px] leading-[1.5]">
               Nous avons bien reçu ta proposition. Si elle rejoint la base de données &JOY, nous te notifierons. 🎉
             </p>
           </div>
-          <button
-            onClick={onBack}
-            className="bg-primary text-white rounded-full h-12 font-sans font-bold text-[15px] px-8 focus-visible:outline-none active:opacity-90 transition-all"
-          >
-            C'est compris !
-          </button>
         </div>
+        <ButtonFooter>
+          <PrimaryButton onClick={onBack}>C'est compris !</PrimaryButton>
+        </ButtonFooter>
       </div>
     );
   }
@@ -110,30 +108,19 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
               value={description}
               onChange={e => setDescription(e.target.value)}
               placeholder="Dis-nous en plus sur cette activité..."
-              className="bg-white rounded-2xl px-4 py-3 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark resize-none h-32"
+              className="bg-white rounded-2xl px-4 py-5 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark resize-none h-32"
             />
           </div>
 
-          <p className="font-sans text-[12px] text-muted/60">* Champs obligatoires</p>
-        </div>
-
-        <div className="flex-1" />
-
-        {/* Submit Button */}
-        <div className="flex flex-col gap-2 pt-6 pb-safe">
-          <PrimaryButton onClick={handleSubmit} disabled={!title.trim() || !category || !location.trim()}>
-            Envoyer la suggestion
-          </PrimaryButton>
-          <button
-            onClick={onBack}
-            className="w-full h-12 font-sans text-[14px] text-muted"
-          >
-            Annuler
-          </button>
+          <p className="font-sans text-[12px] text-muted">* Champs obligatoires</p>
         </div>
       </main>
 
-      <div className="shrink-0" style={{ height: 'max(16px, env(safe-area-inset-bottom))' }} aria-hidden="true" />
+      <ButtonFooter className="shrink-0">
+        <PrimaryButton onClick={handleSubmit} disabled={!title.trim() || !category || !location.trim()}>
+          Envoyer la suggestion
+        </PrimaryButton>
+      </ButtonFooter>
     </div>
   );
 }

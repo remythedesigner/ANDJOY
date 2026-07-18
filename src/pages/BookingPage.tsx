@@ -36,29 +36,23 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
         {/* Header */}
         <PageHeader title="Récapitulatif" onBack={onBack} />
 
-        <div className="px-5 flex flex-col gap-6">
+        <div className="px-4 flex flex-col gap-6">
 
           {/* Event summary card */}
           <div className="bg-surface rounded-2xl p-4 flex gap-4 items-start">
             <img
               src={EVENT_IMAGE}
               alt="Expo Immersive : Lumières d'Orient"
-              className="size-[72px] rounded-xl object-cover shrink-0"
+              className="size-14 rounded-xl object-cover shrink-0"
             />
             <div className="flex flex-col gap-1 min-w-0">
-              <p className="font-sans font-bold text-[15px] text-dark leading-[1.3]">
+              <p className="font-sans font-bold text-[16px] text-dark leading-[1.5]">
                 Expo Immersive : Lumières d'Orient
               </p>
-              <p className="font-sans text-[13px] text-muted">Demain · 10:00 - 20:00</p>
-              <p className="font-sans text-[13px] text-muted">Atelier des Lumières, Paris 11e</p>
-              <p className="font-sans text-[13px] text-muted">Durée : 1h</p>
+              <p className="font-sans text-[12px] text-dark-warm leading-[1.3]">Demain · 10:00 - 20:00</p>
+              <p className="font-sans text-[12px] text-dark-warm leading-[1.3]">Atelier des Lumières, Paris 11e</p>
             </div>
           </div>
-
-          {/* Instructions */}
-          <p className="font-sans text-[13px] text-muted leading-[1.6]">
-            Si tu réserves pour plusieurs, indique les informations de l'une des personnes qui sera présente.
-          </p>
 
           {/* Form fields */}
           <div className="flex flex-col gap-4">
@@ -84,12 +78,20 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
             </div>
           </div>
 
+          {/* Instructions */}
+          <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
+            <span className="text-lg shrink-0 mt-0.5">💡</span>
+            <p className="typo-caption text-primary text-left">
+              Les informations ci-dessus doivent correspondre à celles de la ou l'une des personnes qui sera présente.
+            </p>
+          </div>
+
           {/* Nombre de personnes */}
           <div className="flex items-center justify-between">
             <div>
-              <span className="font-sans font-bold text-[15px] text-dark">Nombre de personnes</span>
+              <span className="font-sans font-bold text-[14px] text-dark">Nombre de personnes</span>
               {maxPersons !== undefined && (
-                <p className="font-sans text-[12px] text-muted mt-0.5">{maxPersons} places restantes</p>
+                <p className="font-sans text-[12px] text-muted mt-1">{maxPersons} places restantes</p>
               )}
             </div>
             <div className="flex items-center gap-3 bg-white rounded-2xl px-3 py-2">
@@ -114,7 +116,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
             <div className="h-px bg-black/[0.06]" />
             <div className="flex items-center justify-between py-4">
               <span className="font-sans text-[14px] text-muted">{persons} × {PRICE_PER_PERSON}€</span>
-              <span className="font-sans font-bold text-[14px] text-dark">{subtotal.toFixed(2)}€</span>
+              <span className="font-sans font-bold text-[14px] text-muted">{subtotal.toFixed(2)}€</span>
             </div>
             <div className="h-px bg-black/[0.06]" />
             <div className="flex items-center justify-between py-4">
@@ -128,7 +130,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                   <span className="font-sans text-[9px] text-muted font-bold">i</span>
                 </button>
               </div>
-              <span className="font-sans font-bold text-[14px] text-dark">{SERVICE_FEE.toFixed(2)}€</span>
+              <span className="font-sans font-bold text-[14px] text-muted">{SERVICE_FEE.toFixed(2)}€</span>
             </div>
             {showFeeTooltip && (
               <div className="bg-surface rounded-2xl p-3 mb-4">

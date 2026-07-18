@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { ButtonFooter, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 import { CONFETTI_COLORS } from '../utils/theme';
 
@@ -11,7 +11,72 @@ interface ConfirmationPageProps {
   lastName: string;
 }
 
-const EVENT_IMAGE = 'https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=200&h=200&fit=crop';
+const EVENT_TITLE = "Expo Immersive : Lumières d'Orient";
+
+const INCLUDED = ['Entrée exposition', 'Accès libre au parcours', 'Audioguide inclus'];
+const EXCLUDED = ['Vestiaire', 'Restauration', 'Parking'];
+
+function MoreInfoAccordion() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="bg-white rounded-3xl shadow-[0px_2px_12px_rgba(0,0,0,0.12)] w-full overflow-hidden">
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="flex items-center justify-between w-full px-5 py-4 focus-visible:outline-none"
+      >
+        <span className="font-sans font-bold text-[16px] leading-[1.5] text-dark">Plus d'informations</span>
+        <svg
+          width="16" height="16" viewBox="0 0 16 16" fill="none"
+          className={`shrink-0 text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        >
+          <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      {open && (
+        <div className="flex flex-col gap-5 px-5 pb-5">
+          <div className="h-px bg-black/[0.05]" />
+
+          <div className="flex flex-col gap-2">
+            <p className="font-sans font-bold text-[14px] leading-[18px] text-dark">Description</p>
+            <p className="font-sans text-[13px] leading-[1.65] text-dark">
+              Une heure d'immersion totale dans des projections monumentales mêlant lumières, musique et art numérique. Idéal pour une sortie originale en couple, en famille ou entre amis. Le parcours est libre — reste aussi longtemps que tu veux.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-2.5">
+            <p className="font-sans font-bold text-[14px] leading-[18px] text-dark">Inclus</p>
+            <div className="flex flex-col gap-2">
+              {INCLUDED.map(item => (
+                <div key={item} className="flex items-center gap-2.5">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
+                    <circle cx="8" cy="8" r="7" fill="#22c55e" fillOpacity="0.12" />
+                    <path d="M5 8L7 10L11 6" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="font-sans text-[12px] leading-[1.3] text-dark">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2.5">
+            <p className="font-sans font-bold text-[14px] leading-[18px] text-dark">Non inclus</p>
+            <div className="flex flex-col gap-2">
+              {EXCLUDED.map(item => (
+                <div key={item} className="flex items-center gap-2.5">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0">
+                    <circle cx="8" cy="8" r="7" fill="#ef4444" fillOpacity="0.1" />
+                    <path d="M5.5 5.5L10.5 10.5M10.5 5.5L5.5 10.5" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                  <span className="font-sans text-[12px] leading-[1.3] text-dark">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function Confetti() {
   const confetti = useMemo(() => {
@@ -99,46 +164,78 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-32">
         {/* Success banner */}
-        <div className="px-5 pt-6 pb-2 flex flex-col items-center text-center gap-3">
+        <div className="px-5 py-8 flex flex-col items-center text-center gap-3">
           <div className="size-16 rounded-full bg-primary-light flex items-center justify-center">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
               <path d="M6 15.5L12 21.5L24 9" stroke="#5170ff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
-          <h1 className="font-sans font-extrabold text-[24px] text-dark leading-tight">C'est réservé !</h1>
+          <p className="font-sans font-bold text-[12px] text-muted uppercase tracking-[0.144px]">Réservation confirmée</p>
+          <h1 className="font-sans font-extrabold text-[24px] text-dark leading-none">{EVENT_TITLE}</h1>
         </div>
 
-        <div className="px-5 flex flex-col gap-5 mt-4">
+        <div className="px-4 flex flex-col gap-6">
 
           {/* Ticket card */}
-          <div className="rounded-3xl overflow-hidden border border-black/[0.07] shadow-card">
-            {/* Event header */}
-            <div className="flex gap-3 items-center p-4 bg-white">
-              <img
-                src={EVENT_IMAGE}
-                alt="Expo Immersive"
-                className="size-[56px] rounded-xl object-cover shrink-0"
-              />
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <p className="font-sans font-bold text-[15px] text-dark leading-[1.3]">
-                  Expo Immersive : Lumières d'Orient
+          <div className="rounded-3xl overflow-hidden shadow-card">
+            {/* Main infos */}
+            <div className="flex flex-col gap-3.5 px-5 py-4 bg-white">
+              <div className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
+                  <circle cx="10" cy="10" r="7.5" stroke="#1a1a24" strokeWidth="1.5" />
+                  <path d="M10 6V10L12.5 12.5" stroke="#1a1a24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <div className="flex flex-col">
+                  <p className="font-sans font-bold text-[14px] text-dark leading-[18px]">Demain</p>
+                  <p className="font-sans text-[12px] text-dark-warm leading-[1.3]">10:00</p>
+                </div>
+              </div>
+
+              <div className="h-px bg-black/[0.05]" />
+
+              <div className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
+                  <path d="M10 2C6.7 2 4 4.7 4 8C4 12.5 10 18 10 18C10 18 16 12.5 16 8C16 4.7 13.3 2 10 2Z" stroke="#1a1a24" strokeWidth="1.5" />
+                  <circle cx="10" cy="8" r="2" stroke="#1a1a24" strokeWidth="1.5" />
+                </svg>
+                <div className="flex-1 min-w-0 flex flex-col">
+                  <p className="font-sans font-bold text-[14px] text-dark leading-[18px]">Atelier des Lumières, Paris 11e</p>
+                  <p className="font-sans text-[12px] text-dark-warm leading-[1.3]">38 Rue Saint-Maur, 75011 Paris</p>
+                </div>
+                <a
+                  href="https://maps.apple.com/?q=Atelier+des+Lumi%C3%A8res+Paris"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0 bg-primary text-white rounded-full px-3 py-1.5 shadow-[0px_2px_12px_rgba(0,0,0,0.12)] font-sans font-bold text-[12px] leading-[18px] uppercase tracking-[0.144px] active:opacity-80 transition-opacity"
+                >
+                  Y aller
+                </a>
+              </div>
+
+              <div className="h-px bg-black/[0.05]" />
+
+              <div className="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
+                  <circle cx="10" cy="7" r="3" stroke="#1a1a24" strokeWidth="1.5" />
+                  <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#1a1a24" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                <p className="font-sans font-bold text-[14px] text-dark leading-[18px]">
+                  {persons} {persons > 1 ? 'personnes' : 'personne'}
                 </p>
-                <p className="font-sans text-[13px] text-muted">Demain · 10:00 – 20:00</p>
-                <p className="font-sans text-[13px] text-muted">Atelier des Lumières, Paris 11e</p>
               </div>
             </div>
 
             {/* Perforated divider */}
             <div className="relative flex items-center bg-white">
               <div className="absolute -left-4 size-8 rounded-full bg-cream" />
-              <div className="flex-1 mx-4 border-t-2 border-dashed border-black/[0.08]" />
+              <div className="flex-1 mx-4 border-t-2 border-dashed border-muted" />
               <div className="absolute -right-4 size-8 rounded-full bg-cream" />
             </div>
 
             {/* Booking code */}
-            <div className="bg-white px-4 pt-4 pb-5 flex flex-col items-center gap-2">
-              <p className="font-sans text-[12px] text-muted uppercase tracking-widest font-medium">Code de réservation</p>
-              <div className="flex gap-2 mt-1">
+            <div className="bg-white px-4 pt-4 pb-4 flex flex-col items-center gap-2">
+              <p className="font-sans text-[12px] text-muted uppercase tracking-widest">Code de réservation</p>
+              <div className="flex gap-2">
                 {bookingCode.split('').map((char, i) => (
                   <div
                     key={i}
@@ -149,8 +246,8 @@ Découvre l'application &JOY : https://joydiscover.com`;
                 ))}
               </div>
               {(firstName || lastName) && (
-                <p className="font-sans font-bold text-[13px] text-dark text-center mt-2 leading-[1.5]">
-                  Réservé par {[firstName, lastName].filter(Boolean).join(' ')}
+                <p className="font-sans font-bold text-[13px] text-dark-warm text-center mt-2 leading-[1.5]">
+                  {[firstName, lastName].filter(Boolean).join(' ')}
                 </p>
               )}
               <p className="font-sans text-[12px] text-muted text-center leading-[1.5]">
@@ -163,7 +260,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
           <div className="flex gap-3">
             <button
               onClick={handleShare}
-              className="flex-1 h-14 bg-cream rounded-2xl flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="flex-1 h-14 bg-white rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <circle cx="14" cy="3" r="2" stroke="#1a1a24" strokeWidth="1.8" />
@@ -175,7 +272,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
             </button>
             <button
               onClick={handleAddToCalendar}
-              className="flex-1 h-14 bg-cream rounded-2xl flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="flex-1 h-14 bg-white rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <rect x="1" y="3" width="16" height="14" rx="3" stroke="#1a1a24" strokeWidth="1.8" />
@@ -188,16 +285,14 @@ Découvre l'application &JOY : https://joydiscover.com`;
           </div>
 
           {/* Info note */}
-          <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex gap-3 items-start">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
-              <circle cx="8" cy="8" r="7" stroke="#5170ff" strokeWidth="1.6" />
-              <path d="M8 7V11" stroke="#5170ff" strokeWidth="1.8" strokeLinecap="round" />
-              <circle cx="8" cy="5" r="0.8" fill="#5170ff" />
-            </svg>
-            <p className="font-sans text-[13px] text-[#3a50cc] leading-[1.55]">
+          <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
+            <span className="text-lg shrink-0 mt-0.5">💡</span>
+            <p className="typo-caption text-primary text-left">
               Ton code de confirmation fait office de billet. Présente-le simplement à l'accueil le jour de l'évènement.
             </p>
           </div>
+
+          <MoreInfoAccordion />
 
         </div>
       </div>
@@ -205,7 +300,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
       {/* CTA */}
       <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
         <PrimaryButton onClick={onDone}>
-          Voir mes billets
+          Voir dans mes billets
         </PrimaryButton>
       </ButtonFooter>
     </div>

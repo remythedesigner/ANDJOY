@@ -45,7 +45,7 @@ function Row({ icon, label, sub, onClick, incomplete }: { icon: React.ReactNode;
         <div className="flex items-center gap-2">
           <p className="font-sans font-semibold text-[15px] text-dark leading-tight">{label}</p>
           {incomplete && (
-            <div className="size-2 rounded-full bg-accent-orange" />
+            <div className="size-2 rounded-full bg-primary" />
           )}
         </div>
         <p className="font-sans text-[13px] text-muted mt-0.5">{sub}</p>
@@ -58,8 +58,8 @@ function Row({ icon, label, sub, onClick, incomplete }: { icon: React.ReactNode;
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="font-sans font-bold text-[12px] text-muted uppercase tracking-widest px-5 mb-2">{title}</p>
-      <div className="mx-4 bg-white rounded-3xl overflow-hidden divide-y divide-black/[0.05] shadow-[0px_2px_12px_rgba(0,0,0,0.04)]">
+      <p className="font-sans font-bold text-[12px] text-muted uppercase px-5 mb-2">{title}</p>
+      <div className="mx-4 bg-white rounded-3xl overflow-hidden divide-y divide-black/[0.06] shadow-[0px_2px_12px_rgba(0,0,0,0.04)]">
         {children}
       </div>
     </div>
@@ -102,9 +102,9 @@ function PhotoEditSheet({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col justify-end" style={{ background: 'rgba(0,0,0,0.35)' }} onClick={onClose}>
-      <div className="bg-white rounded-t-4xl px-5 pt-4 pb-10 flex flex-col gap-3" onClick={e => e.stopPropagation()}>
-        <div className="w-10 h-1 rounded-full bg-black/10 mx-auto mb-2" />
-        <p className="font-sans font-bold text-[17px] text-dark mb-1">Photo de profil</p>
+      <div className="bg-cream rounded-t-4xl px-5 pt-4 pb-10 flex flex-col gap-3" onClick={e => e.stopPropagation()}>
+        <div className="w-10 h-1 rounded-full bg-black/10 mx-auto" />
+        <p className="font-sans font-extrabold text-[18px] leading-[25px] text-dark">Photo de profil</p>
         <div className="flex flex-col divide-y divide-black/[0.06]">
           {options.map(({ label, icon, danger }) => (
             <button
@@ -113,7 +113,7 @@ function PhotoEditSheet({ onClose }: { onClose: () => void }) {
               className={`flex items-center gap-3.5 py-4 w-full active:bg-black/[0.03] transition-colors focus-visible:outline-none rounded-xl ${danger ? 'text-accent-pink' : 'text-dark'}`}
             >
               <span className="shrink-0">{icon}</span>
-              <span className="font-sans font-semibold text-[15px]">{label}</span>
+              <span className="font-sans font-bold text-[14px]">{label}</span>
             </button>
           ))}
         </div>
@@ -168,7 +168,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
           <div className="flex gap-3 mt-3">
             {STATS.map(({ value, label }, i) => (
               <Fragment key={label}>
-                {i > 0 && <div className="w-px bg-black/[0.1] self-stretch" />}
+                {i > 0 && <div className="w-px bg-dark self-stretch" />}
                 <div className="flex items-baseline gap-1.5">
                   <span className="font-sans font-extrabold text-[18px] text-dark">{value}</span>
                   <span className="font-sans text-[13px] text-muted">{label}</span>

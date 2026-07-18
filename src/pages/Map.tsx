@@ -534,25 +534,25 @@ function FilterSheet({
       <SafeAreaSpacer />
 
       {/* Header */}
-      <div className="relative flex items-center justify-between px-4 pt-4 pb-4 shrink-0">
+      <div className="relative flex items-center justify-between px-4 pt-6 pb-6 shrink-0">
         <button
           onClick={onReset}
-          className={`flex items-center gap-1.5 font-sans text-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-opacity z-10 ${hasActiveFilters ? 'text-primary opacity-100' : 'opacity-0 pointer-events-none'}`}
+          className={`flex items-center gap-1.5 font-sans font-bold text-[10px] uppercase tracking-[0.5px] leading-[15px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-opacity z-10 ${hasActiveFilters ? 'text-primary opacity-100' : 'opacity-0 pointer-events-none'}`}
         >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1.5 7A5.5 5.5 0 1 0 3 3.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
             <path d="M1.5 2v2h2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
           Réinitialiser
         </button>
-        <span className="absolute inset-x-0 text-center font-sans font-extrabold text-[20px] text-dark pointer-events-none">Filtrer</span>
+        <span className="absolute inset-x-0 text-center font-sans font-extrabold text-[24px] text-dark pointer-events-none">Filtrer</span>
         <button
           onClick={onClose}
-          className="bg-white rounded-full size-8 flex items-center justify-center shadow-[0px_2px_8px_rgba(0,0,0,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="bg-white/65 backdrop-blur-[2px] rounded-full size-9 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           aria-label="Fermer"
         >
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-            <path d="M1 1L9 9M9 1L1 9" stroke="#1a1a24" strokeWidth="1.5" strokeLinecap="round" />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M2 2L16 16M16 2L2 16" stroke="#1a1a24" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </button>
       </div>
@@ -596,30 +596,27 @@ function FilterSheet({
         <section>
           <div className="flex items-center justify-between">
             <p className={sectionTitle.replace('mb-3', '')}>Nombre de personnes</p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 bg-white rounded-2xl px-3 py-2">
               <button
                 onClick={() => onPersonCount(Math.max(1, personCount - 1))}
                 disabled={personCount <= 1}
-                className="w-8 h-8 rounded-full bg-white shadow-chip flex items-center justify-center font-sans font-bold text-[18px] text-dark disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-opacity"
+                className="size-8 rounded-xl bg-black/[0.04] flex items-center justify-center font-sans font-bold text-[18px] text-dark disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-opacity"
                 aria-label="Moins"
               >
                 −
               </button>
-              <span className="font-sans font-bold text-[16px] text-dark w-6 text-center">
+              <span className="font-sans font-bold text-[18px] text-dark w-6 text-center">
                 {personCount === 1 ? '1' : personCount}
               </span>
               <button
                 onClick={() => onPersonCount(personCount + 1)}
-                className="w-8 h-8 rounded-full bg-white shadow-chip flex items-center justify-center font-sans font-bold text-[18px] text-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="size-8 rounded-xl bg-primary flex items-center justify-center font-sans font-bold text-[18px] text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 aria-label="Plus"
               >
                 +
               </button>
             </div>
           </div>
-          <p className="font-sans text-[12px] text-muted mt-1">
-            {personCount === 1 ? 'Dès 1 personne' : `${personCount} personnes minimum`}
-          </p>
         </section>
 
         <div className={divider} />
@@ -628,7 +625,7 @@ function FilterSheet({
         <section>
           <div className="flex items-center justify-between mb-3">
             <p className={sectionTitle.replace('mb-3', '')}>Prix par personne</p>
-            <span className="font-sans font-bold text-[14px] text-primary">
+            <span className="font-sans font-normal text-[14px] text-primary">
               {maxPrice >= MAX_PRICE ? 'Tous les prix' : `Jusqu'à ${maxPrice} €`}
             </span>
           </div>
@@ -650,7 +647,7 @@ function FilterSheet({
             <span className="font-sans text-[12px] text-muted">{MAX_PRICE} €</span>
           </div>
 
-          <div className="h-px bg-black/[0.06] mt-5" />
+          <div className="h-px bg-black/[0.05] mt-3.5" />
 
           <div className="flex items-center justify-between mt-5">
             <div>

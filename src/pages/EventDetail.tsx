@@ -180,15 +180,15 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
         <div className="px-4 mt-5 flex flex-col">
 
           {/* Category + Title + Rating */}
-          <div className="flex flex-col gap-2 mb-5">
+          <div className="flex flex-col gap-2 mb-4">
             <p className="typo-label text-accent-coral">{getCategoryEmoji('Exposition')} EXPOSITION</p>
-            <h1 className="font-sans font-extrabold text-[22px] text-dark leading-[1.2]">
+            <h1 className="font-sans font-extrabold text-[24px] text-dark leading-none">
               Expo Immersive : Lumières d'Orient
             </h1>
           </div>
 
           {/* Info chips */}
-          <div className="flex flex-wrap gap-2 mb-5">
+          <div className="flex flex-wrap gap-2 mb-4">
             <Pill onClick={scrollToReviews} icon={<span className="text-[11px] leading-none">⭐</span>}>
               4.9
             </Pill>
@@ -225,24 +225,24 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             </Pill>
           </div>
 
-          <div className="h-px bg-black/[0.06] mb-5" />
+          <div className="h-px bg-black/[0.05] mb-4" />
 
           {/* Description */}
-          <section className="mb-5">
-            <h2 className="font-sans font-bold text-[16px] text-dark mb-3">Description</h2>
-            <p className="font-sans text-[14px] text-dark/75 leading-[1.65]">
+          <section className="mb-4">
+            <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark mb-3">Description</h2>
+            <p className="font-sans text-[14px] text-dark-warm leading-[20px]">
               Une heure d'immersion totale dans des projections monumentales mêlant lumières, musique et art numérique. Idéal pour une sortie originale en couple, en famille ou entre amis. Le parcours est libre — reste aussi longtemps que tu veux.
             </p>
-            <p className="font-sans text-[14px] text-dark/75 leading-[1.65] mt-3">
+            <p className="font-sans text-[14px] text-dark-warm leading-[20px] mt-4">
               Une immersion pensée pour réveiller la curiosité, où chaque détail raconte une histoire. Tu peux flâner à ton rythme, te laisser guider par les médiations, ou simplement profiter du lieu. Idéal pour une parenthèse inspirante en solo, en couple ou pour relancer la conversation entre amis.
             </p>
           </section>
 
-          <div className="h-px bg-black/[0.06] mb-5" />
+          <div className="h-px bg-black/[0.05] mb-4" />
 
           {/* Inclus / Non inclus */}
-          <section className="mb-5">
-            <h2 className="font-sans font-bold text-[16px] text-dark mb-3">Inclus</h2>
+          <section className="mb-4">
+            <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark mb-3">Inclus</h2>
             <div className="flex flex-col gap-2.5">
               {INCLUDED.map(item => (
                 <div key={item} className="flex items-center gap-2.5">
@@ -254,7 +254,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 </div>
               ))}
             </div>
-            <h2 className="font-sans font-bold text-[16px] text-dark mb-3 mt-5">Non inclus</h2>
+            <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark mb-3 mt-2.5">Non inclus</h2>
             <div className="flex flex-col gap-2.5">
               {EXCLUDED.map(item => (
                 <div key={item} className="flex items-center gap-2.5">
@@ -268,24 +268,26 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             </div>
           </section>
 
-          <div className="h-px bg-black/[0.06] mb-5" />
+          <div className="h-px bg-black/[0.05] mb-4" />
 
           {/* Bon à savoir */}
-          <section className="mb-5">
-            <h2 className="font-sans font-bold text-[16px] text-dark mb-2">Bon à savoir</h2>
-            <p className="font-sans text-[14px] text-dark/70 leading-[1.65]">
-              Accessible PMR. Pas de vestiaire. Photos autorisées sans flash.
-            </p>
+          <section className="mb-4">
+            <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark mb-2">Bon à savoir</h2>
+            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
+              <span className="text-lg shrink-0 mt-0.5">💡</span>
+              <p className="typo-caption text-primary text-left">
+                Accessible PMR. Pas de vestiaire. Photos autorisées sans flash.
+              </p>
+            </div>
           </section>
 
-          <div className="h-px bg-black/[0.06] mb-5" />
+          <div className="h-px bg-black/[0.05] mb-4" />
 
           {/* Lieu */}
-          <section className="mb-5">
-            <h2 className="font-sans font-bold text-[16px] text-dark mb-3">Lieu</h2>
+          <section className="mb-4">
             <div className="mb-3">
-              <p className="font-sans font-bold text-[14px] text-dark">Atelier des Lumières</p>
-              <p className="font-sans text-[13px] text-muted mt-0.5">38 Rue Saint-Maur, 75011 Paris</p>
+              <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark">Atelier des Lumières</h2>
+              <p className="font-sans text-[14px] text-dark-warm leading-[20px] mt-2">38 Rue Saint-Maur, 75011 Paris</p>
               <a
                 href="https://maps.apple.com/?q=Atelier+des+Lumi%C3%A8res+Paris"
                 target="_blank"
@@ -315,16 +317,16 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
                 <rect x="1.5" y="4.5" width="15" height="10" rx="2" fill="#5170ff" />
                 <path d="M4.5 14.5V11L6.5 6.5L9 11L11.5 6.5L13.5 11V14.5" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span className="font-sans text-[13px] text-dark">Saint-Ambroise (M9)</span>
+              <span className="font-sans text-[14px] text-dark-warm leading-[20px]">Saint-Ambroise (M9)</span>
             </div>
           </section>
 
-          <div className="h-px bg-black/[0.06] mb-5" />
+          <div className="h-px bg-black/[0.05] mb-4" />
 
           {/* ── Avis (team + user) ── */}
           <section ref={reviewsRef} className="mb-4">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="font-sans font-bold text-[16px] text-dark">Avis</h2>
+              <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark">Avis</h2>
             </div>
 
             {/* Team review card */}
@@ -359,7 +361,7 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             </div>
           </section>
 
-          <div className="flex gap-4 -mx-4 px-4 pb-5 -mb-5 overflow-x-auto scrollbar-hide mb-5">
+          <div className="flex gap-4 -mx-4 px-4 pb-5 -mb-5 overflow-x-auto scrollbar-hide mb-4">
             {USER_REVIEWS.map((review) => (
               <div key={review.id} className="bg-surface rounded-3xl p-4 shrink-0 w-[260px] flex flex-col gap-2.5">
                 <div className="flex items-center gap-2.5">
@@ -375,13 +377,13 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
             ))}
           </div>
 
-          <div className="h-px bg-black/[0.06] mb-5" />
+          <div className="h-px bg-black/[0.05] mb-4" />
 
           {/* Nombre de places */}
           <section className="pb-2">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-sans font-bold text-[16px] text-dark">Nombre de places</h2>
+                <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark">Nombre de places</h2>
                 <p className="font-sans text-[12px] text-muted mt-0.5">6 places restantes</p>
               </div>
               <div className="flex items-center gap-3 bg-white rounded-2xl px-3 py-2">

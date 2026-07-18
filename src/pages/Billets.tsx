@@ -31,6 +31,7 @@ export interface Booking {
   included: string[];
   excluded: string[];
   rating?: number;
+  bookedBy: string;
 }
 
 const BOOKINGS: Booking[] = [
@@ -52,6 +53,7 @@ const BOOKINGS: Booking[] = [
     description: "Une heure d'immersion totale dans des projections monumentales mêlant lumières, musique et art numérique. Idéal pour une sortie originale en couple, en famille ou entre amis. Le parcours est libre — reste aussi longtemps que tu veux.",
     included: ['Entrée exposition', 'Accès libre au parcours', 'Audioguide inclus'],
     excluded: ['Vestiaire', 'Restauration', 'Parking'],
+    bookedBy: 'Jane Martin',
   },
   {
     id: '2',
@@ -71,6 +73,7 @@ const BOOKINGS: Booking[] = [
     description: "Une session de yoga en plein air sur un rooftop parisien avec vue panoramique sur les toits. Niveau débutant bienvenu, tapis fournis. Le soleil couchant rend cette expérience inoubliable.",
     included: ['Tapis de yoga', "Bouteille d'eau", 'Session photo'],
     excluded: ['Vestiaire', 'Boissons supplémentaires'],
+    bookedBy: 'Jane Martin',
   },
   {
     id: '3',
@@ -90,6 +93,7 @@ const BOOKINGS: Booking[] = [
     description: "Initie-toi aux techniques ancestrales de la poterie japonaise sous la guidance d'une céramiste professionnelle. Tu repartiras avec ta création une fois cuite.",
     included: ['Matériaux', 'Livraison de la pièce cuite', 'Tablier'],
     excluded: ['Encadrement individuel', 'Pièces supplémentaires'],
+    bookedBy: 'Jane Martin',
   },
   {
     id: '4',
@@ -109,6 +113,7 @@ const BOOKINGS: Booking[] = [
     description: "Une soirée jazz et soul dans l'une des caves les plus mythiques de Paris. Ambiance feutrée, musiciens de haut vol, et cocktails au bar pour une nuit inoubliable.",
     included: ['Entrée concert', 'Première consommation'],
     excluded: ['Consommations supplémentaires', 'Vestiaire'],
+    bookedBy: 'Jane Martin',
   },
 ];
 
@@ -154,66 +159,67 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto pb-8">
         {/* Header */}
-        <div className="relative px-5 pt-4 mb-5">
-          <IconButton
-            onClick={onBack}
-            className="mb-4"
-            aria-label="Retour"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M13 17L6 10L13 3" stroke="#1a1a24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <div className="flex flex-col gap-4 px-4 py-6">
+          <IconButton onClick={onBack} aria-label="Retour">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M11 14L6 9L11 4" stroke="#1a1a24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </IconButton>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center justify-center gap-2">
+            <p className="font-sans font-bold text-[12px] text-muted uppercase tracking-[0.144px]">Mon billet</p>
             {booking.past && (
               <span className="bg-black/10 text-muted font-sans text-[11px] font-bold rounded-full px-2.5 py-0.5">Passé</span>
             )}
           </div>
-          <h1 className="font-sans font-extrabold text-[22px] text-dark leading-tight">{booking.title}</h1>
+          <h1 className="font-sans font-extrabold text-[24px] text-dark leading-none text-center">{booking.title}</h1>
         </div>
 
-        <div className="px-5 flex flex-col gap-5">
+        <div className="px-4 flex flex-col gap-6">
           {/* Ticket card */}
-          <div className="rounded-3xl overflow-hidden border border-black/[0.07] shadow-card">
+          <div className="rounded-3xl overflow-hidden shadow-card">
             {/* Main infos */}
-            <div className="bg-white px-5 py-4 flex flex-col gap-3.5">
+            <div className="flex flex-col gap-3.5 px-5 py-4 bg-white">
               <div className="flex items-center gap-3">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 text-muted">
-                  <circle cx="7" cy="7" r="5.5" stroke="#9090a0" strokeWidth="1.4" />
-                  <path d="M7 4V7L9 9" stroke="#9090a0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
+                  <circle cx="10" cy="10" r="7.5" stroke="#1a1a24" strokeWidth="1.5" />
+                  <path d="M10 6V10L12.5 12.5" stroke="#1a1a24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <div>
-                  <p className="font-sans font-semibold text-[14px] text-dark">{booking.date}</p>
-                  <p className="font-sans text-[13px] text-muted">{booking.time}</p>
+                <div className="flex flex-col">
+                  <p className="font-sans font-bold text-[14px] text-dark leading-[18px]">{booking.date}</p>
+                  <p className="font-sans text-[12px] text-dark-warm leading-[1.3]">{booking.time.split(' – ')[0]}</p>
                 </div>
               </div>
-              <div className="h-px bg-black/[0.06]" />
+
+              <div className="h-px bg-black/[0.05]" />
+
               <div className="flex items-center gap-3">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0">
-                  <path d="M7 1C5.07 1 3.5 2.57 3.5 4.5C3.5 7 7 13 7 13C7 13 10.5 7 10.5 4.5C10.5 2.57 8.93 1 7 1Z" stroke="#9090a0" strokeWidth="1.4" />
-                  <circle cx="7" cy="4.5" r="1.3" stroke="#9090a0" strokeWidth="1.2" />
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
+                  <path d="M10 2C6.7 2 4 4.7 4 8C4 12.5 10 18 10 18C10 18 16 12.5 16 8C16 4.7 13.3 2 10 2Z" stroke="#1a1a24" strokeWidth="1.5" />
+                  <circle cx="10" cy="8" r="2" stroke="#1a1a24" strokeWidth="1.5" />
                 </svg>
-                <div className="flex-1 min-w-0">
-                  <p className="font-sans font-semibold text-[14px] text-dark">{booking.location}</p>
-                  <p className="font-sans text-[13px] text-muted">{booking.address}</p>
+                <div className="flex-1 min-w-0 flex flex-col">
+                  <p className="font-sans font-bold text-[14px] text-dark leading-[18px]">{booking.location}</p>
+                  <p className="font-sans text-[12px] text-dark-warm leading-[1.3]">{booking.address}</p>
                 </div>
                 <a
                   href={`https://maps.apple.com/?q=${encodeURIComponent(booking.address)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 bg-primary text-white font-sans font-bold text-[12px] px-3 py-1.5 rounded-full active:opacity-80 transition-opacity focus-visible:outline-none"
+                  className="shrink-0 bg-primary text-white rounded-full px-3 py-1.5 shadow-[0px_2px_12px_rgba(0,0,0,0.12)] font-sans font-bold text-[12px] leading-[18px] uppercase tracking-[0.144px] active:opacity-80 transition-opacity"
                 >
                   Y aller
                 </a>
               </div>
-              <div className="h-px bg-black/[0.06]" />
+
+              <div className="h-px bg-black/[0.05]" />
+
               <div className="flex items-center gap-3">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0">
-                  <circle cx="7" cy="4" r="2.2" stroke="#9090a0" strokeWidth="1.4" />
-                  <path d="M2 12C2 9.8 4.2 8 7 8C9.8 8 12 9.8 12 12" stroke="#9090a0" strokeWidth="1.4" strokeLinecap="round" />
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="shrink-0">
+                  <circle cx="10" cy="7" r="3" stroke="#1a1a24" strokeWidth="1.5" />
+                  <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#1a1a24" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                <p className="font-sans font-semibold text-[14px] text-dark">
-                  {booking.persons} {booking.persons > 1 ? 'personnes' : 'personne'} · {booking.price.toFixed(2)}€
+                <p className="font-sans font-bold text-[14px] text-dark leading-[18px]">
+                  {booking.persons} {booking.persons > 1 ? 'personnes' : 'personne'}
                 </p>
               </div>
             </div>
@@ -221,14 +227,14 @@ Découvre l'application &JOY : https://joydiscover.com`;
             {/* Perforated divider */}
             <div className="relative flex items-center bg-white">
               <div className="absolute -left-4 size-8 rounded-full bg-cream" />
-              <div className="flex-1 mx-4 border-t-2 border-dashed border-black/[0.08]" />
+              <div className="flex-1 mx-4 border-t-2 border-dashed border-muted" />
               <div className="absolute -right-4 size-8 rounded-full bg-cream" />
             </div>
 
             {/* Booking code */}
-            <div className="bg-white px-4 pt-4 pb-5 flex flex-col items-center gap-2">
-              <p className="font-sans text-[12px] text-muted uppercase tracking-widest font-medium">Code de réservation</p>
-              <div className="flex gap-2 mt-1">
+            <div className="bg-white px-4 pt-4 pb-4 flex flex-col items-center gap-2">
+              <p className="font-sans text-[12px] text-muted uppercase tracking-widest">Code de réservation</p>
+              <div className="flex gap-2">
                 {booking.code.split('').map((char, i) => (
                   <div
                     key={i}
@@ -240,7 +246,10 @@ Découvre l'application &JOY : https://joydiscover.com`;
                   </div>
                 ))}
               </div>
-              <p className="font-sans text-[12px] text-muted text-center leading-[1.5] mt-1">
+              <p className="font-sans font-bold text-[13px] text-dark-warm text-center mt-2 leading-[1.5]">
+                {booking.bookedBy}
+              </p>
+              <p className="font-sans text-[12px] text-muted text-center leading-[1.5]">
                 {booking.persons} {booking.persons > 1 ? 'personnes' : 'personne'} · {(booking.price * booking.persons).toFixed(2)}€ réglé
               </p>
             </div>
@@ -248,13 +257,9 @@ Découvre l'application &JOY : https://joydiscover.com`;
 
           {/* Info note */}
           {!booking.past && (
-            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex gap-3 items-start">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
-                <circle cx="8" cy="8" r="7" stroke="#5170ff" strokeWidth="1.6" />
-                <path d="M8 7V11" stroke="#5170ff" strokeWidth="1.8" strokeLinecap="round" />
-                <circle cx="8" cy="5" r="0.8" fill="#5170ff" />
-              </svg>
-              <p className="font-sans text-[13px] text-[#3a50cc] leading-[1.55]">
+            <div className="bg-primary-light rounded-2xl px-4 py-3.5 flex items-start gap-3">
+              <span className="text-lg shrink-0 mt-0.5">💡</span>
+              <p className="typo-caption text-primary text-left">
                 Ton code de confirmation fait office de billet. Présente-le simplement à l'accueil le jour de l'évènement.
               </p>
             </div>
@@ -264,7 +269,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
           <div className="flex gap-3">
             <button
               onClick={handleShare}
-              className="flex-1 h-14 bg-cream rounded-2xl flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none"
+              className="flex-1 h-14 bg-white rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <circle cx="14" cy="3" r="2" stroke="#1a1a24" strokeWidth="1.8" />
@@ -276,7 +281,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
             </button>
             <button
               onClick={handleCalendar}
-              className="flex-1 h-14 bg-cream rounded-2xl flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none"
+              className="flex-1 h-14 bg-white rounded-2xl shadow-[0px_4px_10px_rgba(0,0,0,0.08)] flex items-center justify-center gap-2 font-sans font-bold text-[14px] text-dark active:opacity-70 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <rect x="1" y="3" width="16" height="14" rx="3" stroke="#1a1a24" strokeWidth="1.8" />
@@ -289,29 +294,31 @@ Découvre l'application &JOY : https://joydiscover.com`;
           </div>
 
           {/* More info accordion */}
-          <div className="bg-white rounded-3xl overflow-hidden shadow-[0px_2px_10px_rgba(0,0,0,0.05)]">
+          <div className="bg-white rounded-3xl shadow-[0px_2px_12px_rgba(0,0,0,0.12)] overflow-hidden">
             <button
               onClick={() => setShowMore(s => !s)}
               className="w-full flex items-center justify-between px-5 py-4 focus-visible:outline-none"
             >
-              <span className="font-sans font-bold text-[15px] text-dark">Plus d'informations</span>
+              <span className="font-sans font-bold text-[16px] leading-[1.5] text-dark">Plus d'informations</span>
               <svg
-                width="18" height="18" viewBox="0 0 18 18" fill="none"
-                className={`transition-transform duration-200 ${showMore ? 'rotate-180' : ''}`}
+                width="16" height="16" viewBox="0 0 16 16" fill="none"
+                className={`shrink-0 text-muted transition-transform duration-200 ${showMore ? 'rotate-180' : ''}`}
               >
-                <path d="M4 7L9 12L14 7" stroke="#9090a0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M3 6l5 5 5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
             {showMore && (
-              <div className="px-5 pb-5 flex flex-col gap-5 border-t border-black/[0.05]">
-                <div className="pt-4">
-                  <h3 className="font-sans font-bold text-[14px] text-dark mb-2">Description</h3>
-                  <p className="font-sans text-[13px] text-dark/70 leading-[1.65]">{booking.description}</p>
+              <div className="flex flex-col gap-5 px-5 pb-5">
+                <div className="h-px bg-black/[0.05]" />
+
+                <div className="flex flex-col gap-2">
+                  <p className="font-sans font-bold text-[14px] leading-[18px] text-dark">Description</p>
+                  <p className="font-sans text-[13px] leading-[1.65] text-dark">{booking.description}</p>
                 </div>
 
-                <div>
-                  <h3 className="font-sans font-bold text-[14px] text-dark mb-2.5">Inclus</h3>
+                <div className="flex flex-col gap-2.5">
+                  <p className="font-sans font-bold text-[14px] leading-[18px] text-dark">Inclus</p>
                   <div className="flex flex-col gap-2">
                     {booking.included.map(item => (
                       <div key={item} className="flex items-center gap-2.5">
@@ -319,14 +326,14 @@ Découvre l'application &JOY : https://joydiscover.com`;
                           <circle cx="8" cy="8" r="7" fill="#22c55e" fillOpacity="0.12" />
                           <path d="M5 8L7 10L11 6" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                        <span className="font-sans text-[13px] text-dark">{item}</span>
+                        <span className="font-sans text-[12px] leading-[1.3] text-dark">{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div>
-                  <h3 className="font-sans font-bold text-[14px] text-dark mb-2.5">Non inclus</h3>
+                <div className="flex flex-col gap-2.5">
+                  <p className="font-sans font-bold text-[14px] leading-[18px] text-dark">Non inclus</p>
                   <div className="flex flex-col gap-2">
                     {booking.excluded.map(item => (
                       <div key={item} className="flex items-center gap-2.5">
@@ -334,7 +341,7 @@ Découvre l'application &JOY : https://joydiscover.com`;
                           <circle cx="8" cy="8" r="7" fill="#ef4444" fillOpacity="0.1" />
                           <path d="M5.5 5.5L10.5 10.5M10.5 5.5L5.5 10.5" stroke="#ef4444" strokeWidth="1.5" strokeLinecap="round" />
                         </svg>
-                        <span className="font-sans text-[13px] text-dark">{item}</span>
+                        <span className="font-sans text-[12px] leading-[1.3] text-dark">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -453,20 +460,8 @@ function BookingCard({ booking, onOpen, onReview }: { booking: Booking; onOpen: 
       {/* Main infos + CTA */}
       <div className="px-4 pt-3.5 pb-4 flex items-center gap-3">
         <div className="flex-1 flex flex-col gap-1 min-w-0">
-          <div className="flex items-center gap-1.5">
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-              <circle cx="6" cy="6" r="4.5" stroke={booking.past ? '#525157' : '#1a1a24'} strokeWidth="1.3" />
-              <path d="M6 3.5V6L7.5 7.5" stroke={booking.past ? '#525157' : '#1a1a24'} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span className={`typo-title truncate ${booking.past ? 'text-dark-warm' : 'text-dark'}`}>{booking.date} · {booking.time}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-              <path d="M6 1C4.07 1 2.5 2.57 2.5 4.5C2.5 7 6 11 6 11C6 11 9.5 7 9.5 4.5C9.5 2.57 7.93 1 6 1Z" stroke="#9090a0" strokeWidth="1.3" />
-              <circle cx="6" cy="4.5" r="1.2" stroke="#9090a0" strokeWidth="1.1" />
-            </svg>
-            <span className="typo-caption text-muted truncate">{booking.location}</span>
-          </div>
+          <span className={`typo-title truncate ${booking.past ? 'text-dark-warm' : 'text-dark'}`}>{booking.date} · {booking.time.split(' – ')[0]}</span>
+          <span className="typo-caption text-muted truncate">{booking.location}</span>
         </div>
         {booking.past ? (
           booking.rating ? (

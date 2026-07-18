@@ -14,7 +14,7 @@ export default function PrimaryButton({ children, onClick, disabled, type = 'but
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`w-full bg-primary text-white rounded-full h-14 font-sans font-bold text-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-90 transition-opacity disabled:opacity-40 ${className}`}
+      className={`w-full bg-primary text-white rounded-2xl h-14 font-sans font-bold text-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-90 transition-opacity disabled:opacity-40 ${className}`}
     >
       {children}
     </button>

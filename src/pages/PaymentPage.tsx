@@ -66,12 +66,12 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
         {/* Header */}
         <PageHeader title="Paiement" onBack={onBack} />
 
-        <div className="px-5 flex flex-col gap-5">
+        <div className="px-5 flex flex-col gap-6">
 
           {/* Quick-pay options */}
           <div className="flex gap-3">
             {/* Apple Pay */}
-            <button onClick={() => handleQuickPay('apple')} className="flex-1 h-14 bg-black rounded-2xl flex items-center justify-center gap-2 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black">
+            <button onClick={() => handleQuickPay('apple')} className="flex-1 h-14 bg-black rounded-2xl flex items-center justify-center gap-2 shadow-[0px_2px_12px_rgba(0,0,0,0.12)] active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black">
               <svg width="16" height="20" viewBox="0 0 16 20" fill="white">
                 <path d="M13.18 10.26c-.02-2.05 1.68-3.04 1.75-3.09-0.95-1.39-2.43-1.58-2.96-1.6-1.26-.13-2.46.74-3.1.74-.64 0-1.63-.72-2.68-.7-1.38.02-2.66.8-3.37 2.03C1.3 9.94 2.3 13.56 3.8 15.5c.74 1.05 1.62 2.23 2.77 2.19 1.12-.05 1.54-.71 2.89-.71 1.35 0 1.73.71 2.9.69 1.2-.02 1.96-1.07 2.69-2.13.85-1.22 1.2-2.4 1.22-2.46-.03-.01-2.34-.9-2.36-3.58-.02 0-.02 0 0 .01zM11.1 3.93C11.7 3.2 12.1 2.2 12 1.2c-.87.04-1.91.58-2.53 1.31-.56.64-1.05 1.67-.92 2.65.97.07 1.96-.49 2.55-1.23z"/>
               </svg>
@@ -79,7 +79,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
             </button>
 
             {/* Google Pay */}
-            <button onClick={() => handleQuickPay('google')} className="flex-1 h-14 bg-white border border-black/[0.12] rounded-2xl flex items-center justify-center gap-2 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shadow-[0px_1px_4px_rgba(0,0,0,0.06)]">
+            <button onClick={() => handleQuickPay('google')} className="flex-1 h-14 bg-white rounded-2xl flex items-center justify-center gap-2 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shadow-[0px_2px_12px_rgba(0,0,0,0.12)]">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M19.6 10.23c0-.68-.06-1.36-.17-2H10v3.78h5.39a4.6 4.6 0 0 1-2 3.03v2.5h3.22c1.89-1.74 2.99-4.3 2.99-7.31z" fill="#4285F4"/>
                 <path d="M10 20c2.7 0 4.96-.9 6.62-2.43l-3.22-2.5c-.9.6-2.04.96-3.4.96-2.6 0-4.81-1.76-5.6-4.13H1.1v2.58A10 10 0 0 0 10 20z" fill="#34A853"/>
@@ -88,13 +88,6 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
               </svg>
               <span className="font-sans font-semibold text-[15px] text-dark">Pay</span>
             </button>
-          </div>
-
-          {/* Divider */}
-          <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-black/[0.06]" />
-            <span className="font-sans text-[13px] text-muted">ou payer par carte</span>
-            <div className="flex-1 h-px bg-black/[0.06]" />
           </div>
 
           {/* Card number */}
@@ -156,32 +149,9 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
                 className={`absolute top-0.5 left-0 size-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${saveCard ? 'translate-x-5' : 'translate-x-0.5'}`}
               />
             </button>
-            <span className="font-sans text-[14px] text-dark leading-[1.4]">
+            <span className="font-sans text-[14px] text-dark-warm leading-[1.4]">
               Enregistrer cette carte pour mes prochaines réservations
             </span>
-          </div>
-
-          {/* Price summary */}
-          <div className="flex flex-col">
-            <div className="h-px bg-black/[0.06]" />
-            <div className="flex items-center justify-between py-3.5">
-              <span className="font-sans text-[14px] text-muted">Sous-total</span>
-              <span className="font-sans text-[14px] text-dark">{subtotal.toFixed(2)}€</span>
-            </div>
-            <div className="flex items-center justify-between py-3.5">
-              <div className="flex items-center gap-1.5">
-                <span className="font-sans text-[14px] text-muted">Frais de service</span>
-                <div className="size-4 rounded-full border border-muted/50 flex items-center justify-center shrink-0">
-                  <span className="font-sans text-[9px] text-muted font-bold">i</span>
-                </div>
-              </div>
-              <span className="font-sans text-[14px] text-dark">{serviceFee.toFixed(2)}€</span>
-            </div>
-            <div className="h-px bg-black/[0.06]" />
-            <div className="flex items-center justify-between py-3.5">
-              <span className="font-sans font-bold text-[15px] text-dark">Total</span>
-              <span className="font-sans font-bold text-[18px] text-dark">{total.toFixed(2)}€</span>
-            </div>
           </div>
 
         </div>
@@ -190,7 +160,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
       {/* Sticky CTA */}
       <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
         <PrimaryButton onClick={onConfirm} disabled={!cardReady}>
-          Payer {total.toFixed(2)}€
+          Payer {total}€
         </PrimaryButton>
       </ButtonFooter>
     </div>
