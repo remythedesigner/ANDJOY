@@ -4,7 +4,9 @@ import CategoryButton from '../components/atoms/CategoryButton';
 import { PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 interface Props {
-  onComplete: () => void;
+  onComplete: (nickname: string) => void;
+  geoGranted?: boolean;
+  onGeoGranted?: () => void;
 }
 
 function LocationIllustration() {
@@ -67,7 +69,7 @@ function BackIcon() {
   );
 }
 
-export default function ProfileSetup({ onComplete }: Props) {
+export default function ProfileSetup({ onComplete, geoGranted, onGeoGranted }: Props) {
   const [step, setStep] = useState(0);
   const [nickname, setNickname] = useState('');
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -77,8 +79,22 @@ export default function ProfileSetup({ onComplete }: Props) {
 
   const next = () => {
     if (step < 3) setStep(s => s + 1);
-    else onComplete();
+    else onComplete(nickname.trim());
   };
+
+  function handleEnableLocation() {
+    if (!geoGranted) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          () => onGeoGranted?.(),
+          () => onGeoGranted?.(),
+        );
+      } else {
+        onGeoGranted?.();
+      }
+    }
+    next();
+  }
 
   const toggleCat = (id: string) => {
     setSelected(prev => {
@@ -196,7 +212,7 @@ export default function ProfileSetup({ onComplete }: Props) {
             </div>
           </div>
           <div className="flex flex-col gap-2 shrink-0 px-7 pb-4">
-            <PrimaryButton onClick={next} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
+            <PrimaryButton onClick={handleEnableLocation} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
               Autoriser la localisation
             </PrimaryButton>
             <button

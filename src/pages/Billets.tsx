@@ -475,7 +475,7 @@ function BookingCard({ booking, onOpen, onReview }: { booking: Booking; onOpen: 
           ) : (
             <button
               onClick={onReview}
-              className="shrink-0 h-10 px-4 bg-primary text-white rounded-full font-sans font-bold text-[13px] active:opacity-80 transition-opacity focus-visible:outline-none flex items-center gap-1.5"
+              className="shrink-0 h-10 px-4 bg-primary text-white rounded-full font-sans font-bold text-[13px] active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary flex items-center gap-1.5"
             >
               <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
                 <path d="M7 1L8.5 5H13L9.5 7.5L11 11.5L7 9L3 11.5L4.5 7.5L1 5H5.5L7 1Z" fill="white" />

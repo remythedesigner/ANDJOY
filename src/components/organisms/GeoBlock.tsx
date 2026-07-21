@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { ASSETS, nearbyEvents } from '../../utils/data';
 import type { Event } from '../../utils/types';
 import { getCategoryEmoji } from '../../utils/categories';
@@ -32,31 +31,23 @@ function NearbyCard({ image, category, title, location, date, price, onClick }: 
 interface GeoBlockProps {
   onCardClick?: () => void;
   onViewMap?: () => void;
+  geoGranted?: boolean;
   onGeoGranted?: () => void;
 }
 
-export default function GeoBlock({ onCardClick, onViewMap, onGeoGranted }: GeoBlockProps) {
-  const [granted, setGranted] = useState(false);
-
+export default function GeoBlock({ onCardClick, onViewMap, geoGranted = false, onGeoGranted }: GeoBlockProps) {
   function handleGeoRequest() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
-        () => {
-          setGranted(true);
-          onGeoGranted?.();
-        },
-        () => {
-          setGranted(true);
-          onGeoGranted?.();
-        },
+        () => onGeoGranted?.(),
+        () => onGeoGranted?.(),
       );
     } else {
-      setGranted(true);
       onGeoGranted?.();
     }
   }
 
-  if (granted) {
+  if (geoGranted) {
     return (
       <section className="flex flex-col gap-4 py-6">
         {/* Section header with compass icon */}

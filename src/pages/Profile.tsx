@@ -11,6 +11,9 @@ type SubPage = 'personal' | 'preferences' | 'payment' | 'settings' | 'help' | 's
 interface ProfilePageProps {
   onTabChange: (tab: Tab) => void;
   onSignOut?: () => void;
+  geoGranted?: boolean;
+  onGeoGranted?: () => void;
+  userName?: string;
 }
 
 const STATS = [
@@ -128,14 +131,14 @@ function PhotoEditSheet({ onClose }: { onClose: () => void }) {
   );
 }
 
-export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps) {
+export default function ProfilePage({ onTabChange, onSignOut, geoGranted, onGeoGranted, userName = 'Jane' }: ProfilePageProps) {
   const [subPage, setSubPage] = useState<SubPage>(null);
   const [editingPhoto, setEditingPhoto] = useState(false);
 
-  if (subPage === 'personal') return <PersonalInfoPage onBack={() => setSubPage(null)} />;
+  if (subPage === 'personal') return <PersonalInfoPage onBack={() => setSubPage(null)} userName={userName} />;
   if (subPage === 'preferences') return <PreferencesPage onBack={() => setSubPage(null)} />;
   if (subPage === 'payment') return <PaymentMethodsPage onBack={() => setSubPage(null)} />;
-  if (subPage === 'settings') return <SettingsPage onBack={() => setSubPage(null)} />;
+  if (subPage === 'settings') return <SettingsPage onBack={() => setSubPage(null)} geoGranted={geoGranted} onGeoGranted={onGeoGranted} />;
   if (subPage === 'help') return <HelpPage onBack={() => setSubPage(null)} />;
   if (subPage === 'suggest') return <SuggestActivity onBack={() => setSubPage(null)} />;
 
@@ -149,7 +152,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
           <div className="relative mb-4">
             <img
               src={ASSETS.profilePic}
-              alt="Jane"
+              alt={userName}
               className="size-[88px] rounded-full object-cover shadow-[0px_4px_20px_rgba(0,0,0,0.1)]"
             />
             <button
@@ -163,7 +166,7 @@ export default function ProfilePage({ onTabChange, onSignOut }: ProfilePageProps
               </svg>
             </button>
           </div>
-          <h1 className="font-sans font-extrabold text-[22px] text-dark">Jane</h1>
+          <h1 className="font-sans font-extrabold text-[22px] text-dark">{userName}</h1>
 <p className="font-sans text-[14px] text-muted mt-1">jane.martin@gmail.com</p>
           <div className="flex gap-3 mt-3">
             {STATS.map(({ value, label }, i) => (

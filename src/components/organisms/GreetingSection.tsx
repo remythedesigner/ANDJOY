@@ -1,4 +1,4 @@
-export default function GreetingSection() {
+export default function GreetingSection({ name = 'Jane' }: { name?: string }) {
   return (
     <section className="flex flex-col gap-5 px-6 pt-6 pb-3" aria-label="Message de bienvenue">
       {/* Heading */}
@@ -7,7 +7,7 @@ export default function GreetingSection() {
           Salut{' '}
         </h1>
         <span className="typo-h1 italic text-primary">
-          Jane
+          {name}
         </span>
         <span className="font-serif text-[30px] leading-normal text-dark-warm ml-1" role="img" aria-label="salut">
           👋
@@ -25,10 +25,10 @@ export default function GreetingSection() {
         </svg>
         <div className="flex-1 min-w-0 text-center">
           <p className="font-serif text-[14px] leading-[1.4] text-dark-warm">
-            Le bonheur est un art qui s'apprend en sortant.
+            Le bonheur n'est pas une destination, mais une façon de voyager.
           </p>
           <p className="typo-quote text-muted mt-1">
-            Henri Barbusse
+            Margaret Lee
           </p>
         </div>
         <svg width="20" height="20" viewBox="0 0 23 59" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0 scale-x-[-1]">

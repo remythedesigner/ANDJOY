@@ -17,9 +17,10 @@ interface HomeContentProps {
   onOpenProfile: () => void;
   geoGranted?: boolean;
   onGeoGranted?: () => void;
+  userName?: string;
 }
 
-function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = false, onGeoGranted }: HomeContentProps) {
+function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = false, onGeoGranted, userName }: HomeContentProps) {
   return (
     <div className="flex flex-col min-h-svh bg-cream">
       {/* iOS-style status bar spacer */}
@@ -28,10 +29,10 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = fal
       <AppHeader onOpenProfile={onOpenProfile} geoGranted={geoGranted} />
 
       <main className="flex flex-col flex-1 overflow-x-hidden pb-4">
-        <GreetingSection />
+        <GreetingSection name={userName} />
         <HeroCarousel onCardClick={onOpenEvent} />
         <EventsSection
-          iconSrc={ASSETS.icons.star}
+          iconSrc={ASSETS.icons.fire}
           title="Tu vas adorer"
           events={lovedEvents}
           id="loves"
@@ -40,18 +41,18 @@ function HomeContent({ onTabChange, onOpenEvent, onOpenProfile, geoGranted = fal
         />
         <CommunitySection onEventClick={onOpenEvent} />
         <EventsSection
-          iconSrc={ASSETS.icons.teamHeart}
+          iconSrc={ASSETS.icons.fire}
           title="Coups de cœur de l'équipe"
           events={teamFavorites}
           id="team-picks"
           onCardClick={onOpenEvent}
           geoGranted={geoGranted}
         />
-        <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} onGeoGranted={onGeoGranted} />
+        <GeoBlock onCardClick={onOpenEvent} onViewMap={() => onTabChange('Carte')} geoGranted={geoGranted} onGeoGranted={onGeoGranted} />
         {/* Made in Paris */}
         <div className="flex items-center justify-center gap-1.5 py-6">
           <span className="typo-meta text-muted">Fait à Paris avec</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="animate-heart-bump">
             <path d="M7 12.5C7 12.5 1 8.5 1 4.5C1 2.567 2.567 1 4.5 1C5.6 1 6.574 1.524 7 2.35C7.426 1.524 8.4 1 9.5 1C11.433 1 13 2.567 13 4.5C13 8.5 7 12.5 7 12.5Z" fill="#FF6366"/>
           </svg>
         </div>
@@ -68,9 +69,10 @@ interface HomeProps {
   onOpenProfile: () => void;
   geoGranted?: boolean;
   onGeoGranted?: () => void;
+  userName?: string;
 }
 
-export default function Home({ onTabChange, onOpenEvent, onOpenProfile, geoGranted, onGeoGranted }: HomeProps) {
+export default function Home({ onTabChange, onOpenEvent, onOpenProfile, geoGranted, onGeoGranted, userName }: HomeProps) {
   return (
     <Suspense fallback={
       <div className="min-h-svh bg-cream flex items-center justify-center">
@@ -80,7 +82,7 @@ export default function Home({ onTabChange, onOpenEvent, onOpenProfile, geoGrant
         </div>
       </div>
     }>
-      <HomeContent onTabChange={onTabChange} onOpenEvent={onOpenEvent} onOpenProfile={onOpenProfile} geoGranted={geoGranted} onGeoGranted={onGeoGranted} />
+      <HomeContent onTabChange={onTabChange} onOpenEvent={onOpenEvent} onOpenProfile={onOpenProfile} geoGranted={geoGranted} onGeoGranted={onGeoGranted} userName={userName} />
     </Suspense>
   );
 }

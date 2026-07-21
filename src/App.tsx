@@ -21,6 +21,7 @@ export default function App() {
   const [onboardingStep, setOnboardingStep] = useState<OnboardingStep>('splash');
   const [activeTab, setActiveTab] = useState<Tab>('Accueil');
   const [geoGranted, setGeoGranted] = useState(false);
+  const [userName, setUserName] = useState('Jane');
   const [showEventDetail, setShowEventDetail] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -69,7 +70,13 @@ export default function App() {
     return <OnboardingSlides onComplete={() => setOnboardingStep('profile')} />;
   }
   if (onboardingStep === 'profile') {
-    return <ProfileSetup onComplete={() => setOnboardingStep('done')} />;
+    return (
+      <ProfileSetup
+        onComplete={(name) => { setUserName(name); setOnboardingStep('done'); }}
+        geoGranted={geoGranted}
+        onGeoGranted={() => setGeoGranted(true)}
+      />
+    );
   }
 
   if (isProcessing) {
@@ -130,7 +137,7 @@ export default function App() {
   }
 
   if (activeTab === 'Carte') {
-    return <MapPage onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} geoGranted={geoGranted} />;
+    return <MapPage onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} geoGranted={geoGranted} onGeoGranted={() => setGeoGranted(true)} />;
   }
 
   if (activeTab === 'Billets') {
@@ -138,8 +145,8 @@ export default function App() {
   }
 
   if (activeTab === 'Profil') {
-    return <ProfilePage onTabChange={setActiveTab} onSignOut={() => setOnboardingStep('splash')} />;
+    return <ProfilePage onTabChange={setActiveTab} onSignOut={() => setOnboardingStep('splash')} geoGranted={geoGranted} onGeoGranted={() => setGeoGranted(true)} userName={userName} />;
   }
 
-  return <Home onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} onOpenProfile={() => setActiveTab('Profil')} geoGranted={geoGranted} onGeoGranted={() => setGeoGranted(true)} />;
+  return <Home onTabChange={setActiveTab} onOpenEvent={() => setShowEventDetail(true)} onOpenProfile={() => setActiveTab('Profil')} geoGranted={geoGranted} onGeoGranted={() => setGeoGranted(true)} userName={userName} />;
 }

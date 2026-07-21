@@ -32,9 +32,17 @@ export default {
           '0%': { opacity: '0', transform: 'scale(1.03)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
+        'heart-bump': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '25%': { transform: 'scale(1.3)' },
+          '40%': { transform: 'scale(0.9)' },
+          '60%': { transform: 'scale(1.15)' },
+          '80%': { transform: 'scale(1)' },
+        },
       },
       animation: {
         'hero-fade': 'hero-fade 0.5s ease-out forwards',
+        'heart-bump': 'heart-bump 2.4s ease-in-out infinite',
       },
       boxShadow: {
         card: '0px 4px 20px 0px rgba(0,0,0,0.07)',

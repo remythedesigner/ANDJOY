@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SafeAreaSpacer } from '../components/atoms';
+import { PrimaryButton, SafeAreaSpacer } from '../components/atoms';
 
 const SLIDES = [
   {
@@ -87,12 +87,9 @@ export default function OnboardingSlides({ onComplete }: OnboardingSlidesProps) 
             />
           ))}
         </div>
-        <button
-          onClick={handleCta}
-          className="w-full h-[56px] bg-primary text-white rounded-2xl shadow-[0px_2px_6px_rgba(0,0,0,0.12)] font-sans font-bold text-[16px] active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-        >
+        <PrimaryButton onClick={handleCta} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">
           {cta}
-        </button>
+        </PrimaryButton>
       </div>
     </div>
   );

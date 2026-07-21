@@ -65,6 +65,24 @@ const mapEvents = [
     dateFilters: ['week'] as DateFilter[],
   },
   {
+    id: 'basket',
+    emoji: '⚽',
+    lat: 48.8556,
+    lng: 2.2986,
+    image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400&h=300&fit=crop',
+    category: '⚽ Sport',
+    title: 'Match de basket 3x3 en plein air',
+    location: 'Paris 7e',
+    time: 'Ven 19 juin · 18h00',
+    price: '5 €',
+    priceValue: 5,
+    promo: false,
+    distance: 2.1,
+    dateOrder: 2,
+    date: '2026-06-19',
+    dateFilters: ['week'] as DateFilter[],
+  },
+  {
     id: 'expo',
     emoji: '🎨',
     lat: 48.8303,
@@ -78,7 +96,7 @@ const mapEvents = [
     priceValue: 22,
     promo: false,
     distance: 3.5,
-    dateOrder: 3,
+    dateOrder: 4,
     date: '2026-06-21',
     dateFilters: ['week', 'weekend'] as DateFilter[],
   },
@@ -96,7 +114,7 @@ const mapEvents = [
     priceValue: 10,
     promo: false,
     distance: 4.2,
-    dateOrder: 2,
+    dateOrder: 3,
     date: '2026-06-20',
     dateFilters: ['week', 'weekend'] as DateFilter[],
   },
@@ -114,15 +132,92 @@ const mapEvents = [
     priceValue: 40,
     promo: false,
     distance: 0.8,
-    dateOrder: 4,
+    dateOrder: 5,
     date: '2026-06-22',
     dateFilters: ['week', 'weekend'] as DateFilter[],
+  },
+  {
+    id: 'jeux',
+    emoji: '🎲',
+    lat: 48.8532,
+    lng: 2.3692,
+    image: 'https://images.unsplash.com/photo-1585504198199-20277593b94f?w=400&h=300&fit=crop',
+    category: '🎲 Jeu',
+    title: 'Soirée Jeux de société',
+    location: 'Paris 11e',
+    time: 'Mar 23 juin · 19h30',
+    price: '8 €',
+    priceValue: 8,
+    promo: false,
+    distance: 1.5,
+    dateOrder: 6,
+    date: '2026-06-23',
+    dateFilters: [] as DateFilter[],
+  },
+  {
+    id: 'piquenique',
+    emoji: '🌿',
+    lat: 48.8955,
+    lng: 2.389,
+    image: 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?w=400&h=300&fit=crop',
+    category: '🌿 Plein air',
+    title: 'Pique-nique musical à la Villette',
+    location: 'Paris 19e',
+    time: 'Mer 24 juin · 17h00',
+    price: '5 €',
+    priceValue: 5,
+    promo: false,
+    distance: 5.4,
+    dateOrder: 7,
+    date: '2026-06-24',
+    dateFilters: [] as DateFilter[],
+  },
+  {
+    id: 'poterie',
+    emoji: '👶',
+    lat: 48.8462,
+    lng: 2.3372,
+    image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=300&fit=crop',
+    category: '👶 Kids friendly',
+    title: 'Atelier poterie en famille',
+    location: 'Paris 6e',
+    time: 'Jeu 25 juin · 10h00',
+    price: '28 €',
+    priceValue: 28,
+    promo: false,
+    distance: 3.2,
+    dateOrder: 8,
+    date: '2026-06-25',
+    dateFilters: [] as DateFilter[],
+  },
+  {
+    id: 'musees',
+    emoji: '🖼️',
+    lat: 48.8662,
+    lng: 2.3125,
+    image: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=400&h=300&fit=crop',
+    category: '🖼️ Exposition',
+    title: 'Nuit des Musées',
+    location: 'Paris 8e',
+    time: 'Ven 26 juin · 20h00',
+    price: '15 €',
+    priceValue: 15,
+    promo: false,
+    distance: 2.6,
+    dateOrder: 9,
+    date: '2026-06-26',
+    dateFilters: [] as DateFilter[],
   },
 ];
 
 type MapEvent = typeof mapEvents[0];
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
+
+function formatDistance(km: number): string {
+  if (km < 1) return `${Math.round(km * 1000)} m`;
+  return `${km % 1 === 0 ? km : km.toFixed(1)} km`;
+}
 
 const USER_MARKER_ICON = L.divIcon({
   className: '',
@@ -448,8 +543,8 @@ function SortSelector({ sortBy, onChange }: { sortBy: SortBy; onChange: (s: Sort
   );
 }
 
-function ResultCard({ image, category, title, location, time, price, originalPrice, onClick, geoGranted }: MapEvent & { onClick?: () => void; geoGranted?: boolean }) {
-  const place = geoGranted ? location : location.split(' · ')[0];
+function ResultCard({ image, category, title, location, time, price, originalPrice, onClick, geoGranted, distance }: MapEvent & { onClick?: () => void; geoGranted?: boolean }) {
+  const place = geoGranted ? `${location} · ${formatDistance(distance)}` : location;
   return (
     <article
       className="bg-white rounded-2xl flex items-center gap-3 p-3 shadow-chip cursor-pointer active:opacity-80 transition-opacity"
@@ -675,9 +770,10 @@ interface MapPageProps {
   onTabChange: (tab: Tab) => void;
   onOpenEvent?: () => void;
   geoGranted?: boolean;
+  onGeoGranted?: () => void;
 }
 
-export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPageProps) {
+export default function MapPage({ onTabChange, onOpenEvent, geoGranted, onGeoGranted }: MapPageProps) {
   const [listOpen, setListOpen] = useState(false);
   const [filterSheetOpen, setFilterSheetOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -732,6 +828,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted }: MapPag
       pos => {
         setUserPosition([pos.coords.latitude, pos.coords.longitude]);
         setLocating(false);
+        onGeoGranted?.();
       },
       () => setLocating(false),
     );

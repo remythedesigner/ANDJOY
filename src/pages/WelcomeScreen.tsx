@@ -60,7 +60,7 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
       <div className="px-5 flex flex-col gap-3 pb-4">
         <button
           onClick={onApple}
-          className="w-full h-[54px] bg-dark rounded-full flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dark"
+          className="w-full h-[54px] bg-dark rounded-full shadow-[0px_2px_6px_rgba(0,0,0,0.12)] flex items-center justify-center gap-3 active:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dark"
         >
           <span className="text-white"><AppleIcon /></span>
           <span className="font-sans font-semibold text-[14px] text-white">Continuer avec Apple</span>

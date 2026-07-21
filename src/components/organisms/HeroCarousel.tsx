@@ -92,7 +92,7 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
               {/* Scarcity badge */}
               {ev.scarcityBadge && (
                 <div className="absolute top-8 right-4">
-                  <span className="bg-accent-orange text-white font-sans font-semibold text-[14px] px-4 py-2 rounded-full whitespace-nowrap">
+                  <span className="bg-accent-orange/90 backdrop-blur-[2px] text-white font-sans font-semibold text-[14px] px-4 py-2 rounded-full whitespace-nowrap">
                     {ev.scarcityBadge}
                   </span>
                 </div>
@@ -103,11 +103,11 @@ export default function HeroCarousel({ onCardClick }: HeroCarouselProps) {
                 <p className="typo-label text-accent-coral tracking-[0.544px]">{getCategoryEmoji(ev.category)} {ev.category}</p>
                 <h3 className="typo-h2 text-white mt-1 max-w-[284px]">{ev.title}</h3>
                 <div className="flex gap-2 mt-2">
-                  <div className="bg-black/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
+                  <div className="bg-white/10 backdrop-blur-[2px] flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
                     <img src={ASSETS.icons.clock} alt="" aria-hidden="true" className="size-[11px] brightness-0 invert" />
                     <span className="typo-caption text-white">{ev.time}</span>
                   </div>
-                  <div className="bg-black/20 flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
+                  <div className="bg-white/10 backdrop-blur-[2px] flex items-center gap-1 px-2.5 py-1.5 rounded-[14px]">
                     <img src={ASSETS.icons.pin} alt="" aria-hidden="true" className="size-[11px] brightness-0 invert" />
                     <span className="typo-caption text-white">{ev.location}</span>
                   </div>

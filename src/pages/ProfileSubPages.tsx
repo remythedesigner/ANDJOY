@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CATEGORIES } from '../utils/categories';
 import CategoryButton from '../components/atoms/CategoryButton';
 import { ButtonFooter, PageHeader, PrimaryButton, SafeAreaSpacer } from '../components/atoms';
@@ -90,8 +90,8 @@ function Input({ value, onChange, placeholder, type = 'text' }: { value: string;
 
 // ─── 1. Informations personnelles ─────────────────────────────────────────────
 
-export function PersonalInfoPage({ onBack }: { onBack: () => void }) {
-  const [firstName, setFirstName] = useState('Jane');
+export function PersonalInfoPage({ onBack, userName = 'Jane' }: { onBack: () => void; userName?: string }) {
+  const [firstName, setFirstName] = useState(userName);
   const [lastName, setLastName] = useState('Martin');
   const [email, setEmail] = useState('jane.martin@gmail.com');
   const [phone, setPhone] = useState('');
@@ -333,13 +333,13 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
               />
             </div>
 
-            <button
+            <PrimaryButton
               onClick={handleAddCard}
-              className="w-full bg-primary text-white rounded-2xl h-14 font-sans font-bold text-[16px] shadow-[0px_2px_6px_rgba(0,0,0,0.12)] focus-visible:outline-none active:opacity-90 transition-opacity disabled:opacity-40"
               disabled={!cardNumber.trim() || !expiry.trim() || !cvc.trim() || !name.trim()}
+              className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]"
             >
               Ajouter
-            </button>
+            </PrimaryButton>
           </div>
         </div>
       )}
@@ -349,17 +349,35 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
 
 // ─── 4. Paramètres ────────────────────────────────────────────────────────────
 
-export function SettingsPage({ onBack }: { onBack: () => void }) {
+export function SettingsPage({ onBack, geoGranted = false, onGeoGranted }: { onBack: () => void; geoGranted?: boolean; onGeoGranted?: () => void }) {
   const [activityReminders, setActivityReminders] = useState(true);
   const [newActivities, setNewActivities] = useState(true);
   const [promotions, setPromotions] = useState(true);
-  const [location, setLocation] = useState(true);
+  const [location, setLocation] = useState(geoGranted);
   const [analytics, setAnalytics] = useState(true);
   const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    if (geoGranted) setLocation(true);
+  }, [geoGranted]);
 
   function handleSave() {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
+  }
+
+  function handleLocationToggle(value: boolean) {
+    setLocation(value);
+    if (value && !geoGranted) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          () => onGeoGranted?.(),
+          () => onGeoGranted?.(),
+        );
+      } else {
+        onGeoGranted?.();
+      }
+    }
   }
 
   return (
@@ -386,7 +404,7 @@ export function SettingsPage({ onBack }: { onBack: () => void }) {
           <SectionLabel>Confidentialité</SectionLabel>
           <Card>
             <SettingRow label="Géolocalisation" sub="Utilisée pour afficher les activités proches de toi et améliorer les recommandations. Données non partagées avec des tiers.">
-              <Toggle value={location} onChange={setLocation} />
+              <Toggle value={location} onChange={handleLocationToggle} />
             </SettingRow>
             <SettingRow label="Données analytiques" sub="Aider à améliorer l'application">
               <Toggle value={analytics} onChange={setAnalytics} />
