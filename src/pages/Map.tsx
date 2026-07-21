@@ -983,6 +983,7 @@ export default function MapPage({ onTabChange, onOpenEvent, geoGranted, onGeoGra
       <MapContainer
         center={[48.856, 2.348]}
         zoom={13}
+        minZoom={12}
         style={{ height: '100%', width: '100%' }}
         className="fixed inset-0"
         zoomControl={false}

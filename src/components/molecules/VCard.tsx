@@ -30,14 +30,14 @@ export default function VCard({ event, onClick, geoGranted = false }: VCardProps
         {/* Scarcity / New badge (top right) */}
         {badge && badgeVariant === 'scarcity' && (
           <div className="absolute top-2 left-1/4 right-0 mx-auto w-fit">
-            <span className="bg-accent-orange/90 backdrop-blur-[2px] text-white text-[12px] font-semibold font-sans px-2 py-1 rounded-full whitespace-nowrap">
+            <span className="bg-accent-orange/80 text-white text-[12px] font-semibold font-sans px-2 py-1 rounded-full whitespace-nowrap">
               {badge}
             </span>
           </div>
         )}
         {badge && badgeVariant === 'new' && (
           <div className="absolute top-2 right-2">
-            <span className="bg-accent-purple/90 backdrop-blur-[2px] text-white text-[12px] font-bold font-sans px-2 py-1 rounded-full whitespace-nowrap">
+            <span className="bg-accent-purple/80 text-white text-[12px] font-bold font-sans px-2 py-1 rounded-full whitespace-nowrap">
               {badge}
             </span>
           </div>

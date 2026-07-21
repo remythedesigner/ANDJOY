@@ -40,7 +40,7 @@ export default function WelcomeScreen({ onApple, onGoogle, onEmail, onLogoTap }:
       {/* Headline */}
       <div className="px-11 py-6 text-center">
         <h1 className="font-sans font-extrabold text-[30px] leading-[1.15] text-dark">
-          Mets plus de joie<br />dans tes sorties à Paris
+          Mets plus de joie<br />dans tes sorties
         </h1>
       </div>
 
