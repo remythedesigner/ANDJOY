@@ -83,7 +83,7 @@ function Input({ value, onChange, placeholder, type = 'text' }: { value: string;
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      className={`bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full ${type === 'date' ? (value ? 'text-dark' : 'text-muted/60') : 'text-dark'}`}
+      className={`bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 w-full ${type === 'date' ? (value ? 'text-dark' : 'text-muted') : 'text-dark'}`}
     />
   );
 }
@@ -295,7 +295,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                 value={cardNumber}
                 onChange={e => setCardNumber(e.target.value)}
                 placeholder="1234 5678 9012 3456"
-                className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
 
@@ -307,7 +307,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                   value={expiry}
                   onChange={e => setExpiry(e.target.value)}
                   placeholder="MM/YY"
-                  className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
                 />
               </div>
               <div className="flex-1">
@@ -317,7 +317,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                   value={cvc}
                   onChange={e => setCvc(e.target.value)}
                   placeholder="123"
-                  className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
                 />
               </div>
             </div>
@@ -329,7 +329,7 @@ export function PaymentMethodsPage({ onBack }: { onBack: () => void }) {
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder="Jane Martin"
-                className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="w-full bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
 

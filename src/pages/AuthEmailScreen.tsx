@@ -187,7 +187,7 @@ export default function AuthEmailScreen({ onCompleteSignup, onCompleteSignin, on
             onChange={e => setEmail(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && email.includes('@') && handleEmailSubmit()}
             placeholder="Adresse e-mail"
-            className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-dark/60 outline-none focus:ring-2 focus:ring-primary/15 transition-all"
+            className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-muted outline-none focus:ring-2 focus:ring-primary/15 transition-all"
           />
 
           <div className="flex-1" />
@@ -284,7 +284,7 @@ export default function AuthEmailScreen({ onCompleteSignup, onCompleteSignin, on
               value={password}
               onChange={e => setPassword(e.target.value)}
               placeholder="Mot de passe"
-              className="w-full h-[56px] rounded-2xl bg-white px-4 pr-12 typo-input text-dark placeholder:text-dark/60 outline-none focus:ring-2 focus:ring-primary/15 transition-all"
+              className="w-full h-[56px] rounded-2xl bg-white px-4 pr-12 typo-input text-dark placeholder:text-muted outline-none focus:ring-2 focus:ring-primary/15 transition-all"
             />
             <button
               type="button"
@@ -326,7 +326,7 @@ export default function AuthEmailScreen({ onCompleteSignup, onCompleteSignin, on
                   onChange={e => setPassword(e.target.value)}
                   onClick={() => setShowConfirm(true)}
                   placeholder="Choisis un mot de passe"
-                  className="w-full h-[56px] rounded-2xl bg-white px-4 pr-12 typo-input text-dark placeholder:text-dark/60 outline-none focus:ring-2 focus:ring-primary/15 transition-all"
+                  className="w-full h-[56px] rounded-2xl bg-white px-4 pr-12 typo-input text-dark placeholder:text-muted outline-none focus:ring-2 focus:ring-primary/15 transition-all"
                 />
                 <button
                   type="button"
@@ -347,7 +347,7 @@ export default function AuthEmailScreen({ onCompleteSignup, onCompleteSignin, on
                   value={confirmPassword}
                   onChange={e => setConfirmPassword(e.target.value)}
                   placeholder="Confirme ton mot de passe"
-                  className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-dark/60 outline-none focus:ring-2 focus:ring-primary/15 transition-all"
+                  className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-muted outline-none focus:ring-2 focus:ring-primary/15 transition-all"
                 />
               </div>
             )}
@@ -379,7 +379,7 @@ export default function AuthEmailScreen({ onCompleteSignup, onCompleteSignin, on
             onChange={e => setResetEmail(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && resetEmail.includes('@') && handleForgotPasswordSubmit()}
             placeholder="Adresse e-mail"
-            className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-dark/60 outline-none focus:ring-2 focus:ring-primary/15 transition-all"
+            className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-muted outline-none focus:ring-2 focus:ring-primary/15 transition-all"
           />
 
           <div className="flex-1" />

@@ -145,7 +145,7 @@ export default function ProfileSetup({ onComplete, geoGranted, onGeoGranted }: P
             value={nickname}
             onChange={e => setNickname(e.target.value)}
             placeholder="Appelle-moi..."
-            className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-dark/60 outline-none focus:ring-2 focus:ring-primary/15 transition-all"
+            className="w-full h-[56px] rounded-2xl bg-white px-4 typo-input text-dark placeholder:text-muted outline-none focus:ring-2 focus:ring-primary/15 transition-all"
           />
           <div className="flex-1" />
           <PrimaryButton onClick={next} disabled={nickname.trim().length === 0} className="shadow-[0px_2px_6px_rgba(0,0,0,0.12)]">

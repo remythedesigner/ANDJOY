@@ -70,7 +70,7 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
               value={title}
               onChange={e => setTitle(e.target.value)}
               placeholder="Ex: Atelier de céramique"
-              className="bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
+              className="bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
             />
           </div>
 
@@ -97,7 +97,7 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
               value={location}
               onChange={e => setLocation(e.target.value)}
               placeholder="Ex: 123 Rue de la Paix, Paris 11e"
-              className="bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
+              className="bg-white rounded-2xl px-4 h-14 typo-input placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark"
             />
           </div>
 
@@ -108,7 +108,7 @@ export default function SuggestActivity({ onBack }: SuggestActivityProps) {
               value={description}
               onChange={e => setDescription(e.target.value)}
               placeholder="Dis-nous en plus sur cette activité..."
-              className="bg-white rounded-2xl px-4 py-5 typo-input placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark resize-none h-32"
+              className="bg-white rounded-2xl px-4 py-5 typo-input placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 w-full text-dark resize-none h-32"
             />
           </div>
 

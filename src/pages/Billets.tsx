@@ -412,7 +412,7 @@ function ReviewSheet({ booking, onClose, onRated }: { booking: Booking; onClose:
               onChange={e => setComment(e.target.value)}
               placeholder="Partage ton expérience (optionnel)..."
               rows={3}
-              className="w-full bg-cream rounded-2xl px-4 py-3 font-sans text-[14px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
+              className="w-full bg-cream rounded-2xl px-4 py-3 font-sans text-[14px] text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
             />
 
             <button

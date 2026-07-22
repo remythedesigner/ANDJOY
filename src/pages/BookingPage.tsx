@@ -63,7 +63,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 value={firstName}
                 onChange={e => setFirstName(e.target.value)}
                 placeholder="Prénom"
-                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -73,7 +73,7 @@ export default function BookingPage({ onBack, initialPersons = 1, maxPersons, on
                 value={lastName}
                 onChange={e => setLastName(e.target.value)}
                 placeholder="Nom"
-                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40 border-none"
               />
             </div>
           </div>

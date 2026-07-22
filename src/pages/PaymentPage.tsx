@@ -100,7 +100,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
                 value={cardNumber}
                 onChange={e => setCardNumber(formatCardNumber(e.target.value))}
                 placeholder="1234 5678 9012 3456"
-                className="w-full bg-white rounded-2xl px-4 pr-12 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="w-full bg-white rounded-2xl px-4 pr-12 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted/50">
                 <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
@@ -121,7 +121,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
                 value={expiry}
                 onChange={e => setExpiry(formatExpiry(e.target.value))}
                 placeholder="MM/AA"
-                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -132,7 +132,7 @@ export default function PaymentPage({ onBack, subtotal, serviceFee, onConfirm }:
                 value={cvv}
                 onChange={e => setCvv(e.target.value.replace(/\D/g, '').slice(0, 4))}
                 placeholder="123"
-                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                className="bg-white rounded-2xl px-4 h-14 typo-input text-dark placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
             </div>
           </div>

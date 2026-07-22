@@ -400,7 +400,7 @@ function SearchBar({ onClick, value, onChange, inputRef }: { onClick?: () => voi
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder="Chercher une activité…"
-          className="flex-1 bg-transparent font-sans font-semibold text-[14px] text-dark placeholder:text-dark/50 outline-none"
+          className="flex-1 bg-transparent font-sans font-semibold text-[14px] text-dark placeholder:text-muted outline-none"
           aria-label="Chercher une activité"
         />
         {value && (
