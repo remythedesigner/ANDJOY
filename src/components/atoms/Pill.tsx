@@ -11,7 +11,7 @@ interface PillProps {
 export default function Pill({ icon, children, tone = 'default', onClick, className = '' }: PillProps) {
   const toneClasses = tone === 'alert'
     ? 'bg-surface text-accent-coral font-medium'
-    : 'bg-surface text-dark font-medium';
+    : 'bg-surface text-dark-warm font-medium';
   const interactiveClasses = onClick
     ? 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary active:opacity-70 transition-opacity'
     : '';

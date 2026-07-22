@@ -193,32 +193,33 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
               4.9
             </Pill>
             <Pill icon={
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
-                <path d="M6 3.5V6L7.5 7.5" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="12" height="12" viewBox="0 0 12.8 12.8" fill="none">
+                <path d="M6.4 11.7334C9.34551 11.7334 11.7333 9.34558 11.7333 6.40006C11.7333 3.45454 9.34551 1.06672 6.4 1.06672C3.45448 1.06672 1.06666 3.45454 1.06666 6.40006C1.06666 9.34558 3.45448 11.7334 6.4 11.7334Z" stroke="#525157" strokeWidth="1.06667" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6.40001 3.20002V6.40002L8.53335 7.46669" stroke="#525157" strokeWidth="1.06667" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             }>
               Demain · 10:00 - 20:00
             </Pill>
             <Pill icon={
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1.5C4.3 1.5 3 2.8 3 4.5C3 6.5 6 10.5 6 10.5C6 10.5 9 6.5 9 4.5C9 2.8 7.7 1.5 6 1.5ZM6 5.5C5.4 5.5 5 5.1 5 4.5C5 3.9 5.4 3.5 6 3.5C6.6 3.5 7 3.9 7 4.5C7 5.1 6.6 5.5 6 5.5Z" fill="#9090a0"/>
+              <svg width="12" height="12" viewBox="0 0 12.8 12.8" fill="none">
+                <path d="M11.2 5.33333C11.2 9.06666 6.40001 12.2667 6.40001 12.2667C6.40001 12.2667 1.60001 9.06666 1.60001 5.33333C1.60001 4.06029 2.10572 2.83939 3.0059 1.93921C3.90607 1.03904 5.12697 0.533325 6.40001 0.533325C7.67305 0.533325 8.89395 1.03904 9.79412 1.93921C10.6943 2.83939 11.2 4.06029 11.2 5.33333Z" stroke="#525157" strokeWidth="1.06667" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6.40001 6.93333C7.28367 6.93333 8.00001 6.21698 8.00001 5.33333C8.00001 4.44967 7.28367 3.73333 6.40001 3.73333C5.51636 3.73333 4.80001 4.44967 4.80001 5.33333C4.80001 6.21698 5.51636 6.93333 6.40001 6.93333Z" stroke="#525157" strokeWidth="1.06667" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             }>
               Paris 11e
             </Pill>
             <Pill icon={
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="4.5" stroke="#9090a0" strokeWidth="1.2" />
-                <path d="M6 3V6H9" stroke="#9090a0" strokeWidth="1.2" strokeLinecap="round" />
+              <svg width="12" height="12" viewBox="0 0 12.8 12.8" fill="none">
+                <path d="M6.4 11.7334C9.34551 11.7334 11.7333 9.34558 11.7333 6.40006C11.7333 3.45454 9.34551 1.06672 6.4 1.06672C3.45448 1.06672 1.06666 3.45454 1.06666 6.40006C1.06666 9.34558 3.45448 11.7334 6.4 11.7334Z" stroke="#525157" strokeWidth="1.06667" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6.40001 3.20002V6.40002L8.53335 7.46669" stroke="#525157" strokeWidth="1.06667" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             }>
               1h
             </Pill>
             <Pill tone="alert" icon={
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="3.5" r="1.8" stroke="#ff6366" strokeWidth="1.2" />
-                <path d="M1.5 10C1.5 8.3 3.5 7 6 7C8.5 7 10.5 8.3 10.5 10" stroke="#ff6366" strokeWidth="1.2" strokeLinecap="round" />
+              <svg width="12" height="12" viewBox="0 0 16.6667 16.6667" fill="none">
+                <path d="M13.1945 14.5833V13.1945C13.1945 12.4577 12.9018 11.7512 12.3808 11.2302C11.8599 10.7093 11.1534 10.4167 10.4167 10.4167H6.25001C5.5133 10.4167 4.80676 10.7093 4.28582 11.2302C3.76489 11.7512 3.47223 12.4577 3.47223 13.1945V14.5833" stroke="#ff6366" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M8.33334 7.63886C9.86743 7.63886 11.1111 6.39523 11.1111 4.86111C11.1111 3.32698 9.86743 2.08333 8.33334 2.08333C6.79922 2.08333 5.55556 3.32698 5.55556 4.86111C5.55556 6.39523 6.79922 7.63886 8.33334 7.63886Z" stroke="#ff6366" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             }>
               6 places restantes
