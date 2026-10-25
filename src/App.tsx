@@ -13,6 +13,7 @@ import PaymentPage from './pages/PaymentPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import BilletsPage from './pages/Billets';
 import ProfilePage from './pages/Profile';
+import type { UserRecommendation } from './utils/types';
 
 type Tab = 'Accueil' | 'Carte' | 'Billets' | 'Profil';
 type OnboardingStep = 'splash' | 'welcome' | 'auth-email' | 'auth-apple' | 'auth-google' | 'slides' | 'profile' | 'done';
@@ -22,6 +23,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('Accueil');
   const [geoGranted, setGeoGranted] = useState(false);
   const [userName, setUserName] = useState('Jane');
+  const [recommendations, setRecommendations] = useState<UserRecommendation[]>([]);
   const [showEventDetail, setShowEventDetail] = useState(false);
   const [showBooking, setShowBooking] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -131,6 +133,10 @@ export default function App() {
     return (
       <EventDetail
         onBack={() => setShowEventDetail(false)}
+        userName={userName}
+        recommendations={recommendations}
+        onRecommend={reco => setRecommendations(prev => [reco, ...prev])}
+        onEditRecommendation={reco => setRecommendations(prev => prev.map(r => r.id === reco.id ? reco : r))}
         onBook={(places, remainingSeats) => { setBookingPlaces(places); setBookingMaxPlaces(remainingSeats); setShowBooking(true); }}
       />
     );

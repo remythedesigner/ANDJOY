@@ -24,6 +24,7 @@ export const ASSETS = {
     pinSmall: base + 'icons/pin.svg',
     teamHeart: base + 'icons/team-heart.svg',
     play: base + 'icons/play.svg',
+    plusLarge: base + 'icons/plus-large.svg',
   },
 };
 

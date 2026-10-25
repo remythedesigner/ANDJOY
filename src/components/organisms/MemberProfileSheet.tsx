@@ -85,7 +85,7 @@ export default function MemberProfileSheet({ member, onClose, onEventClick }: Me
           </div>
           <h2 className="font-sans font-extrabold text-[20px] text-dark">{member.name}</h2>
           <p className="font-sans font-medium text-[13px] text-accent-purple mt-0.5">
-            {member.gender === 'female' ? 'Ambassadrice' : 'Ambassadeur'} &JOY
+            {member.gender === 'female' ? 'Exploratrice' : 'Explorateur'} &JOY
           </p>
           <p className="font-sans text-[13px] text-muted mt-1 text-center leading-[1.5] max-w-[260px]">{member.bio}</p>
 

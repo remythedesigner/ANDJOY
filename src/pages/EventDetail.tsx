@@ -6,8 +6,11 @@ import { getCategoryEmoji } from '../utils/categories';
 import MemberProfileSheet from '../components/organisms/MemberProfileSheet';
 import { PRIMARY_HEX } from '../utils/theme';
 import { ButtonFooter, IconButton, Pill, PrimaryButton, StepperButton } from '../components/atoms';
-import { communityMembers } from '../utils/data';
-import type { CommunityMember } from '../utils/types';
+import { ExplorerReviewCard } from '../components/molecules';
+import RecommendationForm from './RecommendationForm';
+import type { RecommendationDraft } from './RecommendationForm';
+import { ASSETS, communityMembers } from '../utils/data';
+import type { CommunityMember, UserRecommendation } from '../utils/types';
 
 const VENUE = { lat: 48.8556, lng: 2.3722 };
 
@@ -47,9 +50,16 @@ const USER_REVIEWS = [
   },
 ];
 
+const EVENT_TITLE = "Expo Immersive : Lumières d'Orient";
+const EVENT_VENUE = 'Atelier des Lumières, Paris 11e';
+
 interface EventDetailProps {
   onBack: () => void;
   onBook: (places: number, remainingSeats: number) => void;
+  userName?: string;
+  recommendations?: UserRecommendation[];
+  onRecommend?: (reco: UserRecommendation) => void;
+  onEditRecommendation?: (reco: UserRecommendation) => void;
 }
 
 function Stars({ rating }: { rating: number }) {
@@ -67,8 +77,10 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-export default function EventDetail({ onBack, onBook }: EventDetailProps) {
+export default function EventDetail({ onBack, onBook, userName = 'Jane', recommendations = [], onRecommend, onEditRecommendation }: EventDetailProps) {
   const [activeImage, setActiveImage] = useState(0);
+  const [showReco, setShowReco] = useState(false);
+  const [editingReco, setEditingReco] = useState<UserRecommendation | null>(null);
   const [places, setPlaces] = useState(1);
   const [profileMember, setProfileMember] = useState<CommunityMember | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -105,9 +117,44 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
     reviewsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  function closeReco() {
+    setShowReco(false);
+    setEditingReco(null);
+  }
+
+  function handleRecommend(draft: RecommendationDraft) {
+    if (editingReco) {
+      onEditRecommendation?.({ ...editingReco, ...draft });
+    } else {
+      onRecommend?.({
+        id: `reco-${Date.now()}`,
+        author: userName,
+        emoji: draft.emoji,
+        intro: draft.intro,
+        liked: draft.liked,
+        tip: draft.tip,
+        date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }),
+      });
+    }
+    closeReco();
+    // Review list is in the DOM again once the form closes
+    setTimeout(scrollToReviews, 0);
+  }
+
+  if (showReco) {
+    return (
+      <RecommendationForm
+        event={{ title: EVENT_TITLE, venue: EVENT_VENUE, image: IMAGES[0] }}
+        initial={editingReco ?? undefined}
+        onBack={closeReco}
+        onSubmit={handleRecommend}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-svh bg-cream">
-      <div ref={scrollRef} className="flex-1 overflow-y-auto pb-28">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto pb-44">
 
         {/* ── Hero image ── */}
         <div
@@ -330,35 +377,32 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
               <h2 className="font-sans font-extrabold text-[18px] leading-[25px] text-dark">Avis</h2>
             </div>
 
-            {/* Team review card */}
-            <div className="bg-badge-cream rounded-3xl p-5">
-              <div className="flex items-center gap-3 mb-3">
-                <button
-                  onClick={() => setProfileMember(communityMembers.find(m => m.name === 'Sam') ?? null)}
-                  className="rounded-full p-[2.5px] shrink-0 focus-visible:outline-none active:opacity-70 transition-opacity"
-                  style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, rgba(139,92,246,0.25) 100%)' }}
-                  aria-label="Voir le profil de Sam"
-                >
-                  <div className="border-[2px] border-white rounded-full size-10 overflow-hidden">
-                    <img
-                      src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&h=100&fit=crop"
-                      alt="Sam"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </button>
-                <div className="flex-1 min-w-0">
-                  <p className="typo-title text-dark">Sam</p>
-                  <p className="typo-caption text-accent-purple">Rédactrice &JOY</p>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[22px] leading-none" role="img" aria-label="reaction">🤩</span>
-                </div>
-              </div>
-              <p className="typo-review text-dark/80">
-                "Bluffant. On entre dans un tableau, littéralement. La musique colle parfaitement aux projections, on prend une vraie claque visuelle. Y aller en début de séance pour profiter des meilleurs coins."
-              </p>
-              <p className="typo-caption text-muted mt-3">Testé le 12 juin 2026</p>
+            <div className="flex flex-col gap-4">
+              {/* User recommendations, newest first */}
+              {recommendations.map(reco => (
+                <ExplorerReviewCard
+                  key={reco.id}
+                  name={reco.author}
+                  role="Explorateur·rice &JOY"
+                  avatar={ASSETS.profilePic}
+                  emoji={reco.emoji}
+                  paragraphs={[`"${/[.!?…]$/.test(reco.intro) ? reco.intro : `${reco.intro}.`} ${reco.liked}"`]}
+                  tip={reco.tip || undefined}
+                  date={`Testé le ${reco.date}`}
+                  onEdit={() => { setEditingReco(reco); setShowReco(true); }}
+                />
+              ))}
+
+              {/* Team review card */}
+              <ExplorerReviewCard
+                name="Sam"
+                role="Rédactrice &JOY"
+                avatar="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=100&h=100&fit=crop"
+                emoji="🤩"
+                paragraphs={['"Bluffant. On entre dans un tableau, littéralement. La musique colle parfaitement aux projections, on prend une vraie claque visuelle. Y aller en début de séance pour profiter des meilleurs coins."']}
+                date="Testé le 12 juin 2026"
+                onAvatarClick={() => setProfileMember(communityMembers.find(m => m.name === 'Sam') ?? null)}
+              />
             </div>
           </section>
 
@@ -410,9 +454,15 @@ export default function EventDetail({ onBack, onBook }: EventDetailProps) {
 
       {/* ── Sticky CTA ── */}
       <ButtonFooter className="fixed bottom-0 left-0 right-0" style={{ zIndex: 1001 }}>
-        <PrimaryButton onClick={() => onBook(places, REMAINING_SEATS)}>
-          Réserver — 22 €
-        </PrimaryButton>
+        <div className="flex flex-col gap-3">
+          <PrimaryButton onClick={() => onBook(places, REMAINING_SEATS)} className="shadow-[0px_2px_6px_rgba(0,0,0,0.08)]">
+            Réserver — 22 €
+          </PrimaryButton>
+          <PrimaryButton variant="secondary" onClick={() => setShowReco(true)} className="shadow-[0px_2px_6px_rgba(0,0,0,0.08)]">
+            <span aria-hidden="true">✍️</span>
+            Recommander l’activité
+          </PrimaryButton>
+        </div>
       </ButtonFooter>
       {profileMember && (
         <MemberProfileSheet member={profileMember} onClose={() => setProfileMember(null)} />

@@ -47,3 +47,13 @@ export interface HeroEvent {
   progressBars: number;
   activeBar: number;
 }
+
+export interface UserRecommendation {
+  id: string;
+  author: string;
+  emoji: string;
+  intro: string;
+  liked: string;
+  tip: string;
+  date: string;
+}
